@@ -7,7 +7,7 @@ error_reporting(0);
 session_start();
 
 if (isset($_SESSION['username'])) {
-    header("Location: index.php");
+    header("Location: login1.php");
 }
 
 if (isset($_POST['submit']))
@@ -55,13 +55,13 @@ if (isset($_POST['submit']))
 
 	<link rel="stylesheet" type="text/css" href="login.css">
 
-	<title>Register Form - Pure Coding</title>
+	<title>Register Form </title>
 </head>
 <body>
 <nav>
             <img src="PicsArt_07-31-02.19.24.png" class="logo">
             <ul>
-			<li><a href="homepage.php" class="active">HOME</a></li>
+			<li><a href="index.php" >HOME</a></li>
                 
             </ul>
         </nav>
@@ -83,7 +83,7 @@ if (isset($_POST['submit']))
 			<div class="input-group">
 				<button name="submit" class="btn">Register</button>
 			</div>
-			<p class="login-register-text">Have an account? <a href="index.php">Login Here</a>.</p>
+			<p class="login-register-text">Have an account? <a href="login1.php">Login Here</a>.</p>
 		</form>
 	</div>
 </body>

@@ -1,71 +1,72 @@
-<?php 
+<?php
 
 include 'config.php';
-
 session_start();
 
-error_reporting(0);
 
-if (isset($_SESSION['username'])) {
-    header("Location: welcome.php");
-}
-
-
-
-if (isset($_POST['submit'])) {
-	$email = $_POST['email'];
-	$password = md5($_POST['password']);
-
-	$sql = "SELECT * FROM users WHERE email='$email' AND password='$password'";
-	$result = mysqli_query($conn, $sql);
-	if ($result->num_rows > 0) {
-		$row = mysqli_fetch_assoc($result);
-		$_SESSION['username'] = $row['username'];
-		header("Location: welcome.php");
-	} else {
-		echo "<script>alert('Woops! Email or Password is Wrong.')</script>";
-	}
-}
 
 ?>
 
+
+
+
 <!DOCTYPE html>
 <html>
-<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-
-	<link rel="stylesheet" type="text/css" href="login.css">
-
-	<title>Login Form </title>
-</head>
-<body>
-	
-	<nav>
-	<img src="PicsArt_07-31-02.19.24.png" class="logo" >
-	<ul>
-                <li><a href="homepage.php" class="active">HOME</a></li>
-                
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Homepage</title>
+        <link rel="stylesheet" href="homepage.css">
+        
+    </head>
+    <body vlink="black">
+        <img src="">
+        <nav>
+            <img src="PicsArt_07-31-02.19.24.png" class="logo">
+            <ul>
+                <li><a href="#" class="active">HOME</a></li>
+                <li><a href="login1.php">LOGIN</a></li>
+                <li><a href="register.php">REGISTER</a></li>
                 
             </ul>
-	</nav>
-	<div class="container">
-		<form action="" method="POST" class="login-email">
-			<p class="login-text" style="font-size: 2rem; font-weight: 800;">Login</p>
-			<div class="input-group">
-				<input type="email" placeholder="Email" name="email" value="<?php echo $email; ?>" required>
-			</div>
-			<div class="input-group">
-				<input type="password" placeholder="Password" name="password" value="<?php echo $_POST['password']; ?>" required>
-			</div>
-			<div class="input-group">
-				<button name="submit" class="btn">Login</button>
-			</div>
-			<p class="login-register-text">Don't have an account? <a href="register.php">Register Here</a>.</p>
-		</form>
-	</div>
+        </nav>
+        <div class="post">
+            
+    <?php
+             
+             $query = "SELECT * FROM post ORDER BY pid DESC";
+ $query_run= mysqli_query($conn, $query);
+ $check_post= mysqli_num_rows($query_run) > 0;
 
-</body>
-</html>
+ if($check_post)
+ {
+     while($res = mysqli_fetch_array($query_run))
+     {
+
+ ?>
+
+
+ <div class="container">
+
+     <h1><?php echo"<a href=\"seperate.php?pid=$res[pid]\"><?a>".$res['title'] ?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;~<?php echo $res['author'] ?></h1><br>
+     <h3> Short desc:</h3>
+     <p><?php echo $res['short'] ?></p>
+
+
+ </div>
+
+ <?php
+
+ 
+     }
+
+ }
+ else{
+     echo " NO POST FOUND";
+ }
+
+
+ ?>
+        </div>
+    </body>
+    </html>

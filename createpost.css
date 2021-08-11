@@ -4,11 +4,13 @@
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
 }
-
+:root{
+    --primary:rgb(235, 49, 49);
+}
 body {
     width: 100%;
     min-height: 100vh;
-    background-color: rgb(161, 245, 140);
+    background-color: #fff;
     background-position: center;
     background-size: cover;
     display: flex;
@@ -16,7 +18,7 @@ body {
     align-items: center;
 }
 nav{
-    width: 84%;
+    width: 100%;
     margin: auto;
     padding: 20px 0;
     display: flex;
@@ -25,9 +27,12 @@ nav{
     padding-bottom: 20px;
     position:absolute;
     top: 5px;
+    background-color: var(--primary);
+    
 }
 nav .logo{
     transition: 0.3s;
+    margin-left: 50px;
 }
 nav .logo:hover{
     transform: translateY(-5px);
@@ -43,9 +48,10 @@ nav ul li{
     margin: 10px 20px;
     border: 5px ;
     padding: 7px 13px;
-    background-color: #ffffffe5;
+    background-color: #fff;
     border-radius: 10px;
     transition: 0.4s;
+    
     
 }
 
@@ -55,6 +61,7 @@ nav ul li:hover{
 nav ul li a{
     text-decoration: none;
     color: rgba(255, 68, 68, 0.945);
+    font-weight: 200;
    
 }
 .container {
@@ -63,7 +70,9 @@ nav ul li a{
     background: #FFF;
     border-radius: 5px;
     box-shadow: 0 0 5px rgba(0,0,0,.3);
-    padding: 40px 30px;
+    padding: 35px 25px;
+    
+    margin-top: 120px;
 }
 
 .container .login-text {
@@ -83,7 +92,7 @@ nav ul li a{
 .container .login-email .input-group {
     width: 100%;
     height: 50px;
-    margin-bottom: 25px;
+    margin-bottom: 10px;
 }
 
 .container .login-email .input-group input {
@@ -98,14 +107,14 @@ nav ul li a{
     transition: .3s;
 }
 .container .login-email .input-group textarea{
-    border: 2px solid #e7e7e7;
+    border: 2px solid var(--primary);
     border-radius: 30px;
     padding: 5px 10px;
     outline: none;
 }
 
 .container .login-email .input-group input:focus, .container .login-email .input-group input:valid {
-    border-color: #a29bfe;
+    border-color: #d41818;
 }
 
 .container .login-email .input-group .btn {
@@ -114,18 +123,19 @@ nav ul li a{
     padding: 15px 20px;
     text-align: center;
     border: none;
-    background: #a29bfe;
+    background: red;
     outline: none;
     border-radius: 30px;
     font-size: 1.2rem;
     color: #FFF;
     cursor: pointer;
     transition: .3s;
+    margin-top: 50px;
 }
 
 .container .login-email .input-group .btn:hover {
     transform: translateY(-5px);
-    background: #6c5ce7;
+    background: var(--primary);
 }
 
 .login-register-text {

@@ -2,17 +2,18 @@
     margin:0px;
     padding:0px;
 }
-body{
-    background: #d9ffbed0;
-    height:1000px;
-    width:1300px;
 
-   
-   
+:root{
+    --primary:rgb(235, 49, 49);
+}
+body{
+    background: #fff;
+    height:1000px;
+    width:1300px; 
 }
  
 nav{
-    width: 84%;
+    width: 100%;
     margin: auto;
     padding: 20px 0;
     display: flex;
@@ -21,10 +22,12 @@ nav{
     padding-bottom: 20px;
     position:absolute;
     top: 5px;
-    margin-left: 20px;
+    background-color: var(--primary);
+    
 }
 nav .logo{
     transition: 0.3s;
+    margin-left: 50px;
 }
 nav .logo:hover{
     transform: translateY(-5px);
@@ -40,7 +43,7 @@ nav ul li{
     margin: 10px 20px;
     border: 5px ;
     padding: 7px 13px;
-    background-color: #ffffffe5;
+    background-color: #fff;
     border-radius: 10px;
     transition: 0.4s;
     
@@ -53,6 +56,7 @@ nav ul li:hover{
 nav ul li a{
     text-decoration: none;
     color: rgba(255, 68, 68, 0.945);
+    font-weight: 200;
    
 }
 h1{
@@ -71,26 +75,34 @@ h1{
 
  #create{
     
-    background:rgb(113, 113, 236);
-    padding: 7px 13px;
-}
+    background:#f32727;
+    padding: 7px 18px;
+    border-color:red;
+            border-radius:10px;
+ }
 
  #ed1{
   
     background:#f32727;
-    padding: 7px 15px;
+    padding: 7px 18px;
     position: relative;
-    left:80%;
+    left:75%;
+    border-color:red;
+            border-radius:10px;
 }
  #de1{
     
    
-    background:#f7bc1c;
-    padding: 7px 13px;
-    float: right;
+    background:#f32727;
+    padding: 7px 20px;
+    position: relative;
+    left:77%;
+    border-color:red;
+            border-radius:10px;
+   
 }
 .post .container{
-    background: rgb(138, 247, 138);
+    background: #f55f5f;
    height: 28%;
    width:100%;
    position: relative;
@@ -111,4 +123,10 @@ h1{
    margin-top: 7px;
    left: 2%;
    
+}
+a{
+    text-decoration:none;
+    color:#fff;
+    font-weight:200;
+    
 }

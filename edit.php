@@ -1,17 +1,40 @@
 <?php
 
 include ('config.php');
+session_start();
+
+if (!isset($_SESSION['username'])) {
+    header("Location: login1.php");
+}
 
 $pid= $_GET['pid'];
+$author=$_SESSION['username'];
 
-$query=mysqli_query($conn,"SELECT * from post where pid=$pid ");
-while($res=mysqli_fetch_array($query)){
+$query=mysqli_query($conn,"SELECT * from post where pid=$pid and author='$author' ");
+if ($query->num_rows > 0){
 
-    $author=$res['author'];
-    $title=$res['title'];
-    $description= $res['description'];
-    $short= $res['short'];
-}
+    while($res=mysqli_fetch_array($query)){
+       
+      
+           
+
+        $author=$res['author'];
+        $title=$res['title'];
+        $description= $res['description'];
+        $short= $res['short'];
+    }
+            }
+            else{
+                echo "<script>alert('LogIn To Your Account.')</script>";
+                $author="";
+                $title="";
+                $description="";
+                $short="";
+
+            }
+
+        
+       
 ?>
 <?php
 
@@ -63,11 +86,11 @@ while($res=mysqli_fetch_array($query)){
                 </div>
                 <p class="login-text" style="font-size: 1.5rem; font-weight: 800;">Description</p>
                 <div class="input-group">
-                <textarea cols="40" rows="4" name="description"><?php echo $description ?></textarea>
+                <textarea cols="45" rows="3" name="description"><?php echo $description ?></textarea>
                 </div>
                 <p class="login-text" style="font-size: 1.5rem; font-weight: 800;">Short Description</p>
                 <div class="input-group">
-                <textarea cols="40" rows="4" name="short"><?php echo $short ?></textarea>
+                <textarea cols="45" rows="3" name="short"><?php echo $short ?></textarea>
                 </div>
                 <div class="input-group">
                 <button type="submit" name ="update" class="btn">UPDATE</button>

@@ -4,11 +4,13 @@
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
 }
-
+:root{
+    --primary:rgb(235, 49, 49);
+}
 body {
     width: 100%;
     min-height: 100vh;
-    background-color: #6c5ce7;
+    background-color: #fff;
     background-position: center;
     background-size: cover;
     display: flex;
@@ -16,7 +18,7 @@ body {
     align-items: center;
 }
 nav{
-    width: 84%;
+    width: 100%;
     margin: auto;
     padding: 20px 0;
     display: flex;
@@ -24,10 +26,13 @@ nav{
     justify-content: space-between;
     padding-bottom: 20px;
     position:absolute;
-    top: 5px;
+    top: 3px;
+    background-color: var(--primary);
+    
 }
 nav .logo{
     transition: 0.3s;
+    margin-left: 50px;
 }
 nav .logo:hover{
     transform: translateY(-5px);
@@ -43,9 +48,10 @@ nav ul li{
     margin: 10px 20px;
     border: 5px ;
     padding: 7px 13px;
-    background-color: #ffffffe5;
+    background-color: #fff;
     border-radius: 10px;
     transition: 0.4s;
+    
     
 }
 
@@ -55,15 +61,17 @@ nav ul li:hover{
 nav ul li a{
     text-decoration: none;
     color: rgba(255, 68, 68, 0.945);
+    font-weight: 200;
    
 }
 .container {
     width: 400px;
-    min-height: 400px;
+    min-height: 500px;
     background: #FFF;
     border-radius: 5px;
     box-shadow: 0 0 5px rgba(0,0,0,.3);
-    padding: 40px 30px;
+    padding: 30px 20px;
+    margin-top: 30px;
 }
 
 .container .login-text {
@@ -99,7 +107,7 @@ nav ul li a{
 }
 
 .container .login-email .input-group input:focus, .container .login-email .input-group input:valid {
-    border-color: #a29bfe;
+    border-color: #f14d4d;
 }
 
 .container .login-email .input-group .btn {
@@ -108,7 +116,7 @@ nav ul li a{
     padding: 15px 20px;
     text-align: center;
     border: none;
-    background: #a29bfe;
+    background: #f14d4d;
     outline: none;
     border-radius: 30px;
     font-size: 1.2rem;
@@ -119,7 +127,7 @@ nav ul li a{
 
 .container .login-email .input-group .btn:hover {
     transform: translateY(-5px);
-    background: #6c5ce7;
+    background: #f14d4d;
 }
 
 .login-register-text {
@@ -129,7 +137,7 @@ nav ul li a{
 
 .login-register-text a {
     text-decoration: none;
-    color: #6c5ce7;
+    color: red;
 }
 
 

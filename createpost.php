@@ -4,7 +4,7 @@ include 'config.php';
 session_start();
 
 if (!isset($_SESSION['username'])) {
-    header("Location: index.php");
+    header("Location: login1.php");
 }
 
 if (isset($_POST['submit'])){
@@ -56,21 +56,21 @@ echo "<script>alert('all fields are required.')</script>";
         </nav>
         <div class="container">
             <form action="" method="post" class="login-email">
-                <p class="login-text" style="font-size: 1.5rem; font-weight: 800;">Author Name : </p>
+                <p class="login-text" style="font-size: 1.2rem; font-weight: 800;">Author Name : </p>
                 <div class="input-group">
                 <input type="text" value=<?php echo $_SESSION['username']?> name="author">
                 </div>
-                <p class="login-text" style="font-size: 1.5rem; font-weight: 800;">POST TITLE</p>
+                <p class="login-text" style="font-size: 1.2rem; font-weight: 800;">POST TITLE</p>
                 <div class="input-group">
                 <input type="text" placeholder="Title Name" name="title">
                 </div>
-                <p class="login-text" style="font-size: 1.5rem; font-weight: 800;">Description</p>
+                <p class="login-text" style="font-size: 1.2rem; font-weight: 800;">Description</p>
                 <div class="input-group">
-                <textarea cols="40" rows="4" name="description" maxlength="800"></textarea>
-                </div>
-                <p class="login-text" style="font-size: 1.5rem; font-weight: 800;">Short Description</p>
+                <textarea cols="45" rows="4" name="description" maxlength="800"></textarea>
+                </div><br>
+                <p class="login-text" style="font-size: 1.2rem; font-weight: 800;">Short Description</p>
                 <div class="input-group">
-                <textarea cols="40" rows="4"  name="short"maxlength="255"></textarea>
+                <textarea cols="45" rows="3"  name="short"maxlength="255"></textarea>
                 </div>
                 <div class="input-group">
                 <button type="submit" name ="submit" class="btn">SUBMIT</button>

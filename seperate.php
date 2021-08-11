@@ -1,8 +1,13 @@
 <?php
 
 include ('config.php');
+session_start();
+
+
 
 $pid= $_GET['pid'];
+
+
 
 $query=mysqli_query($conn,"SELECT * from post where pid=$pid ");
 while($res=mysqli_fetch_array($query)){
@@ -27,8 +32,8 @@ while($res=mysqli_fetch_array($query)){
         <nav>
             <img src="PicsArt_07-31-02.19.24.png" class="logo">
             <ul>
-                <li><a href="homepage.php" >HOME</a></li>
-                <li><a href="index.php">LOGIN</a></li>
+                <li><a href="index.php" >HOME</a></li>
+                <li><a href="login1.php">LOGIN</a></li>
                 <li><a href="register.php">REGISTER NOW</a></li>
                 
             </ul>

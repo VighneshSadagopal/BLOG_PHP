@@ -5,7 +5,7 @@ include 'config.php';
 session_start();
 
 if (!isset($_SESSION['username'])) {
-    header("Location: index.php");
+    header("Location: login1.php");
 }
 
 
@@ -19,13 +19,14 @@ if (!isset($_SESSION['username'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome</title>
     <link rel="stylesheet" href="style1.css">
+    
 </head>
 <body vlink =" black">
         <nav>
             <img src="PicsArt_07-31-02.19.24.png" class="logo">
             <ul>
-                <li><a href="homepage.php" class="active">HOME</a></li>
-                <li><a href="index.php">DASHBOARD</a></li>
+                <li><a href="index.php" class="active">HOME</a></li>
+                <li><a href="login1.php">DASHBOARD</a></li>
                 <li><a href="logout.php">LOGOUT</a></li>
                 
             </ul>
