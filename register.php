@@ -25,7 +25,7 @@ if (isset($_POST['submit']))
 					VALUES ('$username', '$email', '$password')";
 			$result = mysqli_query($conn, $sql);
 			if ($result) {
-				echo "<script>alert('Wow! User Registration Completed.')</script>";
+				echo "<small>Wow Registration successful</small>";
 				$username = "";
 				$email = "";
 				$_POST['password'] = "";
@@ -52,19 +52,32 @@ if (isset($_POST['submit']))
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-
+	<script src="https://kit.fontawesome.com/ec41712638.js" crossorigin="anonymous"></script>
 	<link rel="stylesheet" type="text/css" href="login.css">
 
 	<title>Register Form </title>
 </head>
 <body>
-<nav>
-            <img src="PicsArt_07-31-02.19.24.png" class="logo">
-            <ul>
-			<li><a href="index.php" >HOME</a></li>
-                
-            </ul>
-        </nav>
+<nav class="navbar">
+    <div class="content">
+      <div class="logo">
+        <img src="PicsArt_07-31-02.19.24.png">
+      </div>
+      <ul class="menu-list">
+        <div class="icon cancel-btn">
+          <i class="fas fa-times"></i>
+        </div>
+        <li><a href="index.php">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Services</a></li>
+        <li><a href="login1.php">Login</a></li>
+        
+      </ul>
+      <div class="icon menu-btn">
+        <i class="fas fa-bars"></i>
+      </div>
+    </div>
+  </nav>
 	<div class="container">
 		<form action="" method="POST" class="login-email">
             <p class="login-text" style="font-size: 2rem; font-weight: 800;">Register</p>
@@ -86,5 +99,6 @@ if (isset($_POST['submit']))
 			<p class="login-register-text">Have an account? <a href="login1.php">Login Here</a>.</p>
 		</form>
 	</div>
+	<script src="index.js"></script>
 </body>
 </html>

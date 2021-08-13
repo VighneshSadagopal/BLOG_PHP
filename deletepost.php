@@ -26,7 +26,7 @@ $query_run= mysqli_query($conn, $query);
     <nav>
             <img src="PicsArt_07-31-02.19.24.png" class="logo">
             <ul>
-                <li><a href="index.php" class="active">HOME</a></li>
+                <li><a href="homepage.php" class="active">HOME</a></li>
                 <li><a href="login.php">DASHBOARD</a></li>
                 <li><a href="logout.php">LOGOUT</a></li>
                 

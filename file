@@ -1,0 +1,21 @@
+nav ul ul{
+    display:none;
+    position: absolute;
+    top:36px;
+    align-items: center;
+    background-color: var(--primary);
+ 
+    
+    
+}
+
+nav ul li:hover > ul{
+    display:block;
+
+}
+nav ul ul li{
+    width:90px;
+    float:none;
+    display: list-item;
+    position: relative;
+} 

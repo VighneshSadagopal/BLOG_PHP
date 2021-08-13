@@ -33,6 +33,8 @@ else{
             <ul>
                 <li><a href="index.php" class="active">HOME</a></li>
                 <li><a href="welcome.php">DASHBOARD</a></li>
+                <li><a href="#">CAREER</a></li>
+                <li><a href="#">ABOUT US</a></li>
                 <li><a href="deletepost.php">DELETE MENU</a></li>
                 
             </ul>

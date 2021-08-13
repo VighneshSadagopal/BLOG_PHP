@@ -10,7 +10,8 @@ if (!isset($_SESSION['username'])) {
 $pid= $_GET['pid'];
 $author=$_SESSION['username'];
 
-$query=mysqli_query($conn,"SELECT * from post where pid=$pid and author='$author' ");
+$query=mysqli_query($conn,"SELECT * FROM `post`INNER JOIN users ON post.id = users.id ");
+$query=mysqli_query($conn,"SELECT * FROM `post`where pid='$pid'");
 if ($query->num_rows > 0){
 
     while($res=mysqli_fetch_array($query)){
@@ -70,7 +71,14 @@ if ($query->num_rows > 0){
             <img src="PicsArt_07-31-02.19.24.png" class="logo">
             <ul>
                 <li><a href="welcome.php" >DASHBOARD</a></li>
-                <li><a href="logout.php">LOGOUT</a></li>
+                <li><a href="#">CAREER</a></li>
+                <li><a href="#">ABOUT US</a></li>
+                <li><a href="#"><?php echo  $_SESSION['username'] ?>&nbsp;<i class="tiny material-icons">arrow_drop_down_circle</i></a>
+                    <ul>
+                        <li><a href="account.php">View Details</a></li>
+                        <li><a href="logout.php"><i class="tiny material-icons">power_settings_new</i>&nbsp;LOGOUT</a></li>
+                    </ul>
+                    </li>
                 
             </ul>
         </nav>
@@ -86,11 +94,11 @@ if ($query->num_rows > 0){
                 </div>
                 <p class="login-text" style="font-size: 1.5rem; font-weight: 800;">Description</p>
                 <div class="input-group">
-                <textarea cols="45" rows="3" name="description"><?php echo $description ?></textarea>
+                <textarea cols="50" rows="3" name="description"><?php echo $description ?></textarea>
                 </div>
                 <p class="login-text" style="font-size: 1.5rem; font-weight: 800;">Short Description</p>
                 <div class="input-group">
-                <textarea cols="45" rows="3" name="short"><?php echo $short ?></textarea>
+                <textarea cols="50" rows="3" name="short"><?php echo $short ?></textarea>
                 </div>
                 <div class="input-group">
                 <button type="submit" name ="update" class="btn">UPDATE</button>

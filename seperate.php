@@ -33,6 +33,8 @@ while($res=mysqli_fetch_array($query)){
             <img src="PicsArt_07-31-02.19.24.png" class="logo">
             <ul>
                 <li><a href="index.php" >HOME</a></li>
+                <li><a href="#">CAREER</a></li>
+                <li><a href="#">ABOUT</a></li>
                 <li><a href="login1.php">LOGIN</a></li>
                 <li><a href="register.php">REGISTER NOW</a></li>
                 
@@ -42,15 +44,15 @@ while($res=mysqli_fetch_array($query)){
             <form action="" method="post" class="login-email">
                
                 <div class="input-group">
-               <h1> <input type="text" value=<?php echo $author?> name="author"></h1>
+               <h1> <input type="text" value=<?php echo $author?> name="author" readonly></h1>
                 </div>
                
                 <div class="input-group">
-                <input type="text" placeholder="Title Name"value=<?php echo $title?> name="title">
+                <input type="text" placeholder="Title Name"value=<?php echo $title?> name="title" readonly>
                 </div>
              
                 <div class="input-group">
-                <textarea cols="50" rows="16" ><?php echo $description ?></textarea>
+                <textarea readonly cols="60"  resize:none, overflow:hidden><?php echo $description ?></textarea>
                 </div>
                
 
