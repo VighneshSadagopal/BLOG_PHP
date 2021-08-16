@@ -4,124 +4,250 @@
 }
 
 :root{
-    --primary:rgb(235, 49, 49);
+    --primary:#000;
 }
 body{
-    background: #fff;
-    height:1000px;
-    width:1300px; 
+    background: #f0f0f0;
+    height:100%;
+    width:100%; 
 }
- 
-nav{
-    width: 100%;
+.content{
+    max-width: 1250px;
     margin: auto;
-    padding: 20px 0;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding-bottom: 20px;
-    position:absolute;
-    top: 5px;
+    padding: 0 30px;
+  }
+  .navbar{
+    position: fixed;
+    width: 100%;
+    z-index: 2;
+    padding: 25px 0;
+    transition: all 0.3s ease;
     background-color: var(--primary);
+  }
+  .navbar.sticky{
+    background: var(--primary);
+    padding: 10px 0;
+    box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.1);
+  }
+  .navbar .content{
+    display: flex;
+   
+    justify-content: center;
+  }
+  .navbar .logo {
+    color: #fff;
+    font-size: 30px;
+    font-weight: 600;
+    text-decoration: none;
+    position: absolute;
+    left:10%;
+    bottom: 5px;
+  }
+  .navbar ul ul{
+    
+    display: none;
+    align-items: center;
+    position: absolute;
+    background-color: var(--primary);
+  top: 120%;
+left:20%;
     
 }
-nav .logo{
-    transition: 0.3s;
-    margin-left: 50px;
+.right{
+  
+  padding: 7px 13px;
+
+  position: absolute;
+  right:10%;
+  bottom: 15px;
+  border-radius: 10px;
+
+
 }
-nav .logo:hover{
-    transform: translateY(-5px);
+#name{
+  color: #000;
+  background-color: #fff;
+
 }
-nav ul{
-   flex: 1;
-   text-align: right;
-    
-}
-nav ul li{
-    display: inline-block;
-    list-style: none;
-    margin: 10px 20px;
-    border: 5px ;
-    padding: 7px 13px;
-    background-color: #fff;
-    border-radius: 10px;
-    transition: 0.4s;
-    
-    
+.navbar ul li:hover > ul{
+  display:block;
+
 }
 
-nav ul li:hover{
-    transform : translateY(-5px);
+.navbar ul ul li{
+    display: inline-flex;
+    background-color: #000;
+    padding: 7px 13px;
+    
+} 
+.navbar ul ul li a{
+  font-size: 17px;
 }
-nav ul li a{
+  .navbar ul li{
+    transition: 0.3s;
+  }
+  .navbar .menu-list{
+    display: inline-flex;
+  }
+  .menu-list li{
+    list-style: none;
+  }
+  .menu-list li a{
+    color: #fff;
+  padding: 7px 13px;
+    font-size: 18px;
+    font-weight: 500;
+    margin-left: 25px;
     text-decoration: none;
-    color: rgba(255, 68, 68, 0.945);
-    font-weight: 200;
-   
-}
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    
+  }
+  .menu-list li a:hover{
+    transform: translateY(-5px);
+  }
+  .navbar ul li:hover{
+    transform: translateY(-5px);
+  }
+  .icon{
+    color: #fff;
+    font-size: 20px;
+    cursor: pointer;
+    display: none;
+    float: right;
+  }
+
 h1{
     position: relative;
     top:15%;
     left: 5%;
 }
-.post{
+
+#create .tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black;
+  }
   
-   height: 700px;
-   width:100%;
-   position: relative;
-   top: 20%;
-   left:10%;
-}
+ #create .tooltip .tooltext {
+    visibility: hidden;
+    width: 120px;
+    background-color: #e7dede;
+    color: black;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 2px;
+    font-size: 12px;
+    font-weight: 300;
+    
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+    top: -5px;
+    left: 250%;
+  }
+  
+#create .tooltip:hover .tooltext {
+    visibility: visible;
+  }
 
  #create{
     
-    background:#f32727;
-    padding: 7px 18px;
-    border-color:red;
-            border-radius:10px;
+    background:var(--primary);
+    padding:7px 9px;
+    border-color:var(--primary);
+    border-radius:60px;
+    font-size: x-large;
+  
+   
  }
+  .tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black;
+  }
+  
+ .tooltip .tooltext {
+    visibility: hidden;
+    width: 120px;
+    background-color: #e7dede;
+    color: black;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 2px;
+    font-size: 12px;
+    font-weight: 300;
+    
+    /* Position the tooltip */
+    position: absolute;
+  z-index: 1;
+  top: 100%;
+  left: 0%;
+  margin-left: -60px;
+  }
+  
+.tooltip:hover .tooltext {
+    visibility: visible;
+  }
 
  #ed1{
   
-    background:#f32727;
-    padding: 7px 18px;
+    background:var(--primary);
+    padding: 8px 9px;
     position: relative;
-    left:75%;
-    border-color:red;
-            border-radius:10px;
+    left:89%;
+    top:5px;
+    border-color:var(--primary);
+    border-radius:50px;
+    font-size: larger;
 }
+
  #de1{
     
    
-    background:#f32727;
-    padding: 7px 20px;
+    background:var(--primary);
+    padding: 8px 9px;
     position: relative;
-    left:77%;
-    border-color:red;
-            border-radius:10px;
+    left:90%;
+    top:5px;
+    border-color:var(--primary);
+    border-radius:60px;
+    font-size: larger;
    
 }
+.post{
+  
+  height: 100%;
+  width:60%;
+margin-top: 100px;
+margin-left: 100px;
+  display: block;
+}
 .post .container{
-    background: #f55f5f;
-   height: 28%;
+    background: #fdf9f9;
+   max-height: 50%;
    width:100%;
-   position: relative;
+   
    margin-top: 5px;
+   border-bottom:2px solid var(--primary) ;
+   margin-bottom: 20px;
+   
+ 
 }
 .post .container h1{
  
-    position: relative;
-    top: 5%;
-    left: 1%;   
+ 
+    margin-bottom: 8px;
 }
 .post .container p{
-    position: relative;
+    
     height:75%;
     width: 60%;
     font-size: 15px;
     font-family: Arial, Helvetica, sans-serif;
-   margin-top: 7px;
-   left: 2%;
+   margin-top: 12px;
+  margin-left: 50px;
+   padding-bottom: 30px;
    
 }
 a{
@@ -130,3 +256,160 @@ a{
     font-weight:200;
     
 }
+.sidebar{
+  float: right;
+  padding: 30px 50px;
+  background-color: white;
+  position: absolute;
+  top:35%;
+  right:10%;
+}
+.sidebar p{
+  font-size: 18px;
+  font-weight: 800;
+
+}
+@font-face {
+    font-family: 'Material Icons';
+    font-style: normal;
+    font-weight: 400;
+    src: url(https://fonts.gstatic.com/s/materialicons/v97/flUhRq6tzZclQEJ-Vdg-IuiaDsNc.woff2) format('woff2');
+  }
+  
+  .material-icons {
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    line-height: 1;
+   position: relative;
+   bottom:-3px;
+    text-transform: none;
+    display: inline-block;
+    white-space: nowrap;
+    word-wrap: normal;
+    direction: ltr;
+  }
+
+  @media (max-width:454px){
+  
+    .icon{
+      display: block;
+      float:right;
+      margin-right: 5px;
+      position: absolute;
+      left:70%;
+    
+    }
+    .icon.hide{
+      display: none;
+    }
+    #create{
+      position: relative;
+      right:20%;
+      bottom: 1%;
+      font-size: medium;
+    }
+    .navbar{
+      padding-bottom: 50px;
+    }
+    .navbar .logo{
+      position: absolute;
+      top:10%;
+    }
+    .navbar .menu-list{
+      position: fixed;
+      height: 100vh;
+      width: 100%;
+      max-width: 400px;
+      left: -100%;
+      top: 0px;
+      display: block;
+    
+      text-align: center;
+      background: var(--primary);
+      transition: all 0.3s ease;
+    }
+    .navbar.show .menu-list{
+      left: 0%;
+    }
+    .navbar .menu-list li{
+      margin-top: 45px;
+    }
+    .navbar .menu-list li a{
+      font-size: 16px;
+      margin-left: -100%;
+      transition: 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    }
+    .navbar.show .menu-list li a{
+      margin-left: 0px;
+    }
+    .right{
+      position: absolute;
+      left:10%;
+      top:50%;
+    }
+    .post{
+  
+      height: 700px;
+      width:95%;
+      position: relative;
+      top: 15%;
+      left:0;
+      display: block;
+      flex-wrap: none;
+    }
+    .post .container{
+     position: relative;
+     right:27%;
+      
+    }
+    .post .container h1{
+      font-size: 17px; 
+      padding-top: 10px;
+      margin-bottom: 5px;
+   
+  }
+  .post .container p{
+    font-size: 10px;
+    margin-left: 20px;
+  }
+  #auth{
+    font-size:18px;
+    left:50%;
+    
+    position: absolute;
+ 
+  top:75%;
+    
+  }
+  .sidebar{
+    display:none;
+  }
+    
+  #ed1{
+  
+    
+    padding: 6px 7px;
+    position: relative;
+    left:50%;
+    top:5px;
+    border-color:var(--primary);
+    border-radius:50px;
+    font-size: x-small;
+}
+
+ #de1{
+    
+   
+    
+    padding: 6px 7px;
+    position: relative;
+    left:50%;
+    top:5px;
+    border-color:var(--primary);
+    border-radius:60px;
+    font-size:x-small;
+   
+}
+      }
+      

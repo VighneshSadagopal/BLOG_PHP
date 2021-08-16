@@ -23,7 +23,7 @@ if (isset($_POST['submit'])) {
 		$_SESSION['username'] = $row['username'];
 		header("Location: welcome.php");
 	} else {
-		echo "<script>alert('Woops! Email or Password is Wrong.')</script>";
+		echo "<small>Email Or Password is Incorrect Please re-enter</small>";
 	}
 }
 
@@ -36,6 +36,7 @@ if (isset($_POST['submit'])) {
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<script src="https://kit.fontawesome.com/ec41712638.js" crossorigin="anonymous"></script>
 
 	<link rel="stylesheet" type="text/css" href="login.css">
 
@@ -43,22 +44,34 @@ if (isset($_POST['submit'])) {
 </head>
 <body>
 	
-	<nav>
-	<img src="PicsArt_07-31-02.19.24.png" class="logo" >
-	<ul>
-                <li><a href="index.php" >HOME</a></li>
-                
-                
-            </ul>
-	</nav>
+<nav class="navbar">
+    <div class="content">
+      <div class="logo">
+        <img src="logo2.png">
+      </div>
+      <ul class="menu-list">
+        <div class="icon cancel-btn">
+          <i class="fas fa-times"></i>
+        </div>
+        <li><a href="index.php">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Services</a></li>
+      </ul>
+      <div class="icon menu-btn">
+        <i class="fas fa-bars"></i>
+      </div>
+    </div>
+  </nav>
 	<div class="container">
-		<form action="" method="POST" class="login-email">
+		<form action="" method="POST" class="login-email" name="form" onsubmit="return validated()">
 			<p class="login-text" style="font-size: 2rem; font-weight: 800;">Login</p>
 			<div class="input-group">
-				<input type="email" placeholder="Email" name="email" value="<?php echo $email; ?>" required>
+				<input type="email" placeholder="Email"autocomplete="off" name="email" value="<?php echo $email; ?>" id="input-field">
+				<div id="email_error">Please fill up your Email or Phone</div>
 			</div>
 			<div class="input-group">
-				<input type="password" placeholder="Password" name="password" value="<?php echo $_POST['password']; ?>" required>
+				<input type="password" placeholder="Password" name="password" value="<?php echo $_POST['password']; ?>"id="input-field" >
+				<div id="pass_error">Please fill up your Password</div>
 			</div>
 			<div class="input-group">
 				<button name="submit" class="btn">Login</button>
@@ -66,6 +79,8 @@ if (isset($_POST['submit'])) {
 			<p class="login-register-text">Don't have an account? <a href="register.php">Register Here</a>.</p>
 		</form>
 	</div>
+	<script src="login.js"></script>
+	<script src="index.js"></script>
 
 </body>
 </html>

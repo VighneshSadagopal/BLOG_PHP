@@ -3,6 +3,10 @@
 include 'config.php';
 session_start();
 
+if (!isset($_SESSION['username'])) {
+    header("Location: login1.php");
+}
+
 ?>
 
 
@@ -15,25 +19,36 @@ session_start();
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Homepage</title>
         <link rel="stylesheet" href="homepage.css">
-        <style>
-            a{
-                text-decoration:none;
-                color:black;
-            }
-            
-            </style>
+        
     </head>
     <body vlink="black">
-        <img src="">
-        <nav>
-            <img src="PicsArt_07-31-02.19.24.png" class="logo">
-            <ul>
-                <li><a href="#" class="active">HOME</a></li>
-                <li><a href="index.php">Login</a></li>
-                <li><a href="register.php">Register</a></li>
-                
-            </ul>
-        </nav>
+     
+        <div class="image">
+        <div class="navbar" id='nav'>
+        <div class="content">
+          <div class="logo">
+            <img src="logo2.png">
+          </div>
+          <ul class="menu-list">
+            <div class="icon cancel-btn">
+              <i class="fas fa-times"></i>
+            </div>
+            <li><a href="homepage.css">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Services</a></li>
+            <li><a href="#">Carrer</a></li>
+            <li><a href="#">Contact Us</a></li>
+            
+            <li><a href="login1.php" id="right">Dashboard</a></li>
+           
+           
+          </ul>
+          <div class="icon menu-btn">
+            <i class="fas fa-bars"></i>
+          </div>
+        </div>
+</div>
+    </div>
         <div class="post">
             
     <?php
@@ -52,10 +67,10 @@ session_start();
 
  <div class="container">
 
-     <h1><?php echo"<a href=\"seperate.php?pid=$res[pid]\"><?a>".$res['title'] ?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;~<?php echo $res['author'] ?></h1><br>
-     <h3> Short desc:</h3>
+     <h1><?php echo $res['title'] ?></h1><br>
+    <p id="auth">~<?php echo $res['author'] ?></p>
      <p><?php echo $res['short'] ?></p>
-
+     <p id="read"><?php echo "<a href=\"seperate1.php?pid=$res[pid]\">"?>Read more...</a></p>
 
  </div>
 
