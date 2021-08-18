@@ -10,6 +10,15 @@ else{
    header("Location: login.php");
 }
 
+$author=$_SESSION['username'];
+$queryy=mysqli_query($conn,"SELECT * from users where  username='$author' ");
+            
+if ($queryy->num_rows > 0){
+
+while($row = mysqli_fetch_array($queryy))
+{
+
+
 ?>
 
 
@@ -21,17 +30,18 @@ else{
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Homepage</title>
-        <link rel="stylesheet" href="homepage.css">
+        <link rel="stylesheet" href="css/homepage.css">
         
     </head>
     <body vlink="black">
      
         <div class="image">
-          
+        <h1>WELCOME &nbsp;&nbsp;<?php echo $author ?></h1>
+         <a href="#post" id="bb">Check Out</a>
         <div class="navbar" id='nav'>
         <div class="content">
           <div class="logo">
-            <img src="logo2.png">
+            <img src="css/images/logo2.png">
           </div>
           <ul class="menu-list">
             <div class="icon cancel-btn">
@@ -53,9 +63,10 @@ else{
         </div>
 </div>
     </div>
-        <div class="post">
+        <div class="post" id="post">
             
     <?php
+
              
              $query = "SELECT * FROM post ORDER BY pid DESC";
  $query_run= mysqli_query($conn, $query);
@@ -88,8 +99,9 @@ else{
      echo " NO POST FOUND";
  }
 
-
+}}
  ?>
         </div>
+        <script src="css/js/nav_responsive.js"></script>
     </body>
     </html>

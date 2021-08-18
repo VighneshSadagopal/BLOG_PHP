@@ -44,12 +44,12 @@ if ($query->num_rows > 0){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome</title>
-    <link rel="stylesheet" href="style2.css">  
+    <link rel="stylesheet" href="css/style2.css">  
     <script src="https://kit.fontawesome.com/ec41712638.js" crossorigin="anonymous"></script>
 </head>
 <body vlink =" black">
         <nav>
-            <img src="logo2.png" class="logo">
+            <img src="css/images/logo2.png" class="logo">
             <ul>
                 <li><a href="homepage.php" class="active">HOME</a></li>
                 <li><a href="login.php">DASHBOARD</a></li>
@@ -101,6 +101,6 @@ if ($query->num_rows > 0){
                 ?>
 
         </div>
-        <script src="nav_responsive.js"></script>
+        <script src="css/js/nav_responsive.js"></script>
 </body>
 </html>

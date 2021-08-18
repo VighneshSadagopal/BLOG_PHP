@@ -24,7 +24,7 @@ while($row = mysqli_fetch_array($query))
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome</title>
-    <link rel="stylesheet" href="style1.css">  
+    <link rel="stylesheet" href="css/style1.css">  
     <script src="https://kit.fontawesome.com/ec41712638.js" crossorigin="anonymous"></script>
  
 </head>
@@ -36,7 +36,7 @@ while($row = mysqli_fetch_array($query))
 <div class="navbar" id="nav">
     <div class="content">
       <div class="logo">
-        <img src="logo2.png">
+        <img src="css/images/logo2.png">
       </div>
       <ul class="menu-list">
         <div class="icon cancel-btn">
@@ -64,54 +64,54 @@ while($row = mysqli_fetch_array($query))
 </div>
 </div>
      
+            
+                    <button id="create"> <?php echo "<a href=\"createpost.php?id=$row[id]\">"?><div class="tooltip"><i class="small material-icons">control_point</i></a>
+                    <span class="tooltext">Create</span></div>
+                    </button>
+                    <div class="con">
 
-    <div class="post" id ="post">
+                    <div class="post" id ="post">
+                            <?php
+                            }}     
+                            $query = "SELECT * FROM post ORDER BY pid DESC";
+                            $query_run= mysqli_query($conn, $query);
+                            $check_post= mysqli_num_rows($query_run) > 0;
 
-    <button id="create"> <?php echo "<a href=\"createpost.php?id=$row[id]\">"?><div class="tooltip"><i class="small material-icons">control_point</i></a>
-<span class="tooltext">Create</span></div>
-</button>
-       
-     
+                            if($check_post)
+                            {
+                                while($row = mysqli_fetch_array($query_run))
+                                {
 
-    <?php
-}}     
-        $query = "SELECT * FROM post ORDER BY pid DESC";
-        $query_run= mysqli_query($conn, $query);
-        $check_post= mysqli_num_rows($query_run) > 0;
+                            ?>
+                
+                
 
-        if($check_post)
-        {
-            while($row = mysqli_fetch_array($query_run))
-            {
+                                <div class="container" id="contain">
 
-        ?>
-        
+                                    <h1><?php echo "<a href=\"seperate1.php?pid=$row[pid]\">"?><?php echo $row['title'] ?></a></h1>
+                                    <p><?php echo $row['short'] ?><p id="auth">~<?php echo $row['author'] ?></p></p>
 
-        <div class="container" id="contain">
+                            
+                                </div>
+                            
+                                <?php
 
-            <h1><?php echo "<a href=\"seperate1.php?pid=$row[pid]\">"?><?php echo $row['title'] ?></a></h1>
-            <p><?php echo $row['short'] ?><p id="auth">~<?php echo $row['author'] ?></p></p>
+                                
+                                    }
 
-      
-        </div>
-    
-        <?php
-
-        
-            }
-
-        }
-        else{
-            echo " NO POST FOUND";
-        }
-    
-    
-        ?>
-    </div>
+                                }
+                                else{
+                                    echo " NO POST FOUND";
+                                }
+            
+            
+                                ?>
+                            </div>
     <div class ="sidebar">
         <p>Search Post </p>
     <input type="text" placeholder="Search By Author Name" name="search">&nbsp;<button type="submit" ><i class="fas fa-search"></i></button>
       </div>
-      <script src="nav_responsive.js"></script>
+                            </div>
+      <script src="css/js/nav_responsive.js"></script>
 </body>
 </html>

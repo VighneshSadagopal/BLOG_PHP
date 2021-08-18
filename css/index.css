@@ -11,6 +11,19 @@ body{
     background-position: center;
     background-repeat: no-repeat;
 }
+#back{
+  
+  position: absolute;
+  color: #fff;
+  font-size: 35px;
+  left: 10px;
+  top: 10px;
+  transition: all 0.3s;
+
+}
+i a:hover{
+    transform: translateX(-10px);
+}
 
 
 

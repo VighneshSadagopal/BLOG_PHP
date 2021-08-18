@@ -48,7 +48,7 @@ if (isset($_POST['submit']))
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="css/index.css">
     <meta charset="UTF-8">
    
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -59,7 +59,7 @@ if (isset($_POST['submit']))
 
    
         <div class="contain1">
-    <img src="falls.jpg" class="image">
+    <img src="css/images/falls.jpg" class="image">
     <txt id="h1">Enter Your Details <br>and Join US</txt>
  
     
@@ -68,7 +68,7 @@ if (isset($_POST['submit']))
            
 
             <div class="logo">
-                <img src="logo3.png"><h2>Visual Select</h2>
+                <img src="css/images/logo3.png"><h2>Visual Select</h2>
             </div>
 			<form action="" method="POST" class="form" onsubmit="return validated()">
                 <h3>Sign In</h3>
@@ -86,7 +86,7 @@ if (isset($_POST['submit']))
             
          <text>Already Registered&nbsp;&nbsp;&nbsp;<span><a href="login.php">Login Now</span></a></text>
         </div>
-		<script src="javascript" href="login.js"></script>
+		<script src="javascript" href="css/js/login.js"></script>
  
 </body>
 </html>

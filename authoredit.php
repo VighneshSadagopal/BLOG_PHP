@@ -52,14 +52,14 @@ if ($query->num_rows > 0){
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Homepage</title>
-        <link rel="stylesheet" href="createpost.css">
+        <link rel="stylesheet" href="css/createpost.css">
         <script src="https://kit.fontawesome.com/ec41712638.js" crossorigin="anonymous"></script>
     </head>
     <body>
     <div class="navbar" id="nav">
     <div class="content">
       <div class="logo">
-        <img src="logo2.png">
+        <img src="css/images/logo2.png">
       </div>
       <ul class="menu-list">
         <div class="icon cancel-btn">
@@ -121,6 +121,6 @@ if ($query->num_rows > 0){
                 <button type="submit" name ="update" class="btn">UPDATE</button>
                 </div>
         </form>
-        <script src="nav_responsive.js"></script>
+        <script src="css/js/nav_responsive.js"></script>
         </body>
     </html>

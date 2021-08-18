@@ -28,7 +28,7 @@ while($row = mysqli_fetch_array($query))
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome</title>
-    <link rel="stylesheet" href="style1.css">  
+    <link rel="stylesheet" href="css/style1.css">  
     <script src="https://kit.fontawesome.com/ec41712638.js" crossorigin="anonymous"></script>
  
 </head>
@@ -39,7 +39,7 @@ while($row = mysqli_fetch_array($query))
 <div class="navbar" id="nav">
     <div class="content">
       <div class="logo">
-        <img src="logo2.png">
+        <img src="css/images/logo2.png">
       </div>
       <ul class="menu-list">
         <div class="icon cancel-btn">
@@ -93,13 +93,16 @@ while($row = mysqli_fetch_array($query))
             {
 
         ?>
+       
+        <div class="container">
+
+
+            <h1><?php echo $row['title'] ?></h1> <div class="edbtn">
            
            <button id="ed1"> <?php echo "<a href=\"edit.php?pid=$row[pid]\"><?a>"?><div class="tooltip"><i class="tiny material-icons">edit</i><span class="tooltext">EDIT</span></div></button>
        <button id="de1"> <a href="deletepost.php"><div class="tooltip"><i class="tiny material-icons">delete</i></a><span class="tooltext">DELETE</span></div></button>
-
-        <div class="container">
-
-            <h1><?php echo $row['title'] ?></h1>
+            </div>
+            
             <p><?php echo $row['description'] ?><p id="auth">~<?php echo $row['author'] ?></p></p>
 
       
@@ -162,6 +165,6 @@ while($row = mysqli_fetch_array($query))
       <div class="sideslash">
 
     </div>
-      <script src="index.js"></script>
+      <script src="css/js/index.js"></script>
 </body>
 </html>

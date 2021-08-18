@@ -31,7 +31,7 @@ while($res=mysqli_fetch_array($query)){
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Homepage</title>
-        <link rel="stylesheet" href="seperate.css">
+        <link rel="stylesheet" href="css/seperate.css">
     </head>
     <body>
     <div class="image">
@@ -41,7 +41,7 @@ while($res=mysqli_fetch_array($query)){
 <div class="navbar" id="nav">
     <div class="content">
       <div class="logo">
-        <img src="logo2.png">
+        <img src="css/images/logo2.png">
       </div>
       <ul class="menu-list">
         <div class="icon cancel-btn">

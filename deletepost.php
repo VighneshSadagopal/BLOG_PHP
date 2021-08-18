@@ -20,12 +20,12 @@ $query_run= mysqli_query($conn, $query);
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Homepage</title>
-        <link rel="stylesheet" href="style1.css">
+        <link rel="stylesheet" href="css/style1.css">
         <script src="https://kit.fontawesome.com/ec41712638.js" crossorigin="anonymous"></script>
     </head>
     <body>
     <nav>
-            <img src="PicsArt_07-31-02.19.24.png" class="logo">
+            <img src="css/images/logo2.png" class="logo">
             <ul>
                 <li><a href="homepage.php" class="active">HOME</a></li>
                 <li><a href="login.php">DASHBOARD</a></li>
@@ -58,6 +58,6 @@ $query_run= mysqli_query($conn, $query);
         ?>
         
         </table>
-        <script src="nav_responsive.js"></script>
+        <script src="css/js/nav_responsive.js"></script>
     </body>
     </html>
