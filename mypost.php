@@ -8,7 +8,7 @@ if (isset($_SESSION['username'])){
   
 }
 else{
-    header("Location: login1.php");
+    header("Location: login.php");
 }
 
 $id=$_GET['id'];
@@ -31,6 +31,9 @@ while($row = mysqli_fetch_array($query))
     <script src="https://kit.fontawesome.com/ec41712638.js" crossorigin="anonymous"></script>
 </head>
 <body vlink =" black">
+<div class="image" id="img">
+         <h1>WELCOME &nbsp;&nbsp;<?php echo $author ?></h1>
+         <a href="#create" id="bb">Check Out</a>
 <div class="navbar" id="nav">
     <div class="content">
       <div class="logo">
@@ -40,7 +43,7 @@ while($row = mysqli_fetch_array($query))
         <div class="icon cancel-btn">
           <i class="fas fa-times"></i>
         </div>
-        <li><a href="login1.php">All Post</a></li>
+        <li><a href="login.php">All Post</a></li>
         <li><a href="#">About</a></li>
         <li><a href="#">Services</a></li>
         
@@ -61,7 +64,7 @@ while($row = mysqli_fetch_array($query))
       </div>
   </div>
      
-    <?php echo "<h1>Welcome " . $_SESSION['username'] . "</h1>"; ?>
+</div>
 
     <div class="post">
    <?php 
@@ -75,12 +78,13 @@ while($row = mysqli_fetch_array($query))
 {
 
    ?>
-        
-        <button id="ed1"> <?php echo "<a href=\"edit.php?id=$row[pid]\"><?a>"?><div class="tooltip"><i class="tiny material-icons">edit</i><span class="tooltext">EDIT</span></div></button>
-       <button id="de1"> <a href="deletepost.php"><div class="tooltip"><i class="tiny material-icons">delete</i></a><span class="tooltext">DELETE</span></div></button>
-
+       
 
         <div class="container">
+           
+        <button id="ed1"> <?php echo "<a href=\"edit.php?pid=$row[pid]\"><?a>"?><div class="tooltip"><i class="tiny material-icons">edit</i><span class="tooltext">EDIT</span></div></button>
+       <button id="de1"> <a href="deletepost.php"><div class="tooltip"><i class="tiny material-icons">delete</i></a><span class="tooltext">DELETE</span></div></button>
+
 
             <h1><?php echo $row['title'] ?></h1>
             <p><?php echo $row['description'] ?></p>

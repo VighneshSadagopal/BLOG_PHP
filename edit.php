@@ -4,16 +4,16 @@ include ('config.php');
 session_start();
 
 if (!isset($_SESSION['username'])) {
-    header("Location: login1.php");
+    header("Location: login.php");
 }
 
-
+$id=$_SESSION['id'];
 $author=$_SESSION['username'];
-$id= $_GET['id'];
+$pid= $_GET['pid'];
 
 
-$query=mysqli_query($conn,"SELECT * FROM `post`INNER JOIN users ON post.id = '$id' ");
-$query=mysqli_query($conn,"SELECT * FROM `post`where id='$id'");
+$query=mysqli_query($conn,"SELECT * FROM `post`INNER JOIN users ON post.id =  '$id' where pid='$pid' ");
+
 if ($query->num_rows > 0){
 
     while($res=mysqli_fetch_array($query)){
@@ -87,7 +87,7 @@ if ($query->num_rows > 0){
         <div class="icon cancel-btn">
           <i class="fas fa-times"></i>
         </div>
-        <li><a href="login1.php">Dashboard</a></li>
+        <li><a href="login.php">Dashboard</a></li>
         <li><a href="#">About</a></li>
         <li><a href="#">Services</a></li>
         <li><?php echo "<a href=\"mypost.php?id=$row[id]\">"?>My Post</a></li>

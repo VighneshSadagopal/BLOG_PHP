@@ -3,12 +3,8 @@
 include 'config.php';
 session_start();
 
-if (isset($_SESSION['username'])) {
-    
-
-}
-else{
-    header("Location: login1.php");
+if (!isset($_SESSION['username'])) {
+  header("Location: login.php");
 }
 $id=$_REQUEST['id'];
 
@@ -68,7 +64,7 @@ while($row = mysqli_fetch_array($sql))
         <div class="icon cancel-btn">
           <i class="fas fa-times"></i>
         </div>
-        <li><a href="login1.php">Dashboard</a></li>
+        <li><a href="login.php">Dashboard</a></li>
         <li><a href="#">About</a></li>
         <li><a href="#">Services</a></li>
         <li><?php echo "<a href=\"mypost.php?id=$row[id]\">"?>My Post</a></li>

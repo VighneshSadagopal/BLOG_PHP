@@ -2,7 +2,9 @@
     margin:0px;
     padding:0px;
 }
-
+html{
+  scroll-behavior: smooth;
+}
 :root{
     --primary:#000;
 }
@@ -10,6 +12,49 @@ body{
     background: #f0f0f0;
     height:100%;
     width:100%; 
+}
+.image{
+  background-image: url(ocean2.gif);
+  width: 100%;
+  height: 100vh;
+  background-size: cover;
+}
+#img{
+  background-image: url(blog2.jpg);
+  color: #000;
+}
+#img h1,a{
+  color:#000;
+}
+#img #bb{
+  color: #000;
+  border: 2px solid #000;
+}
+.image h1{
+  color: #fff;
+  font-size: 65px;
+  position: absolute;
+   top: 40%;
+   left: 7%;
+   transition: all 0.3s ease-in;
+   text-transform:uppercase;
+}
+.image #bb{
+ border: 2px solid #fff;
+  padding: 10px 18px;
+  border-radius: 15px;
+  position: absolute;
+  top:51%;
+  left:7%;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+.image a{
+  color:#FFF;
+  font-size: 22px;
+  text-decoration: none;
+}
+.image h1:hover{
+  transform: translateY(-8px);
 }
 .content{
     max-width: 1250px;
@@ -19,7 +64,6 @@ body{
   .navbar{
     position: fixed;
     width: 100%;
-    z-index: 2;
     padding: 25px 0;
     transition: all 0.3s ease;
     background-color: var(--primary);
@@ -40,7 +84,7 @@ body{
     font-weight: 600;
     text-decoration: none;
     position: absolute;
-    left:10%;
+    left:6%;
     bottom: 5px;
   }
   .navbar ul ul{
@@ -78,7 +122,7 @@ left:20%;
     display: inline-flex;
     background-color: #000;
     padding: 7px 13px;
-    
+    width: 100%;
 } 
 .navbar ul ul li a{
   font-size: 17px;
@@ -158,8 +202,12 @@ h1{
     border-color:var(--primary);
     border-radius:60px;
     font-size: x-large;
-  
-   
+    position: absolute;
+    top: 101%;
+ }
+ #create a{
+   color:#FFF;
+   font-weight: 200;
  }
   .tooltip {
     position: relative;
@@ -194,9 +242,9 @@ h1{
   
     background:var(--primary);
     padding: 8px 9px;
-    position: relative;
-    left:89%;
-    top:5px;
+    position: absolute;
+    left:59%;
+   
     border-color:var(--primary);
     border-radius:50px;
     font-size: larger;
@@ -207,13 +255,19 @@ h1{
    
     background:var(--primary);
     padding: 8px 9px;
-    position: relative;
-    left:90%;
-    top:5px;
+    position: absolute;
+   left: 63%;
     border-color:var(--primary);
     border-radius:60px;
     font-size: larger;
+  
    
+}
+#post{
+  margin-top: 160px;
+}
+#contain{
+  margin-bottom: 110px;
 }
 .post{
   
@@ -228,46 +282,57 @@ margin-left: 100px;
    max-height: 50%;
    width:100%;
    
-   margin-top: 5px;
+   margin-top: -90px;
    border-bottom:2px solid var(--primary) ;
-   margin-bottom: 20px;
+   margin-bottom: 118px;
    
  
 }
 .post .container h1{
+  color:black;
  
- 
-    margin-bottom: 8px;
+  padding-top: 10PX;
+    margin-bottom: 10px;
+}
+.post .container h1 a:hover{
+  color: rgba(0, 174, 255, 0.692);
+
 }
 .post .container p{
     
     height:75%;
-    width: 60%;
+    width: 80%;
     font-size: 15px;
     font-family: Arial, Helvetica, sans-serif;
-   margin-top: 12px;
+   margin-top: 15px;
   margin-left: 50px;
-   padding-bottom: 30px;
+   padding-bottom: 5px;
    
 }
-a{
+.post .container a{
     text-decoration:none;
-    color:#fff;
-    font-weight:200;
+    color:black;
+    font-weight:800;
     
 }
 .sidebar{
   float: right;
-  padding: 30px 50px;
+  padding: 10px 15px;
   background-color: white;
   position: absolute;
-  top:35%;
   right:10%;
+  top: 109%;
+  height: 8%;
+  width: 13%;
 }
 .sidebar p{
   font-size: 18px;
   font-weight: 800;
 
+}
+#side{
+  top:112%;
+  
 }
 @font-face {
     font-family: 'Material Icons';
@@ -351,7 +416,7 @@ a{
     .post{
   
       height: 700px;
-      width:95%;
+      width:100%;
       position: relative;
       top: 15%;
       left:0;
@@ -360,7 +425,8 @@ a{
     }
     .post .container{
      position: relative;
-     right:27%;
+     margin-left: -90px;
+     width: 115%;;
       
     }
     .post .container h1{
@@ -372,6 +438,7 @@ a{
   .post .container p{
     font-size: 10px;
     margin-left: 20px;
+    width:90%;
   }
   #auth{
     font-size:18px;

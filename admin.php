@@ -5,13 +5,14 @@ include 'config.php';
 session_start();
 
 if (isset($_SESSION['username'])){
-   
+   $id=$_SESSION['id'];
 }
 else{
-    header("Location: login1.php");
+    header("Location: login.php");
 }
 
 $author=$_SESSION['username'];
+
 $query=mysqli_query($conn,"SELECT * from users where  username='$author' ");
             
 if ($query->num_rows > 0){
@@ -32,6 +33,9 @@ while($row = mysqli_fetch_array($query))
  
 </head>
 <body vlink =" black">
+<div class="image">
+         <h1>WELCOME &nbsp;<?php echo $author ?></h1>
+         <a href="#create" id="bb">Check Out</a>
 <div class="navbar" id="nav">
     <div class="content">
       <div class="logo">
@@ -44,13 +48,15 @@ while($row = mysqli_fetch_array($query))
         <li><a href="homepage.php">Home</a></li>
         <li><a href="#">About</a></li>
         <li><a href="#">Services</a></li>
-        <li><a href="login1.php">Dashboard</a></li>
+        
+        
      
         <div class="right">
         <li><a href="#" id="name" ><?php echo $_SESSION['username']?>&nbsp;<i class="tiny material-icons" >arrow_drop_down_circle</i></a>
             <ul>
+                <li><a href="authinfo.php"> Author info</a></li>
                 <li ><?php echo "<a href=\"account.php?id=$row[id]\">"?>DETAILS</a></li>
-                <li ><a href=""><i class="tiny material-icons" >power_settings_new</i>&nbsp;LOGOUT</a></li>
+                <li ><a href="logout.php"><i class="tiny material-icons" >power_settings_new</i>&nbsp;LOGOUT</a></li>
             </ul>
         </li>
 </div>
@@ -61,16 +67,17 @@ while($row = mysqli_fetch_array($query))
       </div>
     </div>
 </div>
+</div>
      
-    <?php 
+  
     
-    echo "<h1>Welcome " . $_SESSION['username'] . "</h1>"; ?>
+   
 
     <div class="post">
 
     <button id="create"> <?php echo "<a href=\"createpost.php?id=$row[id]\">"?><div class="tooltip"><i class="small material-icons">control_point</i></a>
 <span class="tooltext">Create</span></div>
-</button>
+</button><br><br>
        
      
 
@@ -148,10 +155,13 @@ while($row = mysqli_fetch_array($query))
 
         ?>
     </div>
-    <div class ="sidebar">
+    <div class ="sidebar" id="side">
         <p>Search Post </p>
     <input type="text" placeholder="Search By Author Name" name="search">&nbsp;<button type="submit" ><i class="fas fa-search"></i></button>
       </div>
-      <script src="nav_responsive.js"></script>
+      <div class="sideslash">
+
+    </div>
+      <script src="index.js"></script>
 </body>
 </html>

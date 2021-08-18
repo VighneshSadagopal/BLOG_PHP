@@ -4,11 +4,8 @@ include 'config.php';
 
 session_start();
 
-if (isset($_SESSION['username'])){
-   
-}
-else{
-    header("Location: login1.php");
+if (!isset($_SESSION['id'])){
+    header("Location: login.php");
 }
 
 $author=$_SESSION['username'];
@@ -32,6 +29,10 @@ while($row = mysqli_fetch_array($query))
  
 </head>
 <body vlink =" black">
+<div class="image">
+         <h1>WELCOME &nbsp;&nbsp;<?php echo $author ?></h1>
+         <a href="#create" id="bb">Check Out</a>
+   
 <div class="navbar" id="nav">
     <div class="content">
       <div class="logo">
@@ -44,7 +45,7 @@ while($row = mysqli_fetch_array($query))
         <li><a href="homepage.php">Home</a></li>
         <li><a href="#">About</a></li>
         <li><a href="#">Services</a></li>
-        <li><a href="login1.php">Dashboard</a></li>
+        <li><a href="login.php">Dashboard</a></li>
         <li><?php echo "<a href=\"mypost.php?id=$row[id]\">"?>My Post</a></li>
         <div class="right">
         <li><a href="#" id="name" ><?php echo $_SESSION['username']?>&nbsp;<i class="tiny material-icons" >arrow_drop_down_circle</i></a>
@@ -61,12 +62,10 @@ while($row = mysqli_fetch_array($query))
       </div>
     </div>
 </div>
+</div>
      
-    <?php 
-    
-    echo "<h1>Welcome " . $_SESSION['username'] . "</h1>"; ?>
 
-    <div class="post">
+    <div class="post" id ="post">
 
     <button id="create"> <?php echo "<a href=\"createpost.php?id=$row[id]\">"?><div class="tooltip"><i class="small material-icons">control_point</i></a>
 <span class="tooltext">Create</span></div>
@@ -88,47 +87,10 @@ while($row = mysqli_fetch_array($query))
         ?>
         
 
-        <div class="container">
+        <div class="container" id="contain">
 
-            <h1><?php echo $row['title'] ?></h1>
-            <p><?php echo $row['description'] ?><p id="auth">~<?php echo $row['author'] ?></p></p>
-
-      
-        </div>
-    
-        <?php
-
-        
-            }
-
-        }
-        else{
-            echo " NO POST FOUND";
-        }
-    
-    
-        ?>
-
-        <?php
-        
-
-         if(isset($_POST['search'])){
-          $search= $_POST['search'];
-       echo $que= mysqli_query($conn,"SELECT * FROM post where author='$search'");
-        $check_post= mysqli_num_rows($que) > 0;
-
-        if($check_post)
-        {
-            while($row = mysqli_fetch_array($que))
-            {
-
-        ?>
-        
-
-        <div class="container">
-
-            <h1><?php echo $row['title'] ?></h1>
-            <p><?php echo $row['description'] ?><p id="auth">~<?php echo $row['author'] ?></p></p>
+            <h1><?php echo "<a href=\"seperate1.php?pid=$row[pid]\">"?><?php echo $row['title'] ?></a></h1>
+            <p><?php echo $row['short'] ?><p id="auth">~<?php echo $row['author'] ?></p></p>
 
       
         </div>
@@ -142,8 +104,8 @@ while($row = mysqli_fetch_array($query))
         else{
             echo " NO POST FOUND";
         }
-      }
-
+    
+    
         ?>
     </div>
     <div class ="sidebar">

@@ -36,7 +36,7 @@ while($res=mysqli_fetch_array($query)){
                 <li><a href="index.php" >HOME</a></li>
                 <li><a href="#">CAREER</a></li>
                 <li><a href="#">ABOUT</a></li>
-                <li><a href="login1.php">LOGIN</a></li>
+                <li><a href="login.php">LOGIN</a></li>
                 <li><a href="register.php">REGISTER NOW</a></li>
                 
             </ul>

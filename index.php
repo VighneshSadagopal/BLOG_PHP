@@ -22,6 +22,8 @@ session_start();
     </head>
     <body >
        <div class="image">
+         <h1>WELCOME TO THE OCEAN</h1>
+         <a href="#post" id="bb">Lets Dive In</a>
         <div class="navbar" id='nav'>
         <div class="content">
           <div class="logo">
@@ -37,17 +39,17 @@ session_start();
             <li><a href="#">Carrer</a></li>
             <li><a href="#">Contact Us</a></li>
             
-            <li><a href="login1.php" id="right">Login/Register</a></li>
+            <li><a href="login.php" id="right">Login/Register</a></li>
            
            
           </ul>
           <div class="icon menu-btn">
-            <i class="fas fa-bars"></i>
+            <i class="fas fa-bars" ></i>
           </div>
         </div>
 </div>
     </div>
-        <div class="post">
+        <div class="post" id ="post">
             
     <?php
              

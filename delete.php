@@ -6,7 +6,7 @@ $pid= $_GET['pid'];
 session_start();
 
 if (!isset($_SESSION['username'])) {
-    header("Location: login1.php");
+    header("Location: login.php");
 }
 $result=mysqli_query($conn,"DELETE from  post where pid='$pid'");
 if($result){

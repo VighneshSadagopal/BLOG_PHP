@@ -3,8 +3,11 @@
 include 'config.php';
 session_start();
 
-if (!isset($_SESSION['username'])) {
-    header("Location: login1.php");
+if (isset($_SESSION['username'])){
+  $id=$_SESSION['id'];
+}
+else{
+   header("Location: login.php");
 }
 
 ?>
@@ -24,6 +27,7 @@ if (!isset($_SESSION['username'])) {
     <body vlink="black">
      
         <div class="image">
+          
         <div class="navbar" id='nav'>
         <div class="content">
           <div class="logo">
@@ -39,7 +43,7 @@ if (!isset($_SESSION['username'])) {
             <li><a href="#">Carrer</a></li>
             <li><a href="#">Contact Us</a></li>
             
-            <li><a href="login1.php" id="right">Dashboard</a></li>
+            <li><a href="login.php" id="right">Dashboard</a></li>
            
            
           </ul>

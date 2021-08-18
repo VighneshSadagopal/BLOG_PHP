@@ -4,7 +4,7 @@ include ('config.php');
 session_start();
 
 if (!isset($_SESSION['username'])) {
-    header("Location: login1.php");
+    header("Location: login.php");
 }
 
 $id= $_REQUEST['id'];
@@ -56,23 +56,35 @@ if ($query->num_rows > 0){
         <script src="https://kit.fontawesome.com/ec41712638.js" crossorigin="anonymous"></script>
     </head>
     <body>
-        <img src="">
-        <nav>
-            <img src="PicsArt_07-31-02.19.24.png" class="logo">
+    <div class="navbar" id="nav">
+    <div class="content">
+      <div class="logo">
+        <img src="logo2.png">
+      </div>
+      <ul class="menu-list">
+        <div class="icon cancel-btn">
+          <i class="fas fa-times"></i>
+        </div>
+        <li><a href="admin.php">Dashboard</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Services</a></li>
+        <li><?php echo "<a href=\"mypost.php?id=$res[id]\">"?>My Post</a></li>
+
+        <div class="right">
+        <li><a href="#" id="name" ><?php echo $_SESSION['username']?>&nbsp;<i class="tiny material-icons" >arrow_drop_down_circle</i></a>
             <ul>
-                <li><a href="welcome.php" >DASHBOARD</a></li>
-                <li><a href="#">CAREER</a></li>
-                <li><a href="#">ABOUT US</a></li>
-                <li><?php echo "<a href=\"account.php?id=$res[id]\">"?>Details</a></li>
-                <li><a href="#"><?php echo  $_SESSION['username'] ?>&nbsp;<i class="tiny material-icons">arrow_drop_down_circle</i></a>
-                    <ul>
-                        
-                        <li><a href="logout.php"><i class="tiny material-icons">power_settings_new</i>&nbsp;LOGOUT</a></li>
-                    </ul>
-                    </li>
-                
+                <li ><?php echo "<a href=\"account.php?id=$res[id]\">"?>VIEW DETAILs</a></li>
+                <li ><a href="logout.php"><i class="tiny material-icons" >power_settings_new</i>&nbsp;LOGOUT</a></li>
             </ul>
-        </nav>
+        </li>
+</div>
+        
+      </ul>
+      <div class="icon menu-btn">
+        <i class="fas fa-bars"></i>
+      </div>
+    </div>
+</div>
         <?php
     }
             }
@@ -98,7 +110,7 @@ if ($query->num_rows > 0){
                 <p class="login-text" style="font-size: 1.5rem; font-weight: 800;">DOB</p>
                 <div class="input-group">
                 <input type="date" name="dob"
-                    value=<?php echo $email?> 
+                    value=<?php echo $dob?> 
                     min="1990-01-01" max="2021-12-31">
                 </div>
                 <p class="login-text" style="font-size: 1.5rem; font-weight: 800;">Describe Yourself</p>

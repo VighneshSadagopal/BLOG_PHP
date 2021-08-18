@@ -8,7 +8,7 @@ if (isset($_SESSION['username'])){
  
 }
 else{
-    header("Location: login1.php");
+    header("Location: login.php");
 }
 $id=$_GET['id'];
 $author=$_SESSION['username'];
@@ -52,7 +52,7 @@ if ($query->num_rows > 0){
             <img src="logo2.png" class="logo">
             <ul>
                 <li><a href="homepage.php" class="active">HOME</a></li>
-                <li><a href="login1.php">DASHBOARD</a></li>
+                <li><a href="login.php">DASHBOARD</a></li>
                 <li><a href="#">CAREER</a></li>
                 <li><a href="#">ABOUT US</a></li>
                 <li><a href="#">Details</a>
