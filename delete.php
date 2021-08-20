@@ -6,7 +6,7 @@ $pid= $_GET['pid'];
 session_start();
 
 if (!isset($_SESSION['username'])) {
-    header("Location: login1.php");
+    header("Location: login.php");
 }
 $result=mysqli_query($conn,"DELETE from  post where pid='$pid'");
 if($result){
@@ -24,12 +24,12 @@ else{
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Homepage</title>
-        <link rel="stylesheet" href="createpost.css">
+        <link rel="stylesheet" href="css/createpost.css">
     </head>
     <body>
         <img src="">
         <nav>
-            <img src="PicsArt_07-31-02.19.24.png" class="logo">
+            <img src="css/images/logo2.png" class="logo">
             <ul>
                 <li><a href="index.php" class="active">HOME</a></li>
                 <li><a href="welcome.php">DASHBOARD</a></li>

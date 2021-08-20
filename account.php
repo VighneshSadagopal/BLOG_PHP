@@ -8,7 +8,7 @@ if (isset($_SESSION['username'])){
  
 }
 else{
-    header("Location: login1.php");
+    header("Location: login.php");
 }
 $id=$_GET['id'];
 $author=$_SESSION['username'];
@@ -44,15 +44,15 @@ if ($query->num_rows > 0){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome</title>
-    <link rel="stylesheet" href="style2.css">  
- 
+    <link rel="stylesheet" href="css/style2.css">  
+    <script src="https://kit.fontawesome.com/ec41712638.js" crossorigin="anonymous"></script>
 </head>
 <body vlink =" black">
         <nav>
-            <img src="PicsArt_07-31-02.19.24.png" class="logo">
+            <img src="css/images/logo2.png" class="logo">
             <ul>
                 <li><a href="homepage.php" class="active">HOME</a></li>
-                <li><a href="login1.php">DASHBOARD</a></li>
+                <li><a href="login.php">DASHBOARD</a></li>
                 <li><a href="#">CAREER</a></li>
                 <li><a href="#">ABOUT US</a></li>
                 <li><a href="#">Details</a>
@@ -101,5 +101,6 @@ if ($query->num_rows > 0){
                 ?>
 
         </div>
+        <script src="css/js/nav_responsive.js"></script>
 </body>
 </html>

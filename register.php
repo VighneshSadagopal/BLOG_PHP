@@ -7,7 +7,7 @@ error_reporting(0);
 session_start();
 
 if (isset($_SESSION['username'])) {
-    header("Location: login1.php");
+    header("Location: login2.php");
 }
 
 if (isset($_POST['submit']))
@@ -46,59 +46,47 @@ if (isset($_POST['submit']))
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-	<script src="https://kit.fontawesome.com/ec41712638.js" crossorigin="anonymous"></script>
-	<link rel="stylesheet" type="text/css" href="login.css">
-
-	<title>Register Form </title>
+    <link rel="stylesheet" href="css/index.css">
+    <meta charset="UTF-8">
+   
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login page</title>
 </head>
 <body>
-<nav class="navbar">
-    <div class="content">
-      <div class="logo">
-        <img src="PicsArt_07-31-02.19.24.png">
-      </div>
-      <ul class="menu-list">
-        <div class="icon cancel-btn">
-          <i class="fas fa-times"></i>
+    
+
+   
+        <div class="contain1">
+    <img src="css/images/falls.jpg" class="image" id="img">
+    <txt id="h1">Enter Your Details <br>and Join US</txt>
+ 
+    
         </div>
-        <li><a href="index.php">Home</a></li>
-        <li><a href="#">About</a></li>
-        <li><a href="#">Services</a></li>
-        <li><a href="login1.php">Login</a></li>
-        
-      </ul>
-      <div class="icon menu-btn">
-        <i class="fas fa-bars"></i>
-      </div>
-    </div>
-  </nav>
-	<div class="container">
-		<form action="" method="POST" class="login-email">
-            <p class="login-text" style="font-size: 2rem; font-weight: 800;">Register</p>
-			<div class="input-group">
-				<input type="text" placeholder="Username" name="username" value="<?php echo $username; ?>" required>
-			</div>
-			<div class="input-group">
-				<input type="email" placeholder="Email" name="email" value="<?php echo $email; ?>" required>
-			</div>
-			<div class="input-group">
-				<input type="password" placeholder="Password" name="password" value="<?php echo $_POST['password']; ?>" required>
+        <div class ="contain3">
+           
+
+            <div class="logo">
+                <img src="css/images/logo3.png"><h2>Visual Select</h2>
             </div>
-            <div class="input-group">
-				<input type="password" placeholder="Confirm Password" name="cpassword" value="<?php echo $_POST['cpassword']; ?>" required>
-			</div>
-			<div class="input-group">
-				<button name="submit" class="btn">Register</button>
-			</div>
-			<p class="login-register-text">Have an account? <a href="login1.php">Login Here</a>.</p>
-		</form>
-	</div>
-	<script src="index.js"></script>
+			<form action="" method="POST" class="form" onsubmit="return validated()">
+                <h3>Sign In</h3>
+				<input type="text" placeholder="Username" name="username" value="<?php echo $username; ?>" required>
+			
+			<input type="email" placeholder="Email" name="email" value="<?php echo $email; ?>" required>
+	
+			<input type="password" placeholder="Password" name="password" value="<?php echo $_POST['password']; ?>" required>
+	   
+			<input type="password" placeholder="Confirm Password" name="cpassword" value="<?php echo $_POST['cpassword']; ?>" required>
+
+			<input type="date"  placeholder="Date Of Birth" name="dob" >
+                <button name="submit" class="btn">Sign In</button>
+</form>
+            
+         <text1>Already Registered&nbsp;&nbsp;&nbsp;<span><a href="login.php">Login Now</span></a></text1>
+        </div>
+		<script src="javascript" href="css/js/login.js"></script>
+ 
 </body>
 </html>

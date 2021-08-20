@@ -3,9 +3,21 @@
 include 'config.php';
 session_start();
 
-if (!isset($_SESSION['username'])) {
-    header("Location: login1.php");
+if (isset($_SESSION['username'])){
+  $id=$_SESSION['id'];
 }
+else{
+   header("Location: login.php");
+}
+
+$author=$_SESSION['username'];
+$queryy=mysqli_query($conn,"SELECT * from users where  username='$author' ");
+            
+if ($queryy->num_rows > 0){
+
+while($row = mysqli_fetch_array($queryy))
+{
+
 
 ?>
 
@@ -18,26 +30,44 @@ if (!isset($_SESSION['username'])) {
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Homepage</title>
-        <link rel="stylesheet" href="homepage.css">
+        <link rel="stylesheet" href="css/homepage.css">
+      
         
     </head>
     <body vlink="black">
-        <img src="">
-        <nav>
-            <img src="PicsArt_07-31-02.19.24.png" class="logo">
-            <ul>
-                <li><a href="#" class="active">HOME</a></li>
-                <li><a href="login1.php">DASHBOARD</a></li>
-                <li><a href="#">CAREER</a></li>
-                <li><a href="#">ABOUT US</a></li>
-                <li><a href="logout.php"><i class="tiny material-icons">power_settings_new</i>&nbsp;LOGOUT</a></li>
-               
-                
-            </ul>
-        </nav>
-        <div class="post">
+     
+        <div class="image">
+        <h1>WELCOME &nbsp;<?php echo $author ?></h1>
+         <a href="#post" id="bb">Check Out</a>
+        <div class="navbar" id='nav'>
+        <div class="content">
+          <div class="logo">
+            <img src="css/images/logo2.png">
+          </div>
+          <ul class="menu-list">
+            <div class="icon cancel-btn">
+              <i class="fas fa-times"></i>
+            </div>
+            <li><a href="homepage.css">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Services</a></li>
+            <li><a href="#">Carrer</a></li>
+            <li><a href="#">Contact Us</a></li>
+            
+            <li><a href="login.php" id="right">Dashboard</a></li>
+           
+           
+          </ul>
+          <div class="icon menu-btn">
+            <i class="fas fa-bars"></i>
+          </div>
+        </div>
+</div>
+    </div>
+        <div class="post" id="post">
             
     <?php
+
              
              $query = "SELECT * FROM post ORDER BY pid DESC";
  $query_run= mysqli_query($conn, $query);
@@ -70,8 +100,9 @@ if (!isset($_SESSION['username'])) {
      echo " NO POST FOUND";
  }
 
-
+}}
  ?>
         </div>
+        <script src="css/js/nav_responsive.js"></script>
     </body>
     </html>

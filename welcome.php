@@ -5,13 +5,14 @@ include 'config.php';
 session_start();
 
 if (isset($_SESSION['username'])){
-   
+   $id=$_SESSION['id'];
 }
 else{
-    header("Location: login1.php");
+    header("Location: login.php");
 }
 
 $author=$_SESSION['username'];
+
 $query=mysqli_query($conn,"SELECT * from users where  username='$author' ");
             
 if ($query->num_rows > 0){
@@ -27,14 +28,18 @@ while($row = mysqli_fetch_array($query))
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome</title>
-    <link rel="stylesheet" href="style1.css">  
+    <link rel="stylesheet" href="css/style1.css">  
+    <script src="https://kit.fontawesome.com/ec41712638.js" crossorigin="anonymous"></script>
  
 </head>
 <body vlink =" black">
-<nav class="navbar">
+<div class="image">
+         <h1>WELCOME &nbsp;<?php echo $author ?></h1>
+         <a href="#create" id="bb">Check Out</a>
+<div class="navbar" id="nav">
     <div class="content">
       <div class="logo">
-        <img src="PicsArt_07-31-02.19.24.png">
+        <img src="css/images/logo2.png">
       </div>
       <ul class="menu-list">
         <div class="icon cancel-btn">
@@ -42,34 +47,42 @@ while($row = mysqli_fetch_array($query))
         </div>
         <li><a href="homepage.php">Home</a></li>
         <li><a href="#">About</a></li>
+        <li><a href="#">Carrer</a></li>
         <li><a href="#">Services</a></li>
-        <li><a href="login1.php">DASHBOARD</a></li>
-        <li><?php echo "<a href=\"mypost.php?id=$row[id]\">"?>MY POST</a></li>
-        <li><a href="#"><?php echo $_SESSION['username']?>&nbsp;<i class="tiny material-icons">arrow_drop_down_circle</i></a>
+        
+         <li><a href="#">Contact Us</a></li>
+        
+        
+     
+        <div class="right">
+        <li><a href="#" id="name" ><?php echo $_SESSION['username']?>&nbsp;<i class="fas fa-caret-down"></i></a>
             <ul>
-                <li><?php echo "<a href=\"account.php?id=$row[id]\">"?>VIEW DETAILs</a></li>
-                <li><a href=""><i class="tiny material-icons">power_settings_new</i>&nbsp;LOGOUT</a></li>
+                <li><a href="authinfo.php"> Author info</a></li>
+                <li ><?php echo "<a href=\"account.php?id=$row[id]\">"?>My Details</a></li>
+                <li ><?php echo "<a href=\"mypost.php?id=$row[id]\">"?>My Post</a></li>
+                <li ><a href="logout.php"><i class="tiny material-icons" >power_settings_new</i>&nbsp;Logout</a></li>
             </ul>
-
-    
         </li>
+</div>
         
       </ul>
       <div class="icon menu-btn">
         <i class="fas fa-bars"></i>
+      
       </div>
     </div>
-  </nav>
+</div>
+</div>
      
-    <?php 
+  
     
-    echo "<h1>Welcome " . $_SESSION['username'] . "</h1>"; ?>
-
+   
+    <div class="con">
     <div class="post">
-
+    
     <button id="create"> <?php echo "<a href=\"createpost.php?id=$row[id]\">"?><div class="tooltip"><i class="small material-icons">control_point</i></a>
 <span class="tooltext">Create</span></div>
-</button>
+</button><br><br>
        
      
 
@@ -85,12 +98,13 @@ while($row = mysqli_fetch_array($query))
             {
 
         ?>
-        
-
+       
         <div class="container">
 
-            <h1><?php echo $row['title'] ?></h1>
-            <p><?php echo $row['description'] ?></p>
+
+            <h1><?php echo $row['title'] ?></h1> <div class="edbtn"> </div>
+            <p><?php echo $row['short'] ?><p id="auth">~<?php echo $row['author'] ?></p></p>
+           
 
       
         </div>
@@ -108,8 +122,51 @@ while($row = mysqli_fetch_array($query))
     
         ?>
 
+        <?php
         
+
+         if(isset($_POST['search'])){
+          $search= $_POST['search'];
+       echo $que= mysqli_query($conn,"SELECT * FROM post where author='$search'");
+        $check_post= mysqli_num_rows($que) > 0;
+
+        if($check_post)
+        {
+            while($row = mysqli_fetch_array($que))
+            {
+
+        ?>
+        
+
+        <div class="container">
+
+            <h1><?php echo $row['title'] ?></h1>
+            <p><?php echo $row['description'] ?><p id="auth">~<?php echo $row['author'] ?></p></p>
+
+      
+        </div>
+    
+        <?php
+
+        
+            }
+
+        }
+        else{
+            echo " NO POST FOUND";
+        }
+      }
+
+        ?>
     </div>
-       
+    <div class ="sidebar" id="side">
+        <p>Search Post </p>
+    <input type="text" placeholder="Search By Author Name" name="search">&nbsp;<button type="submit" ><i class="fas fa-search"></i></button>
+      </div>
+      <div class="sideslash">
+
+    </div>
+    </div>
+      <script src="css/js/index.js"></script>
 </body>
 </html>

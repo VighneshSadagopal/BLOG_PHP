@@ -8,7 +8,7 @@ if (isset($_SESSION['username'])){
   
 }
 else{
-    header("Location: login1.php");
+    header("Location: login.php");
 }
 
 $id=$_GET['id'];
@@ -27,27 +27,44 @@ while($row = mysqli_fetch_array($query))
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome</title>
-    <link rel="stylesheet" href="style1.css">  
+    <link rel="stylesheet" href="css/style1.css">  
+    <script src="https://kit.fontawesome.com/ec41712638.js" crossorigin="anonymous"></script>
 </head>
 <body vlink =" black">
-        <nav>
-            <img src="PicsArt_07-31-02.19.24.png" class="logo">
+<div class="image" id="img">
+         <h1>WELCOME &nbsp;&nbsp;<?php echo $author ?></h1>
+         <a href="#create" id="bb">Check Out</a>
+<div class="navbar" id="nav">
+    <div class="content">
+      <div class="logo">
+        <img src="css/images/logo2.png">
+      </div>
+      <ul class="menu-list">
+        <div class="icon cancel-btn">
+          <i class="fas fa-times"></i>
+        </div>
+        <li><a href="login.php">All Post</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Services</a></li>
+        
+
+        <div class="right">
+        <li><a href="#" id="name" ><?php echo $_SESSION['username']?>&nbsp;<i class="fas fa-caret-down"></i></a>
             <ul>
-                <li><a href="homepage.php" class="active">HOME</a></li>
-                <li><a href="login1.php">ALL POST</a></li>
-                <li><a href="#">CAREER</a></li>
-                <li><a href="#">ABOUT US</a></li>
-                <li><a href="#"><?php echo  $_SESSION['username'] ?>&nbsp;<i class="tiny material-icons">arrow_drop_down_circle</i></a>
-                    <ul>
-                    <li><?php echo "<a href=\"account.php?id=$row[id]\">"?>View Details</a></li>
-                        <li><a href="logout.php"><i class="small material-icons">power_settings_new</i>&nbsp;LOGOUT</a></li>
-                    </ul>
-                    </li>
-                
+                <li ><?php echo "<a href=\"account.php?id=$row[id]\">"?>VIEW DETAILs</a></li>
+                <li ><a href=""><i class="tiny material-icons" >power_settings_new</i>&nbsp;LOGOUT</a></li>
             </ul>
-        </nav>
+        </li>
+        </div>
+        
+        </ul>
+        <div class="icon menu-btn">
+          <i class="fas fa-bars"></i>
+        </div>
+      </div>
+  </div>
      
-    <?php echo "<h1>Welcome " . $_SESSION['username'] . "</h1>"; ?>
+</div>
 
     <div class="post">
    <?php 
@@ -61,14 +78,15 @@ while($row = mysqli_fetch_array($query))
 {
 
    ?>
-        
-        <button id="ed1"> <?php echo "<a href=\"edit.php?pid=$row[pid]\"><?a>"?><div class="tooltip"><i class="tiny material-icons">edit</i><span class="tooltext">EDIT</span></div></button>
-       <button id="de1"> <a href="deletepost.php"><div class="tooltip"><i class="tiny material-icons">delete</i></a><span class="tooltext">DELETE</span></div></button>
-
+       
 
         <div class="container">
+         
 
-            <h1><?php echo $row['title'] ?></h1>
+            <h1><?php echo $row['title'] ?></h1>  <div class="edbtn">
+        <button id="ed1"> <?php echo "<a href=\"edit.php?pid=$row[pid]\"><?a>"?><div class="tooltip"><i class="tiny material-icons">edit</i><span class="tooltext">EDIT</span></div></button>
+       <button id="de1"> <a href="deletepost.php"><div class="tooltip"><i class="tiny material-icons">delete</i></a><span class="tooltext">DELETE</span></div></button>
+       </div>
             <p><?php echo $row['description'] ?></p>
 
       
@@ -89,6 +107,6 @@ while($row = mysqli_fetch_array($query))
 
         
     </div>
-       
+    <script src="css/js/nav_responsive.js"></script>
 </body>
 </html>

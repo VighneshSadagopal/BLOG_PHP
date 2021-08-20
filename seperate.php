@@ -25,17 +25,18 @@ while($res=mysqli_fetch_array($query)){
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Homepage</title>
-        <link rel="stylesheet" href="seperate.css">
+        <link rel="stylesheet" href="css/seperate.css">
+        <script src="https://kit.fontawesome.com/ec41712638.js" crossorigin="anonymous"></script>
     </head>
     <body>
         <img src="">
         <nav>
-            <img src="PicsArt_07-31-02.19.24.png" class="logo">
+            <img src="css/images/logo2.png" class="logo">
             <ul>
                 <li><a href="index.php" >HOME</a></li>
                 <li><a href="#">CAREER</a></li>
                 <li><a href="#">ABOUT</a></li>
-                <li><a href="login1.php">LOGIN</a></li>
+                <li><a href="login.php">LOGIN</a></li>
                 <li><a href="register.php">REGISTER NOW</a></li>
                 
             </ul>
@@ -55,6 +56,6 @@ while($res=mysqli_fetch_array($query)){
                 <textarea readonly cols="60"  resize:none, overflow:hidden><?php echo $description ?></textarea>
                 </div>
                
-
+                <script src="css/js/nav_responsive.js"></script>
         </body>
     </html>
