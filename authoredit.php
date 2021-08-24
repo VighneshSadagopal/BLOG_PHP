@@ -50,6 +50,7 @@ if ($query->num_rows > 0){
 <html lang="en">
 <head>
     <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/footer.css">  
     <meta charset="UTF-8">
     <script src="https://kit.fontawesome.com/ec41712638.js" crossorigin="anonymous"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -89,7 +90,7 @@ if ($query->num_rows > 0){
 
             <input type="date"  placeholder="Date Of Birth" name="dob"  value=<?php echo $dob?>  >
 	
-			<textarea id="txt" name="your" value=<?php echo $your ?> rows="4" cols="48"></textarea>
+			<textarea id="txt" name="your" value=<?php echo $your ?> rows="4" cols="30"></textarea>
 	   
 			
 
@@ -97,7 +98,7 @@ if ($query->num_rows > 0){
                 <button name="update" class="btn">Update</button>
 </form>
             
-    
+<?php include('footer.php');?>
         </div>
 		<script src="javascript" href="css/js/login.js"></script>
 </body>

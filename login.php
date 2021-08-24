@@ -2,11 +2,7 @@
 
 include 'config.php';
 
-
 session_start();
-
-
-
 
 if(isset($_SESSION['username'])){
     if($_SESSION['usertype'] =="admin"){
@@ -19,30 +15,57 @@ if(isset($_SESSION['username'])){
 }
 
 if (isset($_POST['submit'])) {
+  
+       
     $email = $_POST['email'];
     $password = md5($_POST['password']);
     
+   
+    
 
     $sql = "SELECT * FROM users WHERE email='$email' AND password='$password'";
-    $result = mysqli_query($conn, $sql);
+    $result = mysqli_query($conn, $sql); 
     
-        $row = mysqli_fetch_assoc($result);
+    $row = mysqli_fetch_assoc($result);
+    
+       
+        $_SESSION['email'] = $row['email'];
         $_SESSION['username'] = $row['username'];
         $_SESSION['id'] = $row['id'];
         $_SESSION['usertype']=$row['usertype'];
     
-        if($row['usertype']=="admin"){ 
+        if($row['usertype']=='admin'){ 
+            if(isset($_POST['check'])){
+                setcookie('emailcookie',$email,time()+60*60);
+                setcookie('passwordcookie',$password,time()+60*60);
+        
+            }
+           
+                header("location:admin.php");
+            }
       
-           header("location:admin.php");
-      
-      }
-        elseif($row['usertype']=="user"){
-       
-                    header("location:welcome.php");
-   
-            }else {
+        elseif($row['usertype']=='user'){
+            if(isset($_POST['check'])){
+                setcookie('emailcookie',$email,time()+60*60);
+                setcookie('passwordcookie',$password,time()+60*60);
+        
+            }
+           
+                header("location:welcome.php");
+            }
+        else {
         echo "<small>Email Or Password is Incorrect Please re-enter</small>";
     }
+   
+}
+
+if(isset($_COOKIE['emailcookie']) and isset($_COOKIE['passwordcookie'])){
+    $username=$_COOKIE['emailcookie'];
+    $pass=$_COOKIE['passwordcookie'];
+    echo "<script>
+        document.getElementById('email').value ='$username';
+        document.getElementById('password').value ='$pass';
+    </script>";
 }
 
 ?>
@@ -74,11 +97,11 @@ if (isset($_POST['submit'])) {
             </div>
             <form action="" method="POST" class="form" onsubmit="return validated()">
                 <h3>Sign In</h3>
-                <input type="text" placeholder="username"  name="email" value="<?php if(isset($_COOKIE['emailcookie'])){echo $_COOKIE['emailcookie'];} ?>">
-                <input type="password" placeholder="password" name="password" value="<?php if(isset($_COOKIE['passwordcookie'])){echo $_COOKIE['passwordcookie'];} ?>">
+                <input type="text" placeholder="username" id="email" name="email" >
+                <input type="password" placeholder="password" name="password" id="password" >
                 <button type="submit" name="submit" class="btn">Sign In</button>
             </form>
-            <input type="checkbox" name="remember" class="remember"><p>Remember me</p>
+            <input type="checkbox" name="check" class="remember"><p>Remember me</p>
             <text>Dont Have a Account ? <span><a href="register.php">Register Now</span></a></text>
         </div>
         <script src="javascript" href="css/js/login.js"></script>

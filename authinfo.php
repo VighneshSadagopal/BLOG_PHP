@@ -24,6 +24,8 @@ else{
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome</title>
     <link rel="stylesheet" href="css/author.css">  
+    <link rel="stylesheet" href="css/nav.css">  
+    <link rel="stylesheet" href="css/footer.css"> 
     <script src="https://kit.fontawesome.com/ec41712638.js" crossorigin="anonymous"></script>
  
 </head>
@@ -72,7 +74,7 @@ if($query->num_rows > 0){
 
 
 ?>
-  
+
 <div class="tab" id="tab">
 
     <table class="editable" cellspacing="6" cellpadding="50">
@@ -96,7 +98,13 @@ if($query->num_rows > 0){
       }
         ?>
         </table>
+    
+        <?php include('footer.php')?>
+      
         </div>
+
+        <script src="css/js/index.js"></script>
+        
 
 </body>
 </html>

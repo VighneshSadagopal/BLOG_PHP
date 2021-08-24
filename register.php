@@ -2,12 +2,12 @@
 
 include 'config.php';
 
-error_reporting(0);
+
 
 session_start();
 
 if (isset($_SESSION['username'])) {
-    header("Location: login2.php");
+    header("Location: login.php");
 }
 
 if (isset($_POST['submit']))
@@ -71,7 +71,7 @@ if (isset($_POST['submit']))
                 <img src="css/images/logo3.png"><h2>Visual Select</h2>
             </div>
 			<form action="" method="POST" class="form" onsubmit="return validated()">
-                <h3>Sign In</h3>
+                <h3>Sign Up</h3>
 				<input type="text" placeholder="Username" name="username" value="<?php echo $username; ?>" required>
 			
 			<input type="email" placeholder="Email" name="email" value="<?php echo $email; ?>" required>

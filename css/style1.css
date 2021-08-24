@@ -271,7 +271,7 @@ left:20%;
  #ed1{
   
     background:var(--primary);
-    padding: 8px 9px;
+    padding: 8px 11px;
     
    
     border-color:var(--primary);
@@ -283,7 +283,7 @@ left:20%;
     
    
     background:var(--primary);
-    padding: 8px 9px;
+    padding: 8px 11px;
     
     border-color:var(--primary);
     border-radius:60px;
@@ -315,6 +315,10 @@ margin-left: 100px;
    
  
 }
+img#img2 {
+  
+  width: 100%;
+}
 .post .container h1{
   color:black;
  
@@ -338,6 +342,7 @@ margin-left: 100px;
 }
 .con{
   display: inline-flex;
+  margin-left: 47px;
 }
 .post .container a{
     text-decoration:none;
@@ -350,9 +355,9 @@ margin-left: 100px;
   padding: 10px 15px;
   background-color: white;
   margin-top: 50px;
-  margin-left: 10px;
-  height: 8%;
-  width: 13%;
+  margin-left: 60px;
+  min-height: 100%;
+  width: 17%;
   z-index: -2;
 }
 .sidebar p{

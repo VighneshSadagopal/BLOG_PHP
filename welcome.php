@@ -29,6 +29,7 @@ while($row = mysqli_fetch_array($query))
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome</title>
     <link rel="stylesheet" href="css/style1.css">  
+    <link rel="stylesheet" href="css/footer.css">  
     <script src="https://kit.fontawesome.com/ec41712638.js" crossorigin="anonymous"></script>
  
 </head>
@@ -57,7 +58,7 @@ while($row = mysqli_fetch_array($query))
         <div class="right">
         <li><a href="#" id="name" ><?php echo $_SESSION['username']?>&nbsp;<i class="fas fa-caret-down"></i></a>
             <ul>
-                <li><a href="authinfo.php"> Author info</a></li>
+               
                 <li ><?php echo "<a href=\"account.php?id=$row[id]\">"?>My Details</a></li>
                 <li ><?php echo "<a href=\"mypost.php?id=$row[id]\">"?>My Post</a></li>
                 <li ><a href="logout.php"><i class="tiny material-icons" >power_settings_new</i>&nbsp;Logout</a></li>
@@ -96,12 +97,12 @@ while($row = mysqli_fetch_array($query))
         {
             while($row = mysqli_fetch_array($query_run))
             {
-
+                $image=$row['images'];
         ?>
        
         <div class="container">
 
-
+        <img src="images/<?php echo $image?> "id="img2">
             <h1><?php echo $row['title'] ?></h1> <div class="edbtn"> </div>
             <p><?php echo $row['short'] ?><p id="auth">~<?php echo $row['author'] ?></p></p>
            
@@ -168,5 +169,6 @@ while($row = mysqli_fetch_array($query))
     </div>
     </div>
       <script src="css/js/index.js"></script>
+      <?php include('footer.php')?>
 </body>
 </html>

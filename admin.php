@@ -29,11 +29,13 @@ while($row = mysqli_fetch_array($query))
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome</title>
     <link rel="stylesheet" href="css/style1.css">  
+    <link rel="stylesheet" href="css/footer.css">  
     <script src="https://kit.fontawesome.com/ec41712638.js" crossorigin="anonymous"></script>
  
 </head>
 <body vlink =" black">
 <div class="image">
+       
          <h1>WELCOME &nbsp;<?php echo $author ?></h1>
          <a href="#create" id="bb">Check Out</a>
 <div class="navbar" id="nav">
@@ -94,12 +96,12 @@ while($row = mysqli_fetch_array($query))
         {
             while($row = mysqli_fetch_array($query_run))
             {
-
+                    $image=$row['images'];
         ?>
        
         <div class="container">
 
-
+        <img src="images/<?php echo $image?> "id="img2">
             <h1> <?php echo "<a href=\"seperate1.php?pid=$row[pid]\">"?><?php echo $row['title'] ?></h1> </a><div class="edbtn">
            
            <button id="ed1"> <?php echo "<a href=\"edit.php?pid=$row[pid]\"><?a>"?><div class="tooltip"><i class="tiny material-icons">edit</i><span class="tooltext">EDIT</span></div></button>
@@ -168,7 +170,10 @@ while($row = mysqli_fetch_array($query))
       <div class="sideslash">
 
     </div>
+   
     </div>
+  
       <script src="css/js/index.js"></script>
 </body>
+<?php include('footer.php')?>
 </html>
