@@ -17,18 +17,23 @@ body {
     background-color: #f0f0f0;
     background-position: center;
     background-size: cover;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+ 
+  
 }
-
 .image{
-  background-image: url(images/earth.jpg);
+
+  background-color: #000;
+
+}
+.image img{
+
   width: 100%;
   height: 90vh;
   background-size: cover;
  
-  position: relative;
+  opacity: 58%;
+ 
+
 }
 
 .image h1{
@@ -36,7 +41,8 @@ body {
   font-size: 65px;
   position: absolute;
    top: 40%;
-   left: 20%;
+  width: 100%;
+  text-align: center;
    transition: all 0.3s ease-in;
    text-transform:uppercase;
 }
@@ -63,42 +69,7 @@ body {
     margin: auto;
     padding: 0 30px;
   }
-  .navbar{
-    position: fixed;
-    width: 100%;
-    padding: 25px 0;
-    transition: all 0.3s ease;
-    background-color: var(--primary);
-  }
-  .navbar.sticky{
-    background: var(--primary);
-    padding: 10px 0;
-    box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.1);
-  }
-  .navbar .content{
-    display: flex;
-   
-    justify-content: center;
-  }
-  .navbar .logo {
-    color: #fff;
-    font-size: 30px;
-    font-weight: 600;
-    text-decoration: none;
-    position: absolute;
-    left:6%;
-    bottom: 5px;
-  }
-  .navbar ul ul{
-    
-    display: none;
-    align-items: center;
-    position: absolute;
-    background-color: var(--primary);
-  top: 120%;
-left:20%;
-    
-}
+  
 .right{
   
   padding: 7px 13px;
@@ -110,11 +81,7 @@ left:20%;
 
 
 }
-#name{
-  color: #000;
-  background-color: #fff;
 
-}
 .navbar ul li:hover > ul{
   display:block;
 
@@ -162,9 +129,12 @@ left:20%;
     display: none;
     float: right;
   }
-
+.con{
+  display: flex;
+  justify-content: center;
+}
 .container {
-    width: 60%;
+    width: 80%;
    min-height: 500px;
     background: #FFF;
     border-radius: 5px;
@@ -172,6 +142,7 @@ left:20%;
     padding: 40px 30px;
     display:inline-block;
     position: absolute;
+    text-align: center;
     top:92%;
     
     

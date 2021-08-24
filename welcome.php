@@ -4,11 +4,15 @@ include 'config.php';
 
 session_start();
 
-if (!isset($_SESSION['id'])){
+if (isset($_SESSION['username'])){
+   $id=$_SESSION['id'];
+}
+else{
     header("Location: login.php");
 }
 
 $author=$_SESSION['username'];
+
 $query=mysqli_query($conn,"SELECT * from users where  username='$author' ");
             
 if ($query->num_rows > 0){
@@ -25,14 +29,14 @@ while($row = mysqli_fetch_array($query))
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome</title>
     <link rel="stylesheet" href="css/style1.css">  
+    <link rel="stylesheet" href="css/footer.css">  
     <script src="https://kit.fontawesome.com/ec41712638.js" crossorigin="anonymous"></script>
  
 </head>
 <body vlink =" black">
 <div class="image">
-         <h1>WELCOME &nbsp;&nbsp;<?php echo $author ?></h1>
+         <h1>WELCOME &nbsp;<?php echo $author ?></h1>
          <a href="#create" id="bb">Check Out</a>
-   
 <div class="navbar" id="nav">
     <div class="content">
       <div class="logo">
@@ -44,14 +48,20 @@ while($row = mysqli_fetch_array($query))
         </div>
         <li><a href="homepage.php">Home</a></li>
         <li><a href="#">About</a></li>
+        <li><a href="#">Carrer</a></li>
         <li><a href="#">Services</a></li>
-        <li><a href="login.php">Dashboard</a></li>
-        <li><?php echo "<a href=\"mypost.php?id=$row[id]\">"?>My Post</a></li>
+        
+         <li><a href="#">Contact Us</a></li>
+        
+        
+     
         <div class="right">
-        <li><a href="#" id="name" ><?php echo $_SESSION['username']?>&nbsp;<i class="tiny material-icons" >arrow_drop_down_circle</i></a>
+        <li><a href="#" id="name" ><?php echo $_SESSION['username']?>&nbsp;<i class="fas fa-caret-down"></i></a>
             <ul>
-                <li ><?php echo "<a href=\"account.php?id=$row[id]\">"?>DETAILS</a></li>
-                <li ><a href="logout.php"><i class="tiny material-icons" >power_settings_new</i>&nbsp;LOGOUT</a></li>
+               
+                <li ><?php echo "<a href=\"account.php?id=$row[id]\">"?>My Details</a></li>
+                <li ><?php echo "<a href=\"mypost.php?id=$row[id]\">"?>My Post</a></li>
+                <li ><a href="logout.php"><i class="tiny material-icons" >power_settings_new</i>&nbsp;Logout</a></li>
             </ul>
         </li>
 </div>
@@ -59,59 +69,106 @@ while($row = mysqli_fetch_array($query))
       </ul>
       <div class="icon menu-btn">
         <i class="fas fa-bars"></i>
+      
       </div>
     </div>
 </div>
 </div>
      
-            
-                    <button id="create"> <?php echo "<a href=\"createpost.php?id=$row[id]\">"?><div class="tooltip"><i class="small material-icons">control_point</i></a>
-                    <span class="tooltext">Create</span></div>
-                    </button>
-                    <div class="con">
+  
+    
+   
+    <div class="con">
+    <div class="post">
+    
+    <button id="create"> <?php echo "<a href=\"createpost.php?id=$row[id]\">"?><div class="tooltip"><i class="small material-icons">control_point</i></a>
+<span class="tooltext">Create</span></div>
+</button><br><br>
+       
+     
 
-                    <div class="post" id ="post">
-                            <?php
-                            }}     
-                            $query = "SELECT * FROM post ORDER BY pid DESC";
-                            $query_run= mysqli_query($conn, $query);
-                            $check_post= mysqli_num_rows($query_run) > 0;
+    <?php
+}}     
+        $query = "SELECT * FROM post ORDER BY pid DESC";
+        $query_run= mysqli_query($conn, $query);
+        $check_post= mysqli_num_rows($query_run) > 0;
 
-                            if($check_post)
-                            {
-                                while($row = mysqli_fetch_array($query_run))
-                                {
+        if($check_post)
+        {
+            while($row = mysqli_fetch_array($query_run))
+            {
+                $image=$row['images'];
+        ?>
+       
+        <div class="container">
 
-                            ?>
-                
-                
+        <img src="images/<?php echo $image?> "id="img2">
+            <h1><?php echo $row['title'] ?></h1> <div class="edbtn"> </div>
+            <p><?php echo $row['short'] ?><p id="auth">~<?php echo $row['author'] ?></p></p>
+           
 
-                                <div class="container" id="contain">
+      
+        </div>
+    
+        <?php
 
-                                    <h1><?php echo "<a href=\"seperate1.php?pid=$row[pid]\">"?><?php echo $row['title'] ?></a></h1>
-                                    <p><?php echo $row['short'] ?><p id="auth">~<?php echo $row['author'] ?></p></p>
+        
+            }
 
-                            
-                                </div>
-                            
-                                <?php
+        }
+        else{
+            echo " NO POST FOUND";
+        }
+    
+    
+        ?>
 
-                                
-                                    }
+        <?php
+        
 
-                                }
-                                else{
-                                    echo " NO POST FOUND";
-                                }
-            
-            
-                                ?>
-                            </div>
-    <div class ="sidebar">
+         if(isset($_POST['search'])){
+          $search= $_POST['search'];
+       echo $que= mysqli_query($conn,"SELECT * FROM post where author='$search'");
+        $check_post= mysqli_num_rows($que) > 0;
+
+        if($check_post)
+        {
+            while($row = mysqli_fetch_array($que))
+            {
+
+        ?>
+        
+
+        <div class="container">
+
+            <h1><?php echo $row['title'] ?></h1>
+            <p><?php echo $row['description'] ?><p id="auth">~<?php echo $row['author'] ?></p></p>
+
+      
+        </div>
+    
+        <?php
+
+        
+            }
+
+        }
+        else{
+            echo " NO POST FOUND";
+        }
+      }
+
+        ?>
+    </div>
+    <div class ="sidebar" id="side">
         <p>Search Post </p>
     <input type="text" placeholder="Search By Author Name" name="search">&nbsp;<button type="submit" ><i class="fas fa-search"></i></button>
       </div>
-                            </div>
-      <script src="css/js/nav_responsive.js"></script>
+      <div class="sideslash">
+
+    </div>
+    </div>
+      <script src="css/js/index.js"></script>
+      <?php include('footer.php')?>
 </body>
 </html>

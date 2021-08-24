@@ -31,12 +31,14 @@ while($row = mysqli_fetch_array($queryy))
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Homepage</title>
         <link rel="stylesheet" href="css/homepage.css">
+        <link rel="stylesheet" href="css/homefooter.css">  
+      
         
     </head>
     <body vlink="black">
-     
+     <div class="whole">
         <div class="image">
-        <h1>WELCOME &nbsp;&nbsp;<?php echo $author ?></h1>
+        <h1>WELCOME &nbsp;<?php echo $author ?></h1>
          <a href="#post" id="bb">Check Out</a>
         <div class="navbar" id='nav'>
         <div class="content">
@@ -76,12 +78,13 @@ while($row = mysqli_fetch_array($queryy))
  {
      while($res = mysqli_fetch_array($query_run))
      {
-
+        $image=$res['images'];
  ?>
 
 
  <div class="container">
-
+   
+ <img src="images/<?php echo $image?>">
      <h1><?php echo $res['title'] ?></h1><br>
     <p id="auth">~<?php echo $res['author'] ?></p>
      <p><?php echo $res['short'] ?></p>
@@ -100,8 +103,16 @@ while($row = mysqli_fetch_array($queryy))
  }
 
 }}
+
  ?>
+  
+ </div>
+ <?php include('footer.php');?>
         </div>
         <script src="css/js/nav_responsive.js"></script>
+      
     </body>
+    <footer>
+ 
+</footer>
     </html>

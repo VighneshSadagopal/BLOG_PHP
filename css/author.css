@@ -14,10 +14,11 @@ body{
     width:100%; 
 }
 .image{
-  background-image: url(images/ocean2.gif);
+  background:rgb(0 0 0 / 62%) url(images/author.jpg);
   width: 100%;
-  height: 100vh;
+  height: 80vh;
   background-size: cover;
+  background-blend-mode: darken;
 }
 #img{
   background-image: url(images/blog2.jpg);
@@ -56,263 +57,40 @@ body{
 .image h1:hover{
   transform: translateY(-8px);
 }
-.content{
-    max-width: 1250px;
-    margin: auto;
-    padding: 0 30px;
-  }
-  .navbar{
-    position: fixed;
-    width: 100%;
-    padding: 25px 0;
-    transition: all 0.3s ease;
-    background-color: var(--primary);
-  }
-  .navbar.sticky{
-    background: var(--primary);
-    padding: 10px 0;
-    box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.1);
-  }
-  .navbar .content{
-    display: flex;
-   
-    justify-content: center;
-  }
-  .navbar .logo {
-    color: #fff;
-    font-size: 30px;
-    font-weight: 600;
-    text-decoration: none;
-    position: absolute;
-    left:6%;
-    bottom: 5px;
-  }
-  .navbar ul ul{
-    
-    display: none;
-    align-items: center;
-    position: absolute;
-    background-color: var(--primary);
-  top: 120%;
-left:20%;
-    
+
+.tab{
+ position: absolute;
+ left: 30%;
+ height: 65%;
+ width: 70%;
 }
-.right{
-  
-  padding: 7px 13px;
-
-  position: absolute;
-  right:10%;
-  bottom: 15px;
-  border-radius: 10px;
-
-
-}
-#name{
-  color: #000;
-  background-color: #fff;
-
-}
-.navbar ul li:hover > ul{
-  display:block;
-
-}
-
-.navbar ul ul li{
-    display: inline-flex;
-    background-color: #000;
-    padding: 7px 13px;
-    width: 100%;
-} 
-.navbar ul ul li a{
-  font-size: 17px;
-}
-  .navbar ul li{
-    transition: 0.3s;
-  }
-  .navbar .menu-list{
-    display: inline-flex;
-  }
-  .menu-list li{
-    list-style: none;
-  }
-  .menu-list li a{
-    color: #fff;
-  padding: 7px 13px;
-    font-size: 18px;
-    font-weight: 500;
-    margin-left: 25px;
-    text-decoration: none;
-    border-radius: 10px;
-    transition: all 0.3s ease;
-    
-  }
-  .menu-list li a:hover{
-    transform: translateY(-5px);
-  }
-  .navbar ul li:hover{
-    transform: translateY(-5px);
-  }
-  .icon{
-    color: #fff;
-    font-size: 20px;
-    cursor: pointer;
-    display: none;
-    float: right;
-  }
-
-  #create .tooltip {
-    position: relative;
-    display: inline-block;
-    border-bottom: 1px dotted black;
-  }
-  
- #create .tooltip .tooltext {
-    visibility: hidden;
-    width: 120px;
-    background-color: #e7dede;
-    color: black;
-    text-align: center;
-    border-radius: 6px;
-    padding: 5px 2px;
-    font-size: 12px;
-    font-weight: 300;
-    
-    /* Position the tooltip */
-    position: absolute;
-    z-index: 1;
-    top: -5px;
-    left: 250%;
-  }
-  
-#create .tooltip:hover .tooltext {
-    visibility: visible;
-  }
-
- #create{
-    
-    background:var(--primary);
-    padding:7px 9px;
-    border-color:var(--primary);
-    border-radius:60px;
-    font-size: x-large;
-    position: absolute;
-    top: 101%;
+ .editable{
+   width: 50%;
+   border-collapse: collapse;
+   margin: 25px 0;
+   font-size: 1.5rem;
+   min-width: 400px;
+   border-bottom: 2px solid #000;
  }
- #ed1 a{
-   color:#FFF;
-   font-weight: 200;
- }
-  .tooltip {
-    position: relative;
-    display: inline-block;
-    border-bottom: 1px dotted black;
-  }
-  
- .tooltip .tooltext {
-    visibility: hidden;
-    width: 120px;
-    background-color: #e7dede;
-    color: black;
-    text-align: center;
-    border-radius: 6px;
-    padding: 5px 2px;
-    font-size: 12px;
-    font-weight: 300;
-    
-    /* Position the tooltip */
-    position: absolute;
-  z-index: 1;
-  top: 100%;
-  left: 0%;
-  margin-left: -60px;
-  }
-  
-.tooltip:hover .tooltext {
-    visibility: visible;
-  }
 
- #ed1{
-  
-    background:var(--primary);
-    padding: 8px 9px;
-    position: absolute;
-    left:59%;
-   
-    border-color:var(--primary);
-    border-radius:50px;
-    font-size: larger;
-}
+ .editable thead tr{
+   background-color: black;
+   color: #fff;
+   text-align: left;
+   font-weight: 400;
+ }
+ .editable th,
+ .editable td{
+   padding: 12px 15px;
+ }
 
- #de1{
-    
-   
-    background:var(--primary);
-    padding: 8px 9px;
-    position: absolute;
-   left: 63%;
-    border-color:var(--primary);
-    border-radius:60px;
-    font-size: larger;
-  
-   
-}
-
-  .post{
-  
-    height: 100%;
-  
-   
-    width: 100%;
-   
-
-    display: inline-flex;
-    flex-wrap: wrap;
+ .editable input{
+   font-size: 22px;
+   border-radius: 6px;
+   padding: 7px 13px;
+  color: #fff;
+  background-color: var(--primary);
  }
- 
- 
- .post .container{
-     background: #fff;
-    margin-bottom: 20px;
-    padding: 20px 30px;
-    border-bottom: 2px solid var(--primary);
-   display: inline-flex;
-   flex-wrap: wrap;
-    max-width: 35%;
-    margin-right: 20px;
-    transition: 0.3s;
- }
- .post .container:hover{
-   transform: translateY(-8px);
- }
-  
- 
- 
-  p{
- 
-     font-size: 15px;
-     font-family: Arial, Helvetica, sans-serif;
-    bottom: 1px;
-    margin-left: 17px;
-   display: inline-flex;
-   width: 85%;
-    
- }
- #read a{
-     color:blue;
-    
- }
- #auth{
-     font-size:25px;
-     font-weight: 300px;
-     position: relative;
-     left: 60%;
-     
-  
-  
- }
- 
- 
  @font-face {
      font-family: 'Material Icons';
      font-style: normal;
@@ -343,4 +121,68 @@ left:20%;
      nav ul li a{
          font-size: 16px;
      }
+ }
+ @media (max-width:769px){
+  .image h1{
+    font-size: 39px;
+    left: 0;
+    text-align: center;
+    width: 100%;
+  }
+  .image #bb{
+    padding: 8px 13px;
+    font-size: 18px;
+    left: 43%;
+  }
+  .tab{
+    left: 24%;
+  }
+ }
+ @media (max-width: 426px) {
+  .image {
+    background: rgb(0 0 0 / 62%) url(images/author1.jpg);
+    width: 100%;
+    height: 45vh;   
+}
+.image h1{
+  width: 100%;
+  left: -2%;
+  font-size: 17px;
+  top: 20%;
+}
+.image #bb{
+  top: 24%;
+  left: 37%;
+  font-size: 14px;
+}
+.editable th, .editable td {
+  padding: 8px 18px;
+}
+.editable{
+  font-size: 1rem;
+}
+.editable input{
+  padding: 5px 9px;
+  font-size: 15px;
+}.tab{
+  left: 0;
+  height: 100%;
+  width:100%;
+}
+.navbar .logo{
+  padding: 0;
+}
+  
+
+ }
+ @media (max-width: 361px) {
+   .image h1{
+     left: 0;
+   }
+   .image #bb{
+     left:39%;
+   }
+   .editable{
+     min-width: 100%;
+   }
  }

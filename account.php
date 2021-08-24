@@ -45,6 +45,7 @@ if ($query->num_rows > 0){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome</title>
     <link rel="stylesheet" href="css/style2.css">  
+    <link rel="stylesheet" href="css/footer.css">  
     <script src="https://kit.fontawesome.com/ec41712638.js" crossorigin="anonymous"></script>
 </head>
 <body vlink =" black">
@@ -102,5 +103,6 @@ if ($query->num_rows > 0){
 
         </div>
         <script src="css/js/nav_responsive.js"></script>
+        <?php include('footer.php');?>
 </body>
 </html>

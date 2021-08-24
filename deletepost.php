@@ -21,6 +21,7 @@ $query_run= mysqli_query($conn, $query);
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Homepage</title>
         <link rel="stylesheet" href="css/style1.css">
+        <link rel="stylesheet" href="css/footer.css">  
         <script src="https://kit.fontawesome.com/ec41712638.js" crossorigin="anonymous"></script>
     </head>
     <body>
@@ -59,5 +60,6 @@ $query_run= mysqli_query($conn, $query);
         
         </table>
         <script src="css/js/nav_responsive.js"></script>
+        <?php include('footer.php');?>
     </body>
     </html>

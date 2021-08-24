@@ -4,25 +4,23 @@ include 'config.php';
 session_start();
 
 if (!isset($_SESSION['username'])) {
-    header("location:login1.php");
-
+  header("Location: login.php");
 }
-
 $id=$_SESSION['id'];
 
 if (isset($_POST['submit'])){
     
-    if (!empty( $_POST['author']) && !empty($_POST['email']) && !empty($_POST['dob']) && !empty( $_POST['password']) && !empty( $_POST['usertype'])){
+    if (!empty( $_POST['username']) && !empty($_POST['email']) && !empty($_POST['password']) && !empty( $_POST['usertype'])){
   
 
- $author= $_POST['author'];
+ $username= $_POST['username'];
  $email= $_POST['email'] ;
- $password= md5($_POST['password'] );
+ $password= md5($_POST['password']) ;
  $dob = $_POST['dob'] ;
  $your = $_POST['your'] ;
  $usertype = $_POST['usertype'] ;
     
-$query_run=mysqli_query($conn,"INSERT into users(author, email, password,dob, your,usertype ) VALUES('$author','$email','$password','$dob'.'$your'.'$usertype')");
+$query_run=mysqli_query($conn,"INSERT into users(username, email , password ,dob,your,usertype ) VALUES('$username','$email','$password','$dob','$your','$usertype')");
                 
                     if($query_run){
                        
@@ -55,7 +53,9 @@ while($row = mysqli_fetch_array($sql))
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Homepage</title>
-        <link rel="stylesheet" href="css/createpost.css">
+        <link rel="stylesheet" href="css/index.css">
+        <link rel="stylesheet" href="css/nav.css">
+        <link rel="stylesheet" href="css/footer.css">  
         <script src="https://kit.fontawesome.com/ec41712638.js" crossorigin="anonymous"></script>
     </head>
     <body>
@@ -68,13 +68,13 @@ while($row = mysqli_fetch_array($sql))
         <div class="icon cancel-btn">
           <i class="fas fa-times"></i>
         </div>
-        <li><a href="admin.php">Dashboard</a></li>
+        <li><a href="login.php">Dashboard</a></li>
         <li><a href="#">About</a></li>
         <li><a href="#">Services</a></li>
         <li><?php echo "<a href=\"mypost.php?id=$row[id]\">"?>My Post</a></li>
 
         <div class="right">
-        <li><a href="#" id="name" ><?php echo $_SESSION['username']?>&nbsp;<i class="tiny material-icons" >arrow_drop_down_circle</i></a>
+        <li><a href="#" id="name" ><?php echo $_SESSION['username']?>&nbsp;<i class="fas fa-caret-down"></i></a>
             <ul>
                 <li ><?php echo "<a href=\"account.php?id=$row[id]\">"?>VIEW DETAILs</a></li>
                 <li ><a href="logout.php"><i class="tiny material-icons" >power_settings_new</i>&nbsp;LOGOUT</a></li>
@@ -88,49 +88,44 @@ while($row = mysqli_fetch_array($sql))
       </div>
     </div>
 </div>
-        <div class="container">
-            <form action="" method="post" class="login-email" name="form" >
-                <p class="login-text" style="font-size: 1.2rem; font-weight: 800;">Author Name : </p>
-                <div class="input-group">
-                <input type="text"  name="author" minlength="2" id="input-field">
-                </div>
+<div class="image">
+  
+ 
+  </div>
+<div class ="contain2">
+     
 
-                <p class="login-text" style="font-size: 1.2rem; font-weight: 800;">Email</p>
-                <div class="input-group">
-                <input type="email" placeholder="email" name="email" minlength="5" id="input-field">
-                </div>
+     <div class="logo">
+         <img src="css/images/logo3.png"><h2>Visual Select</h2>
+     </div>
+     <form action="" method="POST" class="form" onsubmit="return validated()">
+         <h3>Create Author</h3>
+         <input type="text" placeholder="Username" name="username"  required>
+     
+     <input type="email" placeholder="Email" name="email"  required>
 
-                <p class="login-text" style="font-size: 1.2rem; font-weight: 800;">Date Of Birth</p>
-                <div class="input-group">
-                <input type="date" name="dob"
-                   
-                    min="1990-01-01" max="2021-12-31">
-               
-                </div><br>
-                <p class="login-text" style="font-size: 1.2rem; font-weight: 800;">Password</p>
-                <div class="input-group">
-				<input type="password" placeholder="Password" name="password"  required>
-            </div>
+     <input type="password" placeholder="Password" name="password"  required>
 
-                <p class="login-text" style="font-size: 1.2rem; font-weight: 800;">Description</p>
-                <div class="input-group">
-                <textarea cols="40" rows="3"  name="your"maxlength="300" id="input-field"></textarea>
-                </div>
-                    
-                <p class="login-text" style="font-size: 1.2rem; font-weight: 800;">usertype</p>
-                <div class="input-group">
-                <input type="text"  name="usertype">
-                </div>
+     <input type="date"  placeholder="Date Of Birth" name="dob"  >
 
-                <div class="input-group">
-                <button type="submit" name ="submit" class="btn">SUBMIT</button>
-                </div>
-        </form>
-        </div>
+     <textarea id="txt" name="your"  rows="4" cols="40"></textarea>
+     
+     <input type="text"  placeholder="usertype" name="usertype"  >
+
+     
+
+ 
+         <button name="submit" class="btn">Submit</button>
+</form>
+     
+
+ </div>
+
 
         <?php
 }}
 ?>
-        
+         <script src="css/js/nav_responsive.js"></script>
+         <?php include('footer.php');?>
     </body>
     </html>

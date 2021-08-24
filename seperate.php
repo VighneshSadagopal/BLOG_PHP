@@ -26,6 +26,8 @@ while($res=mysqli_fetch_array($query)){
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Homepage</title>
         <link rel="stylesheet" href="css/seperate.css">
+        <link rel="stylesheet" href="css/nav.css">  
+        <link rel="stylesheet" href="css/footer.css">  
         <script src="https://kit.fontawesome.com/ec41712638.js" crossorigin="anonymous"></script>
     </head>
     <body>
@@ -57,5 +59,6 @@ while($res=mysqli_fetch_array($query)){
                 </div>
                
                 <script src="css/js/nav_responsive.js"></script>
+           
         </body>
     </html>

@@ -24,8 +24,9 @@ window.onscroll = ()=>{
 var nav= document.getElementById('nav');
 
   window.onscroll= function(){
-      if (window.pageYOffset > 100) {
+      if (window.pageYOffset > 110) {
         nav.style.background ="#000"
+        nav.style.color="#fff"
       }
       else{
         nav.style.background= "transparent"

@@ -28,6 +28,7 @@ while($row = mysqli_fetch_array($query))
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome</title>
     <link rel="stylesheet" href="css/style1.css">  
+    <link rel="stylesheet" href="css/footer.css">  
     <script src="https://kit.fontawesome.com/ec41712638.js" crossorigin="anonymous"></script>
 </head>
 <body vlink =" black">
@@ -108,5 +109,6 @@ while($row = mysqli_fetch_array($query))
         
     </div>
     <script src="css/js/nav_responsive.js"></script>
+    <?php include('footer.php');?>
 </body>
 </html>

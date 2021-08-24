@@ -6,13 +6,17 @@ session_start();
 if (!isset($_SESSION['username'])) {
     header("Location: login.php");
 }
-
+$usertype=$_SESSION['usertype'];
 $id=$_SESSION['id'];
 $author=$_SESSION['username'];
 $pid= $_GET['pid'];
 
-
+if($usertype=="admin"){
+    $query=mysqli_query($conn,"SELECT * FROM `post` where pid='$pid'");
+}
+if($usertype=="user"){
 $query=mysqli_query($conn,"SELECT * FROM `post`INNER JOIN users ON post.id =  '$id' where pid='$pid' ");
+}
 
 if ($query->num_rows > 0){
 
@@ -20,7 +24,7 @@ if ($query->num_rows > 0){
        
       
            
-       
+       $files=$res['images'];
         $author=$res['author'];
         $title=$res['title'];
         $description= $res['description'];
@@ -43,13 +47,16 @@ if ($query->num_rows > 0){
 
     if(isset($_POST['update'])){
 
-        
+        $imgname = $_FILES['image']['name'];
+    
+        $tempname = $_FILES['image']['tmp_name'];
+        move_uploaded_file($tempname,"images/$imgname");
         $author=$_POST['author'];
         $title=$_POST['title'];
         $description=$_POST['description'];
         $short=$_POST['short'];
 
-        $result=mysqli_query($conn,"UPDATE post SET images='$files',author='$author',title='$title',description='$description',short='$short'where pid='$pid'");
+        $result=mysqli_query($conn,"UPDATE post SET images='$imgname',author='$author',title='$title',description='$description',short='$short'where pid='$pid'");
         if($result){
           
             echo "<script>alert('Successfully Updated.')</script>";
@@ -74,6 +81,7 @@ if ($query->num_rows > 0){
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Homepage</title>
         <link rel="stylesheet" href="css/createpost.css">
+        <link rel="stylesheet" href="css/footer.css">  
         <script src="https://kit.fontawesome.com/ec41712638.js" crossorigin="anonymous"></script>
     </head>
     <body>
@@ -108,7 +116,7 @@ if ($query->num_rows > 0){
     </div>
   </nav>
         <div class="container">
-            <form action="" method="post" class="login-email">
+            <form action="" method="post" class="login-email"  enctype="multipart/form-data">
                 <p class="login-text" style="font-size: 1.5rem; font-weight: 800;">Author Name : </p>
                 <div class="input-group">
                 <input type="text" value=<?php echo $author?> name="author">
@@ -125,9 +133,8 @@ if ($query->num_rows > 0){
                 <div class="input-group">
                 <textarea cols="50" rows="3" name="short"><?php echo $short ?></textarea>
                 </div>
-                <p class="login-text" style="font-size: 1.2rem; font-weight: 800;">Choose Image File</p>
                 <div class="input-group">
-                <input type="file" name="images"  id="images" value= "upload">
+                <input type="file" name="image" value=<?php echo $files?>>
                 </div>
 
                 <div class="input-group">
@@ -139,5 +146,6 @@ if ($query->num_rows > 0){
     }}
     ?>
        <script src="css/js/nav_responsive.js"></script>
+       <?php include('footer.php');?>
         </body>
     </html>

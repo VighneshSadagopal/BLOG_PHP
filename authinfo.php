@@ -24,13 +24,15 @@ else{
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome</title>
     <link rel="stylesheet" href="css/author.css">  
+    <link rel="stylesheet" href="css/nav.css">  
+    <link rel="stylesheet" href="css/footer.css"> 
     <script src="https://kit.fontawesome.com/ec41712638.js" crossorigin="anonymous"></script>
  
 </head>
 <body vlink =" black">
 <div class="image">
          <h1>View Our Contributers</h1>
-         <a href="#create" id="bb">GO--></a>
+         <a href="#tab" id="bb">Lets GO</a>
 <div class="navbar" id="nav">
     <div class="content">
       <div class="logo">
@@ -43,13 +45,14 @@ else{
         <li><a href="homepage.php">Home</a></li>
         <li><a href="#">About</a></li>
         <li><a href="#">Services</a></li>
-        <li><a href="admin.php">Dashboard</a></li>
+        <li><a href="#">Carrer</a></li>
+        <li><a href="#">Contact Us</a></li>
         
      
         <div class="right">
         <li><a href="#" id="name" ><?php echo $_SESSION['username']?>&nbsp;<i class="tiny material-icons" >arrow_drop_down_circle</i></a>
             <ul>
-               
+               <li><a href="admin.php">Dashboard</a></li>
             <li><a href="createauth.php"> Create New Author</a></li>
                 <li><a href="logout.php"><i class="tiny material-icons" >power_settings_new</i>&nbsp;LOGOUT</a></li>
             </ul>
@@ -64,28 +67,44 @@ else{
 </div>
 </div>
 
+
 <?php
-$query=mysqli_query($conn,"SELECT * FROM users");
+$query=mysqli_query($conn,"SELECT * FROM users where usertype='user'");
 if($query->num_rows > 0){
 
 
-while($res=mysqli_fetch_array($query)){
 ?>
-     <div class="post">
-         <div class="container">
-         <button id="ed1"> <?php echo "<a href=\"authoredit.php?id=$res[id]\"><?a>"?><div class="tooltip"><i class="tiny material-icons">edit</i><span class="tooltext">EDIT</span></a></div></button>
 
-           <?php echo "<h1>".$res['username']."</h1>" ?>
-           <?php echo "<p>".$res['your']."</p>" ?>
-           <?php echo "<p>".$res['dob']."</p>" ?>
-             
-        </div>
-    </div>
+<div class="tab" id="tab">
+
+    <table class="editable" cellspacing="6" cellpadding="50">
+      <thead>
+            <tr>
+                <th>AUTHOR</th>
+                <th>EDIT</th>
+                <th>DELETE</th>
+            </tr>
+</thead>
   
-    <?php
+            <?php
+       while($res=mysqli_fetch_array($query)){
+
+            echo'<tr>';
+            echo '<td>'.$res['username'].'</td>' ;
+            echo "<td><a href=\"authoredit.php?id=$res[id]\"><input type='submit' value='Edit'</a>" ;
+            echo "<td><a href=\"deleteauth.php?id=$res[id]\"><input type='submit' value='Delete'</a>" ;
+            echo '</tr>';
+        }
+      }
+        ?>
+        </table>
     
-  }
-}
-?>
+        <?php include('footer.php')?>
+      
+        </div>
+
+        <script src="css/js/index.js"></script>
+        
+
 </body>
 </html>

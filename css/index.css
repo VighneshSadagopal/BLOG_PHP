@@ -11,6 +11,9 @@ body{
     background-position: center;
     background-repeat: no-repeat;
 }
+:root{
+    --primary:#000;
+}
 #back{
   
   position: absolute;
@@ -31,6 +34,18 @@ i a:hover{
     height: 99vh;
     width: 100%;
 }
+.image {
+    height: 99vh;
+    width:100%;
+    background: rgb(0 0 0 / 59%)url(images/1.jpg);
+    background-size: cover;
+    background-blend-mode: darken;
+
+
+}
+
+  
+
 h1{
     position: absolute;
     top: 40%;
@@ -43,8 +58,8 @@ h1{
 .logo{
     display: inline-flex;
     position: absolute;
-    top:18%;
-    left: 12%;
+    top:10%;
+    left: 13%;
    width: 100%;
    font-size: 45px;
 
@@ -63,7 +78,7 @@ h3{
 }
 .contain2{
     background-color: #FFF;
-    min-height: 90%;
+    min-height: 85%;
     width: 35%;
     flex-wrap: wrap;
     display: inline-flex;
@@ -71,9 +86,17 @@ h3{
    text-align: center;
    border: 2px solid transparent;
    border-radius: 10px;
-   top: 5%;
+   top: 11%;
    right: 7%;
    transition: 0.4s;
+}
+.contain2 .logo{
+    display: inline-flex;
+   justify-content: center;
+    left: 0;
+   width: 100%;
+   font-size: 45px;
+
 }
  #h1{
     position: absolute;
@@ -117,6 +140,7 @@ small{
    font-size: 45px;
 
 }
+
 .form{
     display: block;
  
@@ -139,6 +163,20 @@ small{
     margin-left: 5px;
     
 }
+textarea#txt{
+    margin-top: 5px;
+    border-radius: 8px;
+    border:2px solid #d9dfe7;
+    padding: 0.75rem 1.375rem;
+    font-size: 0.75rem;
+    outline:none;
+    margin-left: 5px;
+    width: 60%;
+}
+input#file {
+    height: 10px;
+    padding: 13px 19px;
+}
 .btn{
     padding: 12px 18px;
     flex-wrap: wrap;
@@ -160,16 +198,22 @@ small{
 }
 .remember{
     position: absolute;
-    top: 60%;
+    top: 64%;
     left: 16%;
 }
 p{
     position: absolute;
-    top: 60%;
+    top: 64%;
     left: 20%;
     font-size: 0.75rem;
 }
 text{
+    position: absolute;
+  top: 80%;
+    font-size: 0.78rem;
+    left: 30%;
+}
+text1{
     position: absolute;
   top: 80%;
     font-size: 0.78rem;
@@ -180,4 +224,178 @@ span{
 }
 span a{
     text-decoration: none;
+}
+.contain5{
+    background-color: #FFF;
+    min-height: 90%;
+    width: 35%;
+    flex-wrap: wrap;
+    display: inline-flex;
+   position: absolute;
+   text-align: center;
+   border: 2px solid transparent;
+   border-radius: 10px;
+   top: 5%;
+   right: 7%;
+   transition: 0.4s;
+}
+.contain5 .logo{
+    display: inline-flex;
+    position: absolute;
+    top:18%;
+    left: 12%;
+   width: 100%;
+   font-size: 45px;
+}
+.contain5 h3{
+    font-size: 30px;
+    margin-bottom: 20px;
+}
+.contain5 .form{
+    margin-top: 150px;
+}
+@font-face {
+    font-family: 'Material Icons';
+    font-style: normal;
+    font-weight: 400;
+    src: url(https://fonts.gstatic.com/s/materialicons/v97/flUhRq6tzZclQEJ-Vdg-IuiaDsNc.woff2) format('woff2');
+  }
+  
+  .material-icons {
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    line-height: 1;
+    position: relative;
+    bottom:-3px;
+    text-transform: none;
+    display: inline-block;
+    white-space: nowrap;
+    word-wrap: normal;
+    direction: ltr;
+  }
+@media (max-width:968px){
+
+}
+@media (max-width:768px){
+
+    .contain1 h1{
+        width:100%;
+        font-size: 26px;
+        top:15%;
+        left: 0;
+        text-align: center;
+    }
+   
+    #h1{
+        width:100%;
+        font-size: 26px;
+        top:15%;
+        left: 0;
+        text-align: center;
+        font-weight: 700;
+       
+    }
+    h2{
+        font-size: 25px;
+        margin-top: 7%;
+    }
+    .logo{
+        width:81%;
+        top: 8%;
+    }
+    .contain2{
+        width:40%;
+        right:28%;
+        min-height: 70%;
+        top:26%;
+    }
+    .contain3{
+        width:40%;
+        left:228.4px;
+        min-height: 70%;
+        top:26%;
+    }
+    .contain3 .logo{
+        top: 8%;
+        left: 12%;
+    }
+    h3{
+        font-size:20px;
+        margin-bottom: 10px;
+    }
+    .btn{
+        width:75%;
+    }
+    .remember{
+        top:62%;
+    }
+    p{
+        top:62%;
+    }
+    text{
+        left:15%;
+     
+    }
+    text1{
+        position: absolute;
+        top: 90%;
+        font-size: 0.78rem;
+        left: 20%;
+    }
+    .form{
+        margin-top: 110px;
+    }
+}
+@media (max-width:425px){
+    #img{
+        background: rgb(0 0 0/ 76%)url(images/falls1.jpg);
+        height: 50vh;
+        background-size: cover;
+        background-blend-mode: darken;
+        width: 100%;
+    }
+    .image {
+        height: 50vh;
+        width:100%;
+        background: rgb(0 0 0 / 59%)url(images/1.jpg);
+        background-size: cover;
+        background-blend-mode: darken;
+    
+    
+    }
+    .contain1 h1{
+        top:15%;
+    }
+    .contain2 {
+        width: 80%;
+        right: 10%;
+        top: 25%;
+    }
+    .contain3 {
+        width: 80%;
+        left: 10%;
+        top: 32%;
+    }
+    .contain3 .logo{
+        margin-top: 14px;
+        position: unset;
+        margin-left: 30px;
+        font-size: 18px;
+        height: 50px;
+
+    }
+    text{
+        top:75%;
+    }
+    .remember{
+        top:64%;
+    }
+    p{
+        top:64%;
+        margin-left: 2px;
+    }
+    .contain3 .form{
+        margin-top:-25px;
+    }
 }
