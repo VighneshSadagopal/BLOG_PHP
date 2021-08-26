@@ -17,40 +17,62 @@ session_start();
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Homepage</title>
         <link rel="stylesheet" href="css/homepage.css">
+        <link rel="stylesheet" href="css/carousel.css">
         <link rel="stylesheet" href="css/footer.css">
+        <link rel="stylesheet" href="css/nav.css">
         <script src="https://kit.fontawesome.com/ec41712638.js" crossorigin="anonymous"></script>
         
     </head>
     <body >
-      <div class="whole">
-       <div class="image">
-         <h1>WELCOME TO THE OCEAN</h1>
-         <a href="#post" id="bb">Lets Dive In</a>
-         <div class="navbar" id='nav'>
-            <div class="content">
-              <div class="logo">
-               <img src="css/images/logo2.png">
-              </div>
-              <ul class="menu-list">
-              <div class="icon cancel-btn">
-                <i class="fas fa-times"></i>
-              </div>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Services</a></li>
-                <li><a href="#">Carrer</a></li>
-                <li><a href="#">Contact Us</a></li>
-                <li><a href="login.php" id="right">Login/Register</a></li>
+
+
+   <?php include('nav.php');?>
+   <div class="right">
+          <li><a href="login.php" id="name"  >Login/Register</a>
+      
               </div>
               <div class="icon menu-btn">
                 <i class="fas fa-bars" ></i>
               </div>
             </div>
           </div>
-        </div>
- 
+      <div class="whole">
+      <div class="carousel">
+      <div class="carousel__item carousel__item--visible">
+        <img src="css/images/background.png" />
+        <h1>WELCOME TO THE OCEAN</h1>
+         <a href="#post" id="bb">Lets Dive In</a>
+      </div>
+      <?php
+                    
+                    $query = "SELECT * FROM post ORDER BY pid DESC";
+                    $query_run= mysqli_query($conn, $query);
+                    $check_post= mysqli_num_rows($query_run) > 0;
+      
+                    if($check_post)
+                    {
+                      while($res = mysqli_fetch_array($query_run))
+                      {
+                        $image=$res['images'];
+      
+                  ?>
+      
+      <div class="carousel__item ">
+        <img src="images/<?php echo $image ?>" />
+        <h1><?php echo $res['title'] ?></h1><br><br>
+      </div>
+      <?php 
+                      }}
+      ?>
+      
 
-        <div class="post" id ="post">
+      <div class="carousel__actions">
+      <i class="fas fa-chevron-left"id="carousel__button--prev" aria-label="Previous slide"></i>
+        <i class="fas fa-chevron-right"   id="carousel__button--next" aria-label="Next slide"></i>
+      </div>
+      </div>
+
+      <div class="post" id ="post">
             
             <?php
                     
@@ -84,15 +106,18 @@ session_start();
 
             ?>
           
-   
+          <?php include('footer.php');?>
         </div>
-        
+     
       </div>
-     
-          
-     
-        <script src="css/js/index.js"></script>
-        <script src="css/js/nav_responsive.js"></script>
 
-    </body>
-    </html>
+
+      
+        
+
+   
+</body>
+<script src="css/js/carousel.js"></script>
+<script src="css/js/index.js"></script>
+        <script src="css/js/nav_responsive.js"></script>
+<html>

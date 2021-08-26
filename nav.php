@@ -1,7 +1,7 @@
 
 
 <div class="navbar" id="nav">
-    <div class="content">
+    <div class="content1">
       <div class="logo">
         <img src="css/images/logo2.png">
       </div>
@@ -14,6 +14,8 @@
         <li><a href="#">Services</a></li>
         <li><a href="#">Carrer</a></li>
             <li><a href="#">Contact Us</a></li>
+           
+       
          
       
 

@@ -34,6 +34,7 @@ while($row = mysqli_fetch_array($query))
  
 </head>
 <body vlink =" black">
+    
 <div class="image">
        
          <h1>WELCOME &nbsp;<?php echo $author ?></h1>
@@ -76,13 +77,14 @@ while($row = mysqli_fetch_array($query))
      
   
     
-   
-    <div class="con">
-    <div class="post">
-    
-    <button id="create"> <?php echo "<a href=\"createpost.php?id=$row[id]\">"?><div class="tooltip"><i class="small material-icons">control_point</i></a>
+<button id="create"> <?php echo "<a href=\"createpost.php?id=$row[id]\">"?><div class="tooltip"><i class="small material-icons">control_point</i></a>
 <span class="tooltext">Create</span></div>
 </button><br><br>
+    <div class="con">
+   
+    <div class="post">
+    
+
        
      
 
@@ -102,6 +104,7 @@ while($row = mysqli_fetch_array($query))
         <div class="container">
 
         <img src="images/<?php echo $image?> "id="img2">
+        
             <h1> <?php echo "<a href=\"seperate1.php?pid=$row[pid]\">"?><?php echo $row['title'] ?></h1> </a><div class="edbtn">
            
            <button id="ed1"> <?php echo "<a href=\"edit.php?pid=$row[pid]\"><?a>"?><div class="tooltip"><i class="tiny material-icons">edit</i><span class="tooltext">EDIT</span></div></button>
@@ -125,55 +128,15 @@ while($row = mysqli_fetch_array($query))
     
     
         ?>
-
-        <?php
         
 
-         if(isset($_POST['search'])){
-          $search= $_POST['search'];
-       echo $que= mysqli_query($conn,"SELECT * FROM post where author='$search'");
-        $check_post= mysqli_num_rows($que) > 0;
-
-        if($check_post)
-        {
-            while($row = mysqli_fetch_array($que))
-            {
-
-        ?>
-        
-
-        <div class="container">
-
-            <h1><?php echo $row['title'] ?></h1>
-            <p><?php echo $row['description'] ?><p id="auth">~<?php echo $row['author'] ?></p></p>
-
-      
-        </div>
-    
-        <?php
-
-        
-            }
-
-        }
-        else{
-            echo " NO POST FOUND";
-        }
-      }
-
-        ?>
+       
     </div>
-    <div class ="sidebar" id="side">
-        <p>Search Post </p>
-    <input type="text" placeholder="Search By Author Name" name="search">&nbsp;<button type="submit" ><i class="fas fa-search"></i></button>
-      </div>
-      <div class="sideslash">
-
-    </div>
-   
     </div>
   
       <script src="css/js/index.js"></script>
+      
+      <?php include('footer.php')?>
 </body>
-<?php include('footer.php')?>
+
 </html>

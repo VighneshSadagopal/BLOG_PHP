@@ -163,6 +163,20 @@ small{
     margin-left: 5px;
     
 }
+.footer {
+    background-color: #24262b;
+    padding: 70px 0;
+    width: 100%;
+  
+   
+  }
+input[type="checkbox"] {
+    width: 100%;
+    height: auto;
+    position: absolute;
+    left: -33%;
+    bottom: 34%;
+}
 textarea#txt{
     margin-top: 5px;
     border-radius: 8px;

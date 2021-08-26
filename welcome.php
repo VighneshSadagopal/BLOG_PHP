@@ -37,21 +37,7 @@ while($row = mysqli_fetch_array($query))
 <div class="image">
          <h1>WELCOME &nbsp;<?php echo $author ?></h1>
          <a href="#create" id="bb">Check Out</a>
-<div class="navbar" id="nav">
-    <div class="content">
-      <div class="logo">
-        <img src="css/images/logo2.png">
-      </div>
-      <ul class="menu-list">
-        <div class="icon cancel-btn">
-          <i class="fas fa-times"></i>
-        </div>
-        <li><a href="homepage.php">Home</a></li>
-        <li><a href="#">About</a></li>
-        <li><a href="#">Carrer</a></li>
-        <li><a href="#">Services</a></li>
-        
-         <li><a href="#">Contact Us</a></li>
+         <?php include('nav.php'); ?>
         
         
      
@@ -77,13 +63,13 @@ while($row = mysqli_fetch_array($query))
      
   
     
-   
+<button id="create"> <?php echo "<a href=\"createpost.php?id=$row[id]\">"?><div class="tooltip"><i class="small material-icons">control_point</i></a>
+<span class="tooltext">Create</span></div>
+</button><br><br>
     <div class="con">
     <div class="post">
     
-    <button id="create"> <?php echo "<a href=\"createpost.php?id=$row[id]\">"?><div class="tooltip"><i class="small material-icons">control_point</i></a>
-<span class="tooltext">Create</span></div>
-</button><br><br>
+  
        
      
 
@@ -122,49 +108,6 @@ while($row = mysqli_fetch_array($query))
     
     
         ?>
-
-        <?php
-        
-
-         if(isset($_POST['search'])){
-          $search= $_POST['search'];
-       echo $que= mysqli_query($conn,"SELECT * FROM post where author='$search'");
-        $check_post= mysqli_num_rows($que) > 0;
-
-        if($check_post)
-        {
-            while($row = mysqli_fetch_array($que))
-            {
-
-        ?>
-        
-
-        <div class="container">
-
-            <h1><?php echo $row['title'] ?></h1>
-            <p><?php echo $row['description'] ?><p id="auth">~<?php echo $row['author'] ?></p></p>
-
-      
-        </div>
-    
-        <?php
-
-        
-            }
-
-        }
-        else{
-            echo " NO POST FOUND";
-        }
-      }
-
-        ?>
-    </div>
-    <div class ="sidebar" id="side">
-        <p>Search Post </p>
-    <input type="text" placeholder="Search By Author Name" name="search">&nbsp;<button type="submit" ><i class="fas fa-search"></i></button>
-      </div>
-      <div class="sideslash">
 
     </div>
     </div>

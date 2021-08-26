@@ -75,77 +75,52 @@ if ($query->num_rows > 0){
 
 ?>
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Homepage</title>
-        <link rel="stylesheet" href="css/createpost.css">
-        <link rel="stylesheet" href="css/footer.css">  
-        <script src="https://kit.fontawesome.com/ec41712638.js" crossorigin="anonymous"></script>
-    </head>
-    <body>
-        <img src="">
-        <nav class="navbar">
-    <div class="content">
-      <div class="logo">
-        <img src="css/images/logo2.png">
-      </div>
-      <ul class="menu-list">
-        <div class="icon cancel-btn">
-          <i class="fas fa-times"></i>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="css/index.css">
+   
+    
+    <meta charset="UTF-8">
+    <script src="https://kit.fontawesome.com/ec41712638.js" crossorigin="anonymous"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Author Edit</title>
+</head>
+<body>
+    
+
+   
+        <div class="image">
+   
+ 
+        <a href="welcome.php"><i class="fas fa-arrow-circle-left" id="back"></i></a>
         </div>
-        <li><a href="login.php">Dashboard</a></li>
-        <li><a href="#">About</a></li>
-        <li><a href="#">Services</a></li>
-        <li><?php echo "<a href=\"mypost.php?id=$row[id]\">"?>My Post</a></li>
-        
-        <div class="right">
-        <li><a href="#" id="name" ><?php echo $_SESSION['username']?>&nbsp;<i class="tiny material-icons" >arrow_drop_down_circle</i></a>
-            <ul>
-                <li ><?php echo "<a href=\"account.php?id=$row[id]\">"?>VIEW DETAILs</a></li>
-                <li ><a href=""><i class="tiny material-icons" >power_settings_new</i>&nbsp;LOGOUT</a></li>
-            </ul>
-        </li>
-</div>
-        
-      </ul>
-      <div class="icon menu-btn">
-        <i class="fas fa-bars"></i>
-      </div>
-    </div>
-  </nav>
-        <div class="container">
-            <form action="" method="post" class="login-email"  enctype="multipart/form-data">
-                <p class="login-text" style="font-size: 1.5rem; font-weight: 800;">Author Name : </p>
-                <div class="input-group">
-                <input type="text" value=<?php echo $author?> name="author">
-                </div>
-                <p class="login-text" style="font-size: 1.5rem; font-weight: 800;">POST TITLE</p>
-                <div class="input-group">
-                <input type="text" placeholder="Title Name"value=<?php echo $title?> name="title">
-                </div>
-                <p class="login-text" style="font-size: 1.5rem; font-weight: 800;">Description</p>
-                <div class="input-group">
-                <textarea cols="50" rows="3" name="description"><?php echo $description ?></textarea>
-                </div>
-                <p class="login-text" style="font-size: 1.5rem; font-weight: 800;">Short Description</p>
-                <div class="input-group">
-                <textarea cols="50" rows="3" name="short"><?php echo $short ?></textarea>
-                </div>
-                <div class="input-group">
-                <input type="file" name="image" value=<?php echo $files?>>
-                </div>
+        <div class ="contain2">
+           
 
-                <div class="input-group">
-                <button type="submit" name ="update" class="btn">UPDATE</button>
-                </div>
-        </form>
-<?php
+            <div class="logo">
+                <img src="css/images/logo3.png"><h2>Visual Select</h2>
+            </div>
+			<form action="" method="POST" class="form" onsubmit="return validated()">
+                <h3>Author Details</h3>
+                <input type="text" value=<?php echo $_SESSION['username']?> name="author" id="input-field">
+                <input type="text" placeholder="Title Name" name="title"  id="input-field">
+                <textarea id="txt"cols="30" rows="4" name="description"  id="input-field"></textarea>
 
-    }}
-    ?>
-       <script src="css/js/nav_responsive.js"></script>
-       <?php include('footer.php');?>
-        </body>
-    </html>
+                <input type="file" name="image" value="choose image" id="file"><br>
+
+                <textarea id ="txt"cols="30" rows="3"  name="short" id="input-field"></textarea>
+                <button type="submit" name ="submit" class="btn">SUBMIT</button>
+                    
+			
+
+		
+            
+</form>
+            
+
+        </div>
+    <?php  }}?>
+		<script src="javascript" href="css/js/login.js"></script>
+</body>
+</html>
+    

@@ -135,7 +135,7 @@ left:20%;
     display: inline-flex;
     background-color: #000;
     padding: 7px 13px;
-    width: 100%;
+    width: 117%;
 } 
 .navbar ul ul li a{
   font-size: 17px;
@@ -177,11 +177,6 @@ left:20%;
     display:none;
   }
 
-.container h1{
-    position: relative;
-    top:15%;
-    left: 5%;
-}
 
 #create .tooltip {
     position: relative;
@@ -219,7 +214,7 @@ left:20%;
     border-radius:60px;
     font-size: x-large;
     z-index: -2;
-   
+   margin-left:6%;
     margin-top: 10px;
     
  }
@@ -294,29 +289,37 @@ left:20%;
 
 
 .edbtn{
-  float: right;
-  margin-right: 20px;
-  margin-top: -50px;
+  position: relative;
+    bottom: 66%;
+    
+    float: right;
 }
 .post{
   
   height: 100%;
-  width:60%;
+  width:100%;
 margin-top: 50px;
-margin-left: 100px;
-  display: block;
+margin-left: 5px;
+display: flex;
+flex-wrap: wrap;
 }
 .post .container{
     background: #fdf9f9;
    max-height: 50%;
-   width:100%;
+   width:42%;
    border-bottom:2px solid var(--primary) ;
    margin-bottom: 20px;
-   
- 
+   margin-left:40px;
 }
+#merge{
+  color: #fff;
+  background-color: #000;
+  padding: 7px 13px;
+  border-radius: 15px;
+}
+
 img#img2 {
-  
+  height: 60%;
   width: 100%;
 }
 .post .container h1{
@@ -324,6 +327,8 @@ img#img2 {
  
   padding-top: 10PX;
     margin-bottom: 10px;
+    font-size: 25px;
+    margin-left: 47px;
 }
 .post .container h1 a:hover{
   color: rgba(0, 174, 255, 0.692);
@@ -331,7 +336,7 @@ img#img2 {
 }
 .post .container p{
     
-    height:75%;
+    height:auto;
     width: 80%;
     font-size: 15px;
     font-family: Arial, Helvetica, sans-serif;
@@ -368,6 +373,12 @@ img#img2 {
 #side{
   
   margin-top:126px ;
+}
+.footer {
+  background-color: #24262b;
+  padding: 70px 0;
+  width: 100%;
+ 
 }
 @font-face {
     font-family: 'Material Icons';
@@ -536,6 +547,7 @@ img#img2 {
     #create{
       
       font-size: medium;
+     
     }
     .navbar{
       padding-bottom: 50px;

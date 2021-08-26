@@ -1,6 +1,6 @@
 
 
-  <footer class="footer">
+  <div class="footer">
   	 <div class="contain">
   	 	<div class="row">
   	 		<div class="footer-col1">
@@ -41,7 +41,7 @@
 			   
   	 	</div>
   	 </div>
-  </footer>
+</div>
   
 
 

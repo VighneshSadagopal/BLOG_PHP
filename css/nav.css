@@ -1,6 +1,7 @@
-.content{
-  max-width: 1250px;
-  margin: auto;
+.content1{
+  max-width: 100%;
+  
+  margin-left: 84px;
   padding: 0 30px;
 }
 .navbar{
@@ -10,6 +11,8 @@
   transition: all 0.3s ease;
   background-color: var(--primary);
   z-index: 4;
+  text-align: center;
+  top: 0;
 }
 .navbar.sticky{
   background: var(--primary);
@@ -27,8 +30,9 @@
   font-weight: 600;
   text-decoration: none;
   position: absolute;
-  left:6%;
+ 
   bottom: 5px;
+  text-align: left;
 }
 .navbar ul ul{
   
@@ -46,7 +50,7 @@ left:20%;
   padding: 7px 13px;
   color: #000;
   position: absolute;
-  right:10%;
+  right:13%;
   top: 15px;
   border-radius: 10px;
   font-size: 18px;
@@ -69,7 +73,7 @@ display:block;
   display: inline-flex;
   background-color: #000;
   padding: 7px 13px;
-  width: 100%;
+  width: 114%;
 } 
 .navbar ul ul li a{
 font-size: 17px;
@@ -79,6 +83,7 @@ font-size: 17px;
 }
 .navbar .menu-list{
   display: inline-flex;
+  margin-left: -84px;
 }
 .menu-list li{
   list-style: none;
