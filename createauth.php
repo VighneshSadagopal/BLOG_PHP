@@ -54,7 +54,7 @@ while($row = mysqli_fetch_array($sql))
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Homepage</title>
         <link rel="stylesheet" href="css/index.css">
-        <link rel="stylesheet" href="css/nav.css">
+        <link rel="stylesheet" href="scss/nav.css">
         <link rel="stylesheet" href="css/footer.css">  
         <script src="https://kit.fontawesome.com/ec41712638.js" crossorigin="anonymous"></script>
     </head>

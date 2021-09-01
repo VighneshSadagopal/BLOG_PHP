@@ -1,0 +1,52 @@
+small,
+small1,
+small2,
+small3 {
+  display: block;
+  position: absolute;
+  top: 12%;
+  background-color: #ffdb9b;
+  color: #ce8500;
+  border-left: 13px solid #e69100;
+  font-size: 20px;
+  padding-left: 1%;
+  border-radius: 9px;
+  right: 0;
+  z-index: 2;
+}
+
+small i,
+small1 i,
+small2 i,
+small3 i {
+  padding: 22px 37px;
+  background-color: #ffd080;
+}
+
+small .show,
+small1 .show,
+small2 .show,
+small3 .show {
+  -webkit-animation: show_slide 4s ease forwards;
+          animation: show_slide 4s ease forwards;
+}
+
+/*For correct*/
+small1 {
+  background-color: #b7ff9b;
+  color: #29ce00;
+  border-left: 13px solid #36e600;
+}
+
+small1 i {
+  padding: 22px 33px;
+  background-color: #80ff80;
+}
+
+/*For wrong*/
+small3 {
+  background-color: #ff9b9b;
+  color: #ce0000;
+  border-left: 13px solid #e60000;
+}
+/*# sourceMappingURL=notify.css.map */

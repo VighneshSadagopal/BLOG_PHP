@@ -11,21 +11,25 @@ if(isset($_SESSION['username'])){
     elseif($_SESSION['usertype'] =="user"){
         header("location:welcome.php");
     }
+    elseif($_SESSION['usertype'] ==""){
+        header("location:anonmoyous.php");
+    }
 
 }
+
 
 if (isset($_POST['submit'])) {
   
        
     $email = $_POST['email'];
     $password = md5($_POST['password']);
-    
+   
    
     
 
     $sql = "SELECT * FROM users WHERE email='$email' AND password='$password'";
     $result = mysqli_query($conn, $sql); 
-    
+    $res=mysqli_num_rows($result) >0;
     $row = mysqli_fetch_assoc($result);
     
        
@@ -33,6 +37,10 @@ if (isset($_POST['submit'])) {
         $_SESSION['username'] = $row['username'];
         $_SESSION['id'] = $row['id'];
         $_SESSION['usertype']=$row['usertype'];
+       
+        if($res){
+
+       
     
         if($row['usertype']=='admin'){ 
             if(isset($_POST['check'])){
@@ -53,10 +61,23 @@ if (isset($_POST['submit'])) {
            
                 header("location:welcome.php");
             }
-        else {
-        echo "<small>Email Or Password is Incorrect Please re-enter</small>";
-    }
-   
+            elseif($row['usertype']==''){
+                if(isset($_POST['check'])){
+                    setcookie('emailcookie',$email,time()+60*60);
+                    setcookie('passwordcookie',base64_encode($password),time()+60*60);
+            
+                }
+                else{
+                    echo "error occured";
+                }
+                    header("location:anonmoyous.php");
+                    
+                
+            }
+        }else{
+                echo "<small>Email or Password is Incorrect</small>";
+            }
+                
 }
 
 
@@ -67,8 +88,8 @@ if (isset($_POST['submit'])) {
 <!DOCTYPE html>
 <html lang="en">
     <head>  
-  <link rel="stylesheet" href="css/index.css">
-  <link rel="stylesheet" href="css/nav.css">
+  <link rel="stylesheet" href="Scss/index.css">
+  <link rel="stylesheet" href="scss/nav.css">
   <link rel="stylesheet" href="css/footer.css">
         <meta charset="UTF-8">
         <script src="https://kit.fontawesome.com/ec41712638.js" crossorigin="anonymous"></script>
@@ -79,12 +100,21 @@ if (isset($_POST['submit'])) {
     
 
       <?php include('nav.php');?>
+          
       <div class="right">
-          <li><a href="index.php" id="name"  >Home</a>
+        <li><a href="index.php" id="name" >HOME</a>
+            
       
-              </div>
+        </div>
+        
+      </ul>
+      <div class="icon menu-btn">
+        <i class="fas fa-bars"></i>
+      
+      </div>
+    </div>
 </div>
-</div>
+
         <div class="contain1">
 
 
@@ -93,6 +123,7 @@ if (isset($_POST['submit'])) {
             <h1>Welcome to <br>the Next Gen Of Blogs</h1>
         </div>
         <div class ="contain2">
+        <div class="whole">
             <div class="logo">
                 <img src="css/images/logo3.png"><h2>Visual Select</h2>
             </div>
@@ -110,8 +141,9 @@ if (isset($_POST['submit'])) {
           
             <text>Dont Have a Account ? <span><a href="register.php">Register Now</span></a></text>
         </div>
+</div>
         <?php include('footer.php');?>
-        <script src="javascript" href="css/js/login.js"></script>
+        <script src="css/js/nav_responsive.js"></script>
     </body>
 </html>
 

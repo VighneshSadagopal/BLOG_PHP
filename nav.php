@@ -9,7 +9,7 @@
         <div class="icon cancel-btn">
           <i class="fas fa-times"></i>
         </div>
-        <li><a href="homepage.php">Home</a></li>
+        <li><a href="index.php">Home</a></li>
         <li><a href="#">About</a></li>
         <li><a href="#">Services</a></li>
         <li><a href="#">Carrer</a></li>

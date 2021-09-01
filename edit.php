@@ -29,6 +29,7 @@ if ($query->num_rows > 0){
         $title=$res['title'];
         $description= $res['description'];
         $short= $res['short'];
+        $category= $res['category'];
     }
             }
             else{
@@ -48,21 +49,22 @@ if ($query->num_rows > 0){
     if(isset($_POST['update'])){
 
         $imgname = $_FILES['image']['name'];
-    
+ 
         $tempname = $_FILES['image']['tmp_name'];
         move_uploaded_file($tempname,"images/$imgname");
         $author=$_POST['author'];
         $title=$_POST['title'];
         $description=$_POST['description'];
         $short=$_POST['short'];
+        $category=$_POST['category'];
 
-        $result=mysqli_query($conn,"UPDATE post SET images='$imgname',author='$author',title='$title',description='$description',short='$short'where pid='$pid'");
+        $result=mysqli_query($conn,"UPDATE post SET images='$imgname',author='$author',title='$title',description='$description',short='$short',category='$category'where pid='$pid'");
         if($result){
           
-            echo "<script>alert('Successfully Updated.')</script>";
+            echo "<small1> Successful Update </small1>";
         }
         else{
-            echo "<script>alert('updation failed.')</script>";
+            echo "<small2>Woops! Something Wrong Went.</small2>";
         }
     }
     $sql=mysqli_query($conn,"SELECT * from users where username='$author' ");
@@ -78,6 +80,7 @@ if ($query->num_rows > 0){
 <html lang="en">
 <head>
     <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="scss/nav.css">
    
     
     <meta charset="UTF-8">
@@ -86,30 +89,77 @@ if ($query->num_rows > 0){
     <title>Author Edit</title>
 </head>
 <body>
-    
+<?php include('nav.php');?>
+
+<div class="right">
+        <li><a href="#" id="name" ><?php echo $_SESSION['username']?>&nbsp;<i class="fas fa-caret-down"></i></a>
+            <ul>
+               
+                <li ><?php echo "<a href=\"account.php?id=$row[id]\">"?>My Details</a></li>
+                <li ><a href="login.php">Dashboard</a></li>
+                <li ><?php echo "<a href=\"mypost.php?id=$row[id]\">"?>My Post</a></li>
+                <li ><a href="logout.php"><i class="fas fa-sign-out-alt"></i>&nbsp;Logout</a></li>
+            </ul>
+        </li>
+</div>
+        
+      </ul>
+      <div class="icon menu-btn">
+        <i class="fas fa-bars"></i>
+      
+      </div>
+      <div>
+        <input type="checkbox" class="checkbox" id="chk" />
+        <label class="label" for="chk">
+            <i class="fas fa-moon"></i>
+            <i class="fas fa-sun"></i>
+            <div class="ball"></div>
+        </label>
+    </div>
+    </div>
+</div>
+</div>
 
    
         <div class="image">
    
  
-        <a href="welcome.php"><i class="fas fa-arrow-circle-left" id="back"></i></a>
+     
         </div>
         <div class ="contain2">
-           
+
+        <?php
+            $qry=mysqli_query($conn,"SELECT * FROM `post` where pid='$pid'");
+            while($qre = mysqli_fetch_array($qry))
+            {
+                $image=$qre['images'];
+        ?>
 
             <div class="logo">
                 <img src="css/images/logo3.png"><h2>Visual Select</h2>
             </div>
-			<form action="" method="POST" class="form" onsubmit="return validated()">
+			<form action="" method="POST" class="form"  enctype="multipart/form-data" onsubmit="return validated()">
                 <h3>Author Details</h3>
                 <input type="text" value=<?php echo $_SESSION['username']?> name="author" id="input-field">
-                <input type="text" placeholder="Title Name" name="title"  id="input-field">
-                <textarea id="txt"cols="30" rows="4" name="description"  id="input-field"></textarea>
+                <input type="text" placeholder="Title Name" name="title"  id="input-field"value=<?php echo $qre['title']; ?>>
+              
 
-                <input type="file" name="image" value="choose image" id="file"><br>
+                <input type="file" name="image" value="<?php echo $image;?>" id="file" ><br>
+                <select id="category" name="category">
+                <option disabled selected>Select Type for your blog</option>
+                  <option value="social">Social</option>
+                  <option value="social">Cars</option>
+                  <option value="cooking">Cooking</option>
+                  <option value="food">Food</option>
+                  <option value="gaming">Gaming</option>
+                  <option value="travel">Travel</option>
+                  <option value="sports">Sports</option>
+               
+                </select>
+                <textarea id="txt"cols="30" rows="4" name="description"  id="input-field" ><?php echo $qre['description']; ?></textarea>
 
-                <textarea id ="txt"cols="30" rows="3"  name="short" id="input-field"></textarea>
-                <button type="submit" name ="submit" class="btn">SUBMIT</button>
+                <textarea id ="txt"cols="30" rows="3"  name="short" id="input-field" maxlength="244"><?php echo $qre['short']; ?></textarea>
+                <button type="submit" name ="update" class="btn">SUBMIT</button>
                     
 			
 
@@ -119,7 +169,7 @@ if ($query->num_rows > 0){
             
 
         </div>
-    <?php  }}?>
+    <?php  }}}?>
 		<script src="javascript" href="css/js/login.js"></script>
 </body>
 </html>

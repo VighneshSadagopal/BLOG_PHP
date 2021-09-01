@@ -1,0 +1,350 @@
+$assetPath:"images";
+$secondary:#f0f0f0;
+$primary:#000;
+$ternary:#fff;
+@mixin mobile {
+    @media screen and(max-width: 426px) {
+        @content;
+    }
+}
+
+@mixin tablet {
+    @media screen and(min-width: 427px) and(max-width: 769px) {
+        @content;
+    }
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: $secondary;
+    height: 100%;
+    width: 100%;
+    background-color: #e9e0e0;
+}
+
+.image {
+    background: #0000008c url(#{$assetPath}/pc.jpg);
+    width: 100%;
+    height: 100vh;
+    background-size: cover;
+    background-blend-mode: darken;
+    text-align: center;
+    @include mobile {
+        width: 100%;
+        height: 50vh;
+    }
+    h1 {
+        color: $secondary;
+        font-size: 65px;
+        position: absolute;
+        top: 40%;
+        width: 100%;
+        text-align: center;
+        transition: all 0.3s ease-in;
+        text-transform: uppercase;
+        &:hover {
+            transform: translateY(-8px);
+        }
+        @include mobile {
+            top: 20%;
+            font-size: 19px;
+        }
+        @include tablet {
+            font-size: 50px;
+        }
+    }
+    #bb {
+        border: 2px solid $secondary;
+        padding: 10px 18px;
+        border-radius: 15px;
+        position: absolute;
+        top: 51%;
+        left: 45%;
+        transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+        @include mobile {
+            top: 25%;
+            font-size: 10px;
+            left: 138.25px;
+        }
+        @include tablet {
+            left: 40%;
+        }
+    }
+    a {
+        color: $secondary;
+        font-size: 22px;
+        text-decoration: none;
+    }
+}
+
+#img {
+    background: #0000008c url(#{$assetPath}/Coffee.jpg);
+    background-size: cover;
+    background-blend-mode: darken;
+    h1,
+    a {
+        color: $ternary;
+    }
+    #bb {
+        color: $secondary;
+        border: 2px solid $secondary;
+    }
+}
+
+.right {
+    padding: 7px 13px;
+    color: $primary;
+    position: absolute;
+    right: 10%;
+    top: 15px;
+    border-radius: 10px;
+    font-size: 18px;
+    transition: 0.4s;
+    display: flex;
+    #name {
+        color: $secondary;
+        border-radius: 10px;
+        padding: 7px 13px;
+    }
+}
+
+.checkbox {
+    opacity: 0;
+    position: absolute;
+}
+
+.label {
+    background-color: var(--ternary);
+    border-radius: 50px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px;
+    position: relative;
+    bottom: 20px;
+    height: 26px;
+    width: 50px;
+    transform: scale(1.5);
+    float: right;
+    margin-right: 27px;
+    .ball {
+        background-color: $primary;
+        border-radius: 50%;
+        position: absolute;
+        top: 2px;
+        left: 2px;
+        height: 19px;
+        width: 20px;
+        transform: translateX(0px);
+        transition: transform 0.2s linear;
+    }
+    .fa-moon {
+        color: #f1c40f;
+    }
+    .fa-sun {
+        color: #f39c12;
+    }
+}
+
+.checkbox:checked+.label .ball {
+    transform: translateX(24px);
+}
+
+#create {
+    background: $primary;
+    padding: 8px 11px;
+    position: absolute;
+    top: 103%;
+    left: 3%;
+    border-color: $primary;
+    border-radius: 50px;
+    font-size: larger;
+    @include mobile {
+        top: 51%;
+        font-size: small;
+        padding: 8px 9px;
+    }
+    .tooltip {
+        position: relative;
+        display: inline-block;
+        border-bottom: 1px dotted black;
+        .tooltext {
+            visibility: hidden;
+            width: 120px;
+            background-color: #e7dede;
+            color: black;
+            text-align: center;
+            border-radius: 6px;
+            padding: 5px 2px;
+            font-size: 12px;
+            font-weight: 300;
+            /* Position the tooltip */
+            position: absolute;
+            z-index: 1;
+            top: -5px;
+            left: 250%;
+        }
+        #create .tooltip:hover .tooltext {
+            visibility: visible;
+        }
+    }
+    a {
+        color: $secondary;
+        font-weight: 200;
+    }
+}
+
+#ed1 {
+    background: $primary;
+    padding: 8px 11px;
+    position: absolute;
+    top: 103%;
+    left: 7%;
+    border-color: $primary;
+    border-radius: 50px;
+    font-size: larger;
+    @include mobile {
+        top: 51%;
+        left: 13%;
+        font-size: small;
+        padding: 8px 9px;
+    }
+    @include tablet {
+        left: 10%;
+    }
+}
+
+#de1 {
+    background: $primary;
+    padding: 8px 11px;
+    position: absolute;
+    top: 103%;
+    right: 4%;
+    border-color: $primary;
+    border-radius: 60px;
+    font-size: larger;
+}
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted $primary;
+    .tooltext {
+        visibility: hidden;
+        width: 120px;
+        background-color: #e7dede;
+        color: black;
+        text-align: center;
+        border-radius: 6px;
+        padding: 5px 2px;
+        font-size: 12px;
+        font-weight: 300;
+        /* Position the tooltip */
+        position: absolute;
+        z-index: 1;
+        top: 100%;
+        left: 0%;
+        margin-left: -60px;
+    }
+    &:hover .tooltext {
+        visibility: visible;
+    }
+}
+
+.edbtn {
+    position: relative;
+    bottom: 66%;
+    float: right;
+}
+
+.con {
+    display: inline-flex;
+}
+
+.authenticate {
+    color: #fff;
+    background-color: green;
+    border: 2px solid green;
+    position: fixed;
+    padding: 7px 10px;
+    top: 94%;
+    left: 2%;
+    font-size: 20px;
+    border-radius: 15px;
+    z-index: 4;
+}
+
+.unauthenticate {
+    color: #fff;
+    background-color: rgb(236, 93, 10);
+    border: 2px solid rgb(236, 93, 10);
+    position: absolute;
+    padding: 7px 10px;
+    top: 94%;
+    left: 2%;
+    font-size: 20px;
+    border-radius: 15px;
+    a {
+        text-decoration: none;
+    }
+}
+
+#notify {
+    background: red;
+    color: $secondary;
+    width: 24px;
+    height: 20px;
+    position: absolute;
+    left: 12%;
+    top: 25%;
+    border-radius: 20px;
+    text-align: center;
+    @include mobile {
+        left: -21%;
+        top: 31%;
+    }
+}
+
+@font-face {
+    font-family: 'Material Icons';
+    font-style: normal;
+    font-weight: 400;
+    src: url(https://fonts.gstatic.com/s/materialicons/v97/flUhRq6tzZclQEJ-Vdg-IuiaDsNc.woff2) format('woff2');
+}
+
+.material-icons {
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    line-height: 1;
+    position: relative;
+    bottom: -3px;
+    text-transform: none;
+    display: inline-block;
+    white-space: nowrap;
+    word-wrap: normal;
+    direction: ltr;
+    color: $secondary;
+}
+
+down {
+    display: block;
+    position: absolute;
+    top: 12%;
+    background-color: #ffdb9b;
+    color: #ce8500;
+    border-left: 13px solid #e69100;
+    font-size: 20px;
+    padding: 1% 3%;
+    border-radius: 9px;
+    z-index: 2;
+    .show {
+        animation: show_slide 4s ease backwards;
+    }
+}

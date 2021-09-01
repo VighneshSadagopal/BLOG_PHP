@@ -29,16 +29,33 @@ else{
     </head>
     <body>
         <img src="">
-        <nav>
-            <img src="css/images/logo2.png" class="logo">
+        <?php include('nav.php');?>
+        <div class="right">
+        <li><a href="#" id="name" ><?php echo $_SESSION['username']?>&nbsp;<i class="fas fa-caret-down"></i></a>
             <ul>
-                <li><a href="index.php" class="active">HOME</a></li>
-                <li><a href="welcome.php">DASHBOARD</a></li>
-                <li><a href="#">CAREER</a></li>
-                <li><a href="#">ABOUT US</a></li>
-                <li><a href="deletepost.php">DELETE MENU</a></li>
+               
+                <li ><?php echo "<a href=\"account.php?id=$row[id]\">"?>My Details</a></li>
                 
+                <li ><a href="logout.php"><i class="tiny material-icons" >power_settings_new</i>&nbsp;Logout</a></li>
             </ul>
-        </nav>
+        </li>
+</div>
+        
+      </ul>
+      <div class="icon menu-btn">
+        <i class="fas fa-bars"></i>
+      
+      </div>
+      <div>
+        <input type="checkbox" class="checkbox" id="chk" />
+        <label class="label" for="chk">
+            <i class="fas fa-moon"></i>
+            <i class="fas fa-sun"></i>
+            <div class="ball"></div>
+        </label>
+    </div>
+    </div>
+</div>
+</div>
     </body>
     </html>

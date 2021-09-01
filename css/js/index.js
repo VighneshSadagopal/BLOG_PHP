@@ -24,7 +24,7 @@ window.onscroll = ()=>{
 var nav= document.getElementById('nav');
 
   window.onscroll= function(){
-      if (window.pageYOffset > 110) {
+      if (window.pageYOffset > 130) {
         nav.style.background ="#000"
         nav.style.color="#fff"
       }

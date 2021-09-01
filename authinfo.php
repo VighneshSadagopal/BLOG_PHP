@@ -24,7 +24,7 @@ else{
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome</title>
     <link rel="stylesheet" href="css/author.css">  
-    <link rel="stylesheet" href="css/nav.css">  
+    <link rel="stylesheet" href="scss/nav.css">  
     <link rel="stylesheet" href="css/footer.css"> 
     <script src="https://kit.fontawesome.com/ec41712638.js" crossorigin="anonymous"></script>
  
@@ -33,20 +33,7 @@ else{
 <div class="image">
          <h1>View Our Contributers</h1>
          <a href="#tab" id="bb">Lets GO</a>
-<div class="navbar" id="nav">
-    <div class="content">
-      <div class="logo">
-        <img src="css/images/logo2.png">
-      </div>
-      <ul class="menu-list">
-        <div class="icon cancel-btn">
-          <i class="fas fa-times"></i>
-        </div>
-        <li><a href="homepage.php">Home</a></li>
-        <li><a href="#">About</a></li>
-        <li><a href="#">Services</a></li>
-        <li><a href="#">Carrer</a></li>
-        <li><a href="#">Contact Us</a></li>
+<?php include('nav.php');?>
         
      
         <div class="right">
@@ -99,9 +86,10 @@ if($query->num_rows > 0){
         ?>
         </table>
     
-        <?php include('footer.php')?>
+       
       
         </div>
+        <?php include('footer.php')?>
 
         <script src="css/js/index.js"></script>
         

@@ -1,0 +1,81 @@
+@mixin mobile {
+    @media screen and (max-width: 425px) {
+        @content;
+    }
+}
+
+@mixin tablet {
+    @media screen and(min-width: 427px) and(max-width: 769px) {
+        @content;
+    }
+}
+
+.post {
+    height: 100%;
+    position: absolute;
+    top: 110%;
+    width: 100%;
+    animation: carousel1 7.2s infinite;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    @include mobile {
+        top: 59%;
+    }
+    .container {
+        background: #fff;
+        margin-bottom: 20px;
+        padding: 20px 30px;
+        border-bottom: 2px solid var(--primary);
+        flex-wrap: wrap;
+        width: 32%;
+        margin-right: 10px;
+        margin-left: 10px;
+        transition: 0.3s;
+        border-radius: 15px;
+        &:hover {
+            transform: translateY(-8px);
+        }
+        @include mobile {
+            width: 95%;
+            margin-right: unset;
+        }
+        @include tablet {
+            width: 47%;
+            margin-left: 10px;
+            margin-right: 10px;
+            &.hover {
+                opacity: 100%;
+            }
+        }
+    }
+    h1 {
+        color: #000;
+        position: unset;
+        font-size: 30px;
+        text-transform: unset;
+        margin-bottom: -30px;
+    }
+    a {
+        text-decoration: none;
+        color: black;
+    }
+    p {
+        font-size: 15px;
+        font-family: Arial, Helvetica, sans-serif;
+        bottom: 1px;
+        margin-left: 17px;
+        display: inline-flex;
+        width: 85%;
+    }
+    img {
+        height: 50vh;
+        width: 100%;
+        opacity: 70%;
+        cursor: pointer;
+        transition: 0.8s;
+        &:hover {
+            opacity: 100%;
+        }
+    }
+}
