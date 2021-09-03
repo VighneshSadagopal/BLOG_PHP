@@ -10,6 +10,12 @@ if (isset($_SESSION['username'])){
 else{
     header("Location: login.php");
 }
+if (isset($_REQUEST['info'])) {
+    
+    if ($_REQUEST['info'] == "login") {
+        echo "<div id='alert'><small1> Login Successfull&nbsp;&nbsp;&nbsp;</small1></div>";
+    }
+}
 
 $author=$_SESSION['username'];
 
@@ -32,7 +38,16 @@ while($row = mysqli_fetch_array($query))
     <link rel="stylesheet" href="scss/container.css">  
     <link rel="stylesheet" href="scss/nav.css">  
     <link rel="stylesheet" href="css/footer.css">  
+    <link rel="stylesheet" href="scss/notify.css">  
     <script src="https://kit.fontawesome.com/ec41712638.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+      <script>
+        setTimeout(fade_out, 5000);
+
+        function fade_out() {
+          $("#alert").fadeOut().empty();
+        }
+      </script>
  
 </head>
 <body vlink =" black">

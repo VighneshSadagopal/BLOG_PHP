@@ -1,6 +1,9 @@
 <?php
 
 include 'config.php';
+include 'database.php';
+
+$obj = new Database();
 session_start();
 
 if (!isset($_SESSION['username'])) {
@@ -25,19 +28,9 @@ if (isset($_POST['submit'])) {
     $category = $_POST['category'];
 
 
-    $query_run = mysqli_query($conn, "INSERT into post(author, title , description , short,id,images,category) VALUES('$author','$title','$description','$short','$id','$imgname','$category')");
+    $obj->insert('post',['author'=>$author,'title'=>$title,'description'=>$description,'short'=>$short,'category'=>$category,'id'=>$id,'images'=>$imgname]);
+			echo "<small1>Wow Registration successful</small1> ";
 
-
-    if ($query_run) {
-      echo "<script>alert('Form Submitted Successfully.')</script>";
-    } else {
-      echo  "<script>alert('Form not submitted.')</script>";
-
-      $author = "";
-      $title = "";
-      $description = "";
-      $short = "";
-    }
   } else {
     echo "<small> ALL Fields Are Required</small>";
   }
@@ -63,12 +56,22 @@ if ($sql->num_rows > 0) {
       <link rel="stylesheet" href="scss/index.css">
       <link rel="stylesheet" href="scss/nav.css">
       <link rel="stylesheet" href="css/footer.css">
+      <link rel="stylesheet" href="scss/notify.css">
 
 
       <meta charset="UTF-8">
       <script src="https://kit.fontawesome.com/ec41712638.js" crossorigin="anonymous"></script>
+     
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <title>Create Post</title>
+      <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+      <script>
+        setTimeout(fade_out, 5000);
+
+        function fade_out() {
+          $("#alert").fadeOut().empty();
+        }
+      </script>
     </head>
 
     <body>
@@ -125,15 +128,15 @@ if ($sql->num_rows > 0) {
             <select id="category" name="category">
               <option disabled selected>Select Type for your blog</option>
               <option value="social">Social</option>
-              <option value="cooking">Cooking</option>
+              <option value="anime">Anime</option>
               <option value="food">Food</option>
               <option value="gaming">Gaming</option>
-              <option value="gaming">Travel</option>
-              <option value="gaming">Sports</option>
+              <option value="travel">Travel</option>
+              <option value="sports">Sports</option>
 
             </select>
-            <textarea id="txt" cols="30" rows="4" name="description" id="input-field"></textarea>
-            <textarea id="txt" cols="30" rows="3" name="short" id="input-field"></textarea>
+            <textarea id="txt" cols="30" rows="4" name="description" id="input-field" maxlength="800"></textarea>
+            <textarea id="txt" cols="30" rows="3" name="short" id="input-field" maxlength="255"></textarea>
 
             <button type="submit" name="submit" class="btn">SUBMIT</button>
 

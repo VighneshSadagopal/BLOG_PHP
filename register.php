@@ -1,8 +1,8 @@
 <?php 
 
-include 'config.php';
+include 'database.php';
 
-
+$obj = new Database();
 
 session_start();
 
@@ -21,15 +21,16 @@ if (isset($_POST['submit']))
 		$sql = "SELECT * FROM users WHERE email='$email'";
 		$result = mysqli_query($conn, $sql);
 		if (!$result->num_rows > 0) {
-			$sql = "INSERT INTO users (username, email, password)
-					VALUES ('$username', '$email', '$password')";
-			$result = mysqli_query($conn, $sql);
 			if ($result) {
-				echo "<small1>Wow Registration successful</small1>";
-				$username = "";
-				$email = "";
-				$_POST['password'] = "";
-				$_POST['cpassword'] = "";
+			$obj->insert('users',['username'=>$username,'email'=>$email,'password'=>$password]);
+			echo "<small1>Wow Registration successful</small1> ";
+			
+			
+			//	echo "<small1>Wow Registration successful</small1>";
+			//	$username = "";
+			//	$email = "";
+			//	$_POST['password'] = "";
+			//	$_POST['cpassword'] = "";
 				
 			} else {
 				echo "<small2>Woops! Something Wrong Went.</small2>";
@@ -51,6 +52,7 @@ if (isset($_POST['submit']))
     <link rel="stylesheet" href="scss/index.css">
 	<link rel="stylesheet" href="scss/nav.css">
 	<link rel="stylesheet" href="css/footer.css">
+	<link rel="stylesheet" href="scss/notify.css">
     <meta charset="UTF-8">
       <script src="https://kit.fontawesome.com/ec41712638.js" crossorigin="anonymous"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">

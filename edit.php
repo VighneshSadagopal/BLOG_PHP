@@ -132,7 +132,7 @@ if ($query->num_rows > 0){
             $qry=mysqli_query($conn,"SELECT * FROM `post` where pid='$pid'");
             while($qre = mysqli_fetch_array($qry))
             {
-                $image=$qre['images'];
+                $image=$qre['images']['name'];
         ?>
 
             <div class="logo">
@@ -140,7 +140,7 @@ if ($query->num_rows > 0){
             </div>
 			<form action="" method="POST" class="form"  enctype="multipart/form-data" onsubmit="return validated()">
                 <h3>Author Details</h3>
-                <input type="text" value=<?php echo $_SESSION['username']?> name="author" id="input-field">
+                <input type="text" value=<?php echo $qre['username']?> name="author" id="input-field">
                 <input type="text" placeholder="Title Name" name="title"  id="input-field"value=<?php echo $qre['title']; ?>>
               
 
@@ -148,8 +148,7 @@ if ($query->num_rows > 0){
                 <select id="category" name="category">
                 <option disabled selected>Select Type for your blog</option>
                   <option value="social">Social</option>
-                  <option value="social">Cars</option>
-                  <option value="cooking">Cooking</option>
+                  <option value="anime">Anime</option>
                   <option value="food">Food</option>
                   <option value="gaming">Gaming</option>
                   <option value="travel">Travel</option>

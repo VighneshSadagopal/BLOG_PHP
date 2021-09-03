@@ -13,9 +13,11 @@ if (isset($_SESSION['username'])) {
 
 if (isset($_REQUEST['info'])) {
     if ($_REQUEST['info'] == "sent") {
-        echo "<small1> Request Successfully Sent&nbsp;&nbsp;&nbsp;<i class='fas fa-times'></i></small1>";
+        echo "<small1> Request Successfully Sent&nbsp;&nbsp;&nbsp;</small1>";
     }
-    
+    if ($_REQUEST['info'] == "login") {
+        echo "<div id='alert'><small1> Login Successfull&nbsp;&nbsp;&nbsp;</small1></div>";
+    }
 }
 
 $author = $_SESSION['username'];
@@ -35,21 +37,22 @@ if ($query->num_rows > 0) {
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <title>Welcome</title>
-            <link rel="stylesheet" href="css/style1.css">
+            <link rel="stylesheet" href="scss/style.css">
             <link rel="stylesheet" href="scss/nav.css">
             <link rel="stylesheet" href="scss/container.css">
             <link rel="stylesheet" href="css/footer.css">
             <link rel="stylesheet" href="scss/notify.css">
 
             <script src="https://kit.fontawesome.com/ec41712638.js" crossorigin="anonymous"></script>
+            <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
             <script>
-                var cancel = document.getElementById("cancel");
-                var div = document.getElementById("div");
+                setTimeout(fade_out, 5000);
 
-                function cancel() {
-                    div.style.display == 'none';
+                function fade_out() {
+                    $("#alert").fadeOut().empty();
                 }
             </script>
+
 
         </head>
 
@@ -78,14 +81,14 @@ if ($query->num_rows > 0) {
                     <i class="fas fa-bars"></i>
 
                 </div>
-                <div>
+                <!--  <div>
                     <input type="checkbox" class="checkbox" id="chk" />
                     <label class="label" for="chk">
                         <i class="fas fa-moon"></i>
                         <i class="fas fa-sun"></i>
                         <div class="ball"></div>
                     </label>
-                </div>
+                </div>-->
             </div>
             </div>
             </div>

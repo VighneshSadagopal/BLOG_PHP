@@ -31,8 +31,8 @@ if($sql){
         $file = $path . "/" . $filename; 
      
         $mailto = $row['email'];
-        $subject = 'Subject'; 
-        $message = 'My message'; 
+        $subject = 'Your Request For Being Author Is Approved'; 
+        $message = 'Congratulations And Welcome on the Authors Board We Are very Happy To Welcome You And Eagerly Waiting To See Your Content On Our Website.A Copy Of Policy Is Sent to You Please Read Again When You Get Time.'; 
      
         $content = file_get_contents($file); 
         $content = chunk_split(base64_encode($content)); 

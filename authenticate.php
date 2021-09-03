@@ -1,95 +1,98 @@
 <?php
 
-include 'config.php';
+
+include 'database.php';
+
+$obj = new Database();
 session_start();
 
 if (!isset($_SESSION['username'])) {
-  header("Location: login.php");
+    header("Location: login.php");
 }
-$id=$_SESSION['id'];
-$username=$_SESSION['username'];
+$id = $_SESSION['id'];
+$username = $_SESSION['username'];
 
-if(isset($_POST['submit'])){
+if (isset($_POST['submit'])) {
 
-$message=$_POST['message'];
+    $message = $_POST['message'];
 
-    $sql=mysqli_query($conn,"INSERT INTO policy(name,id,message,status) values('$username','$id','$message','unchecked') ");
-    if($sql){
+    $obj->insert('policy', ['name'=>$username,'message' => $message,'status'=>'unchecked']);
+    
         echo "Successfully Updated";
         header("location:anonmoyous.php?info=sent");
-    }  
-    else{
-        echo "Error Occured";
-    }  
+    
 }
 
 ?>
 
- 
 
- <!DOCTYPE html>
+
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="scss/nav.css">
-	<link rel="stylesheet" href="css/footer.css">
-   
-    
+    <link rel="stylesheet" href="css/footer.css">
+
+
     <meta charset="UTF-8">
     <script src="https://kit.fontawesome.com/ec41712638.js" crossorigin="anonymous"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Author Edit</title>
     <script type="text/javascript">
-    function EnableBtn(policy){
-    var submit=document.getElementById("submit");
-    submit.disabled= policy.checked ? false : true;
-    if(!submit.disabled){
-        submit.focus();
-        submit.style.background="#000"
-    }
-    else{
-        submit.style.background.remove();
-    }
-}</script>
+        function EnableBtn(policy) {
+            var submit = document.getElementById("submit");
+            submit.disabled = policy.checked ? false : true;
+            if (!submit.disabled) {
+                submit.focus();
+                submit.style.background = "#000"
+            } else {
+                submit.style.background.remove();
+            }
+        }
+    </script>
 </head>
+
 <body>
-    
-<?php include('nav.php');?>
-<div class="right">
-        <li><a href="#" id="name" ><?php echo $_SESSION['username']?>&nbsp;<i class="fas fa-caret-down"></i></a>
+
+    <?php include('nav.php'); ?>
+    <div class="right">
+        <li><a href="#" id="name"><?php echo $_SESSION['username'] ?>&nbsp;<i class="fas fa-caret-down"></i></a>
             <ul>
-              
-                <li ><?php echo "<a href=\"account.php?id=$id\">"?>DETAILS</a></li>
-                <li ><a href="logout.php"><i class="tiny material-icons" >power_settings_new</i>&nbsp;LOGOUT</a></li>
+
+                <li><?php echo "<a href=\"account.php?id=$id\">" ?>DETAILS</a></li>
+                <li><a href="logout.php"><i class="tiny material-icons">power_settings_new</i>&nbsp;LOGOUT</a></li>
             </ul>
         </li>
-      
-        </div>
-        
-      </ul>
-      <div class="icon menu-btn">
-        <i class="fas fa-bars"></i>
-      
-      </div>
-    </div>
-</div>
-</div>
-   
-        <div class="image">
-   
- 
-     
-        </div>
-        <div class ="contain6">
-           
 
-            <div class="logo">
-                <img src="css/images/logo3.png"><h2>Visual Select</h2>
-            </div>
-			<form action="" method="POST" class="form" >
-                <h3>Policy Details</h3>
-                
-                <textarea id="txt"cols="25" rows="18" name="description"  id="input-field" readonly>
+    </div>
+
+    </ul>
+    <div class="icon menu-btn">
+        <i class="fas fa-bars"></i>
+
+    </div>
+    </div>
+    </div>
+    </div>
+
+    <div class="image">
+
+
+
+    </div>
+    <div class="contain6">
+
+
+        <div class="logo">
+            <img src="css/images/logo3.png">
+            <h2>Visual Select</h2>
+        </div>
+        <form action="" method="POST" class="form">
+            <h3>Policy Details</h3>
+
+            <textarea id="txt" cols="25" rows="18" name="description" id="input-field" readonly>
 This Privacy Policy describes Our policies and procedures on the collection, use and disclosure of Your information when You use the Service and tells You about Your privacy rights and how the law protects You.
 
 We use Your Personal data to provide and improve the Service. By using the Service, You agree to the collection and use of information in accordance with this Privacy Policy. This Privacy Policy has been created with the help of the Privacy Policy Generator.
@@ -208,25 +211,25 @@ With other users: when You share personal information or otherwise interact in t
 With Your consent: We may disclose Your personal information for any other purpose with Your consent.
                     
                 </textarea>
-                
 
-                <input type="checkbox" name="policy" id="policy" onclick="EnableBtn(this)"><input type="text" id="p" name="message" value="I <?php echo $username?> Have Read All The Terms And Conditions And Accept It"><br><br>
 
-            
-                <button type="submit" name ="submit" id="submit" class="btn1" disabled="disabled">SUBMIT</button>
-                    
-			
+            <input type="checkbox" name="policy" id="policy" onclick="EnableBtn(this)"><input type="text" id="p" name="message" value="I <?php echo $username ?> Have Read All The Terms And Conditions And Accept It"><br><br>
 
-		
-            
-</form>
-<p><a href="policy.html" target="_blank">Read full Document</a></p>
 
-        </div>
-        
-		<script src="javascript" href="css/js/login.js"></script>
-    
-        <?php include('footer.php');?>
+            <button type="submit" name="submit" id="submit" class="btn1" disabled="disabled">SUBMIT</button>
+
+
+
+
+
+        </form>
+        <p><a href="policy.html" target="_blank">Read full Document</a></p>
+
+    </div>
+
+    <script src="javascript" href="css/js/login.js"></script>
+
+    <?php include('footer.php'); ?>
 </body>
+
 </html>
-    

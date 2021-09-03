@@ -1,6 +1,10 @@
 <?php 
 
 include 'config.php';
+include 'database.php';
+
+    $obj = new Database();
+
 
 session_start();
 
@@ -12,8 +16,8 @@ else{
 }
 $id=$_GET['id'];
 $author=$_SESSION['username'];
-$query=mysqli_query($conn,"SELECT * from users where id=$id ");
-if ($query->num_rows > 0){
+ $obj->select('users','*',null,'id="'.$id.'"');
+if ($obj->num_rows > 0){
 
     while($res=mysqli_fetch_array($query)){
        
@@ -51,26 +55,11 @@ if ($query->num_rows > 0){
     <script src="https://kit.fontawesome.com/ec41712638.js" crossorigin="anonymous"></script>
 </head>
 <body vlink =" black">
-<?php include('nav.php'); ?>
 
-               
-                <li ><a href="logout.php"><i class="tiny material-icons" >power_settings_new</i>&nbsp;LOGOUT</a></li>
-            </ul>
-        </li>
-</div>
-        
-      </ul>
-      <div class="icon menu-btn">
-        <i class="fas fa-bars"></i>
-      
-      </div>
-    </div>
-</div>
-</div>
        
     
        
         <script src="css/js/nav_responsive.js"></script>
-        <?php include('footer.php');?>
+      
 </body>
 </html>

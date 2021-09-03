@@ -4,27 +4,34 @@ include 'config.php';
 
 session_start();
 
+
 if (isset($_SESSION['username'])) {
     $id = $_SESSION['id'];
 } else {
     header("Location: login.php");
+}
+if (isset($_REQUEST['info'])) {
+    if ($_REQUEST['info'] == "login") {
+        echo "<div id='alert'><small1> Login Successfull&nbsp;&nbsp;&nbsp;</small1></div>";
+    }
 }
 
 $notify = mysqli_query($conn, "SELECT status from policy where status='unchecked'");
 $count = mysqli_num_rows($notify);
 $cc = $count > 0;
 if ($cc) {
-    echo "<down> A New Request Is Occured Please Review</down>";
+    echo "<div id='alert'><down> A New Request Is Occured Please Review</down></div>";
 }
 
-if (isset($_REQUEST['info'])){
-    if ($_REQUEST['info']=="sent"){
-    echo "<small1> Email Successfully Sent &nbsp;&nbsp;&nbsp;<i class='fas fa-times'></i></small1>";
+if (isset($_REQUEST['info'])) {
+    if ($_REQUEST['info'] == "sent") {
+        echo "<div id='alert'><small1> Email Successfully Sent &nbsp;&nbsp;&nbsp;</small1></div>";
+    }
+    if ($_REQUEST['info'] == "reject") {
+        echo "<div id='alert'><small1> Request Successfully Rejected&nbsp;&nbsp;&nbsp;</small1></div>";
+    }
 }
-if ($_REQUEST['info']=="reject"){
-    echo "<small1> Request Successfully Rejected&nbsp;&nbsp;&nbsp;<i class='fas fa-times'></i></small1>";
-}
-}
+
 $author = $_SESSION['username'];
 
 $query = mysqli_query($conn, "SELECT * from users where  username='$author' ");
@@ -47,6 +54,15 @@ if ($query->num_rows > 0) {
             <link rel="stylesheet" href="scss/nav.css">
             <link rel="stylesheet" href="css/footer.css">
             <link rel="stylesheet" href="scss/notify.css">
+            <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+            <script>
+                setTimeout(fade_out, 5000);
+
+                function fade_out() {
+                    $("#alert").fadeOut().empty();
+                }
+            </script>
+
             <script src="https://kit.fontawesome.com/ec41712638.js" crossorigin="anonymous"></script>
 
         </head>
@@ -87,25 +103,20 @@ if ($query->num_rows > 0) {
             </div>
 
 
-          
-                <button id="create"> <?php echo "<a href=\"createpost.php?id=$row[id]\">" ?><div class="tooltip"><i class="small material-icons">control_point</i></a>
-                        <span class="tooltext">Create</span>
-                    </div>
-                </button><br><br>
-                <button id="ed1"> <a href="editpost.php">
-                        <div class="tooltip"><i class="tiny material-icons">edit</i><span class="tooltext">EDIT</span></div>
-                    </a></button>
 
+            <button id="create"> <?php echo "<a href=\"createpost.php?id=$row[id]\">" ?><div class="tooltip"><i class="small material-icons">control_point</i></a>
+                    <span class="tooltext">Create</span>
+                </div>
+            </button><br><br>
+            <button id="ed1"> <a href="editpost.php">
+                    <div class="tooltip"><i class="tiny material-icons">edit</i><span class="tooltext">EDIT</span></div>
+                </a></button>
 
-                    <div class="con">
-            <?php }
+    <?php
+        include('container.php');
     }
-    include('container.php'); ?>
-            </div>
-
-            <script src="css/js/nav_responsive.js"></script>
-
-
+} ?>
+  <script src="css/js/index.js"></script>
         </body>
 
         </html>

@@ -41,7 +41,7 @@ $ternary:#fff;
         font-weight: 600;
         text-decoration: none;
         position: absolute;
-        left: 5%;
+        left: 1%;
         top: 7%;
         bottom: 32px;
         text-align: left;
@@ -112,7 +112,6 @@ $ternary:#fff;
     }
     .menu-list {
         display: inline-flex;
-        margin-left: -84px;
         @include mobile {
             position: fixed;
             height: 100vh;
@@ -125,6 +124,7 @@ $ternary:#fff;
             text-align: center;
             background: black;
             transition: all 0.3s ease;
+            margin-left: -84px;
         }
         li {
             list-style: none;
@@ -190,7 +190,7 @@ $ternary:#fff;
         padding: 7px 13px;
         color: #000;
         position: absolute;
-        right: 13%;
+        right: 0%;
         top: 15px;
         border-radius: 10px;
         font-size: 18px;

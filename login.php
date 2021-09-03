@@ -49,7 +49,7 @@ if (isset($_POST['submit'])) {
         
             }
            
-                header("location:admin.php");
+                header("location:admin.php?info=login");
             }
       
         elseif($row['usertype']=='user'){
@@ -59,7 +59,7 @@ if (isset($_POST['submit'])) {
         
             }
            
-                header("location:welcome.php");
+                header("location:welcome.php?info=login");
             }
             elseif($row['usertype']==''){
                 if(isset($_POST['check'])){
@@ -70,7 +70,7 @@ if (isset($_POST['submit'])) {
                 else{
                     echo "error occured";
                 }
-                    header("location:anonmoyous.php");
+                    header("location:anonmoyous.php?info=login");
                     
                 
             }
@@ -102,7 +102,6 @@ if (isset($_POST['submit'])) {
       <?php include('nav.php');?>
           
       <div class="right">
-        <li><a href="index.php" id="name" >HOME</a>
             
       
         </div>

@@ -57,7 +57,9 @@ if ($query->num_rows > 0) {
             </div>
 
             </div>
-
+            <button id="ed1"> <a href="editpost.php">
+                    <div class="tooltip"><i class="tiny material-icons">edit</i><span class="tooltext">EDIT</span></div>
+                </a></button>
             <div class="post">
             <?php
         }
@@ -73,6 +75,8 @@ if ($query->num_rows > 0) {
 
 
                 <div class="container">
+                    <img src="images/1630508748052.png" id="tag" disabled>
+                    <p id="category"><?php echo $res['category'] ?> </p>
                     <img src="images/<?php echo $image ?>">
                     <h1><?php echo $res['title'] ?></h1><br><br>
                     <p><?php echo $res['short'] ?> </p>
