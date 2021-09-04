@@ -1,7 +1,11 @@
 <?php
 
 include ('config.php');
+include ('post.php');
 session_start();
+
+$p=new Post();
+
 
 if (!isset($_SESSION['username'])) {
     header("Location: login.php");
@@ -12,15 +16,17 @@ $author=$_SESSION['username'];
 $pid= $_GET['pid'];
 
 if($usertype=="admin"){
-    $query=mysqli_query($conn,"SELECT * FROM `post` where pid='$pid'");
+$p->getPostById($pid);
+$p->db->execute();
 }
 if($usertype=="user"){
-$query=mysqli_query($conn,"SELECT * FROM `post`INNER JOIN users ON post.id =  '$id' where pid='$pid' ");
+   $p->getPostByJoin($pid,$id);
+   $p->db->execute();
 }
+$stmt= $p->rowCount();
+if ($stmt > 0){
 
-if ($query->num_rows > 0){
-
-    while($res=mysqli_fetch_array($query)){
+    while($res=$p->fetch()){
        
       
            
@@ -58,10 +64,10 @@ if ($query->num_rows > 0){
         $short=$_POST['short'];
         $category=$_POST['category'];
 
-        $result=mysqli_query($conn,"UPDATE post SET images='$imgname',author='$author',title='$title',description='$description',short='$short',category='$category'where pid='$pid'");
-        if($result){
-          
-            echo "<small1> Successful Update </small1>";
+        $data=['pid'=>$pid,'author'=>$author,'title'=>$title,'description'=>$description,'short'=>$short,'category'=>$category,'id'=>$id,'images'=>$imgname];
+        $p->updatePost($data);
+        if($p){
+                echo "<small1>Wow Registration successful</small1> ";
         }
         else{
             echo "<small2>Woops! Something Wrong Went.</small2>";
@@ -132,7 +138,7 @@ if ($query->num_rows > 0){
             $qry=mysqli_query($conn,"SELECT * FROM `post` where pid='$pid'");
             while($qre = mysqli_fetch_array($qry))
             {
-                $image=$qre['images']['name'];
+                $image=$qre['images'];
         ?>
 
             <div class="logo">
@@ -140,7 +146,7 @@ if ($query->num_rows > 0){
             </div>
 			<form action="" method="POST" class="form"  enctype="multipart/form-data" onsubmit="return validated()">
                 <h3>Author Details</h3>
-                <input type="text" value=<?php echo $qre['username']?> name="author" id="input-field">
+                <input type="text" value=<?php echo $qre['author']?> name="author" id="input-field">
                 <input type="text" placeholder="Title Name" name="title"  id="input-field"value=<?php echo $qre['title']; ?>>
               
 

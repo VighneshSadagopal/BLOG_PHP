@@ -2,6 +2,8 @@
 
 include 'config.php';
 
+
+
 session_start();
 
 if (isset($_SESSION['username'])){
@@ -11,7 +13,11 @@ else{
     header("Location: login1.php");
 }
 
-
+if (isset($_REQUEST['info'])) {
+    if ($_REQUEST['info'] == "deleted") {
+        echo "<div id='alert'><small1>Successfully Deleted&nbsp;&nbsp;&nbsp;</small1></div>";
+    }
+}
 
 
 
@@ -83,7 +89,7 @@ if($query->num_rows > 0){
             echo '<td>'.$res['author'].'</td>' ;
             echo '<td>'.$res['title'].'</td>' ;
             echo "<td><a href=\"edit.php?pid=$res[pid]\"><input type='submit' value='Edit'</a>" ;
-            echo "<td><a href=\"deletepost.php?pid=$res[pid]\"><input type='submit' value='Delete'</a>" ;
+            echo "<td><a href=\"delete.php?pid=$res[pid]\"><input type='submit' value='DELETE'</a>" ;
             echo '</tr>';
         }
       }

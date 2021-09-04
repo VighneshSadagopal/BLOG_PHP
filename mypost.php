@@ -57,9 +57,7 @@ if ($query->num_rows > 0) {
             </div>
 
             </div>
-            <button id="ed1"> <a href="editpost.php">
-                    <div class="tooltip"><i class="tiny material-icons">edit</i><span class="tooltext">EDIT</span></div>
-                </a></button>
+
             <div class="post">
             <?php
         }
@@ -72,9 +70,12 @@ if ($query->num_rows > 0) {
         while ($res = mysqli_fetch_array($query)) {
             $image = $res['images'];
             ?>
-
+               
 
                 <div class="container">
+                <button id="ed1"><?php echo "<a href=\"edit.php?pid=$res[pid]\">" ?>
+                        <div class="tooltip"><i class="tiny material-icons">edit</i><span class="tooltext">EDIT</span></div>
+                    </a></button>
                     <img src="images/1630508748052.png" id="tag" disabled>
                     <p id="category"><?php echo $res['category'] ?> </p>
                     <img src="images/<?php echo $image ?>">

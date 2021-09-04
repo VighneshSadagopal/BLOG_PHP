@@ -22,8 +22,7 @@ if (isset($_POST['submit']))
 		$result = mysqli_query($conn, $sql);
 		if (!$result->num_rows > 0) {
 			if ($result) {
-			$obj->insert('users',['username'=>$username,'email'=>$email,'password'=>$password]);
-			echo "<small1>Wow Registration successful</small1> ";
+			
 			
 			
 			//	echo "<small1>Wow Registration successful</small1>";

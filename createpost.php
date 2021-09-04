@@ -1,9 +1,9 @@
 <?php
 
 include 'config.php';
-include 'database.php';
+include 'post.php';
 
-$obj = new Database();
+$p = new Post();
 session_start();
 
 if (!isset($_SESSION['username'])) {
@@ -28,9 +28,13 @@ if (isset($_POST['submit'])) {
     $category = $_POST['category'];
 
 
-    $obj->insert('post',['author'=>$author,'title'=>$title,'description'=>$description,'short'=>$short,'category'=>$category,'id'=>$id,'images'=>$imgname]);
+    $data=['author'=>$author,'title'=>$title,'description'=>$description,'short'=>$short,'category'=>$category,'id'=>$id,'images'=>$imgname];
+    $p->addPost($data);
+    if($p){
 			echo "<small1>Wow Registration successful</small1> ";
-
+    }else{
+      echo "error";
+    }
   } else {
     echo "<small> ALL Fields Are Required</small>";
   }

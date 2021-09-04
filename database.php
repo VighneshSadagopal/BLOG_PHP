@@ -1,126 +1,76 @@
 <?php
+require_once("config.php");
 
 class Database
 {
-    private $db_host = "localhost";
-    private $db_user = "root";
-    private $db_pass = "";
-    private $db_name = "blog";
+    private $host = "localhost";
+    private $user = "root";
+    private $pass = "";
+    private $database = "blog";
 
-    private $mysqli = "";
-    private $result = array();
-    private $conn = false;
+    private $connection;
+
+    private $stmt;
+ 
 
     public function __construct()
     {
-        if (!$this->conn) {
-            $this->mysqli = new mysqli($this->db_host, $this->db_user, $this->db_pass, $this->db_name);
-            $this->conn = true;
-            if ($this->mysqli->connect_error) {
-                array_push($this->result, $this->mysqli->connect_error);
-                return false;
-            }
-        } else {
-            return true;
+        $dsn = 'mysql:host=' . $this->host . ';dbname=' . $this->database;
+        $options = array(
+            PDO::ATTR_PERSISTENT => true,
+            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
+        );
+        try {
+            $this->connection = new PDO($dsn, $this->user, $this->pass, $options);
+            $this->dbconnected = true;
+        } catch (PDOException $e) {
+            $this->error = $e->getMessage() . PHP_EOL;
+            $this->dbconnected = false;
         }
     }
-
-    public function insert($table, $params = array())
+    // prepare statements with query
+    public function query($query)
     {
-        if ($this->tableExists($table)) {
-
-
-            $table_columns = implode(', ', array_keys($params));
-            $table_values = implode("', '", $params);
-
-            $sql = "INSERT INTO $table($table_columns) VALUES('$table_values')";
-            if ($this->mysqli->query($sql)) {
-                array_push($this->result, $this->mysqli->insert_id);
-                return true;
-            } else {
-                array_push($this->result, $this->mysqli->error);
-                return false;
-            }
-        } else {
-            return false;
-        }
-        
-    }
-    public function update($table, $params = array(), $where = NULL)
-    {
-        if ($this->tableExists($table)) {
-
-            $args = array();
-            foreach ($params as $key => $value) {
-                $args[] = "$key = '$value'";
-            }
-            $sql = "UPDATE $table SET " . implode(', ', $args);
-            if ($where != null) {
-                $sql .= "WHERE $where";
-            }
-            $this->mysqli->query($sql);
-        }
-    }
-    public function delete($table, $where = NULL)
-    {
-        if ($this->tableExists($table)) {
-
-           
-            $sql = "DELETE FROM $table  ";
-            if ($where != null) {
-                $sql .= "WHERE $where";
-            }
-            
-            $this->mysqli->query($sql);
-        }
-    }
-    public function select($table,$field, $join= null, $where = NULL , $order=null,$limit=null)
-    {
-        if ($this->tableExists($table)) {
-
-           
-            $sql = "SELECT $field FROM $table";
-            if ($join != null) {
-                $sql .= " JOIN $where";
-            }
-            if ($where != null) {
-                $sql .= " WHERE $where";
-            }
-            if ($order != null) {
-                $sql .= " ORDER BY $order";
-            }
-            if ($limit != null) {
-                $sql .= " LIMIT 0,$limit";
-            }
-            echo $sql;
-            
-            $this->mysqli->query($sql);
-        
-        }
+        $this->stmt = $this->connection->prepare($query);
     }
 
-    private function tableExists($table)
+    public function execute()
     {
-        $sql = "SHOW TABLES FROM $this->db_name LIKE '$table'";
-        $tableInDb = $this->mysqli->query($sql);
-        if ($tableInDb->num_rows == 1) {
-            return true;
-        } else {
-            array_push($this->result, $table . "table does not exist in database.");
-            return false;
-        }
+        return $this->stmt->execute();
     }
-   
 
-    public function __destruct()
+    public function resultset()
     {
-        if ($this->conn) {
-            if ($this->mysqli->close()) {
-                $this->conn = false;
-                return true;
+        $this->execute();
+        return $this->stmt->fetchAll(PDO::FETCH_OBJ);
+    }
+
+    public function rowCount()
+    {
+        return $this->stmt->rowCount();
+    }
+    public function single()
+    {
+        $this->execute();
+        return $this->stmt->fetch(PDO::FETCH_ASSOC);
+    }
+    public function bind($param, $value, $type = null)
+    {
+        if (is_null($type)) {
+            switch (true) {
+                case is_int($value);
+                    $type = PDO::PARAM_INT;
+                    break;
+                case is_bool($value);
+                    $type = PDO::PARAM_BOOL;
+                    break;
+                case is_null($value);
+                    $type = PDO::PARAM_NULL;
+                    break;
+                default;
+                    $type = PDO::PARAM_STR;
             }
-        } else {
-            return false;
+            $this->stmt->bindValue($param, $value, $type);
         }
     }
 }

@@ -5,11 +5,13 @@ include 'config.php';
 session_start();
 
 
-if (isset($_SESSION['username'])) {
+if (isset($_SESSION['username']) && $_SESSION['usertype']== "admin") {
     $id = $_SESSION['id'];
 } else {
     header("Location: login.php");
 }
+
+
 if (isset($_REQUEST['info'])) {
     if ($_REQUEST['info'] == "login") {
         echo "<div id='alert'><small1> Login Successfull&nbsp;&nbsp;&nbsp;</small1></div>";
