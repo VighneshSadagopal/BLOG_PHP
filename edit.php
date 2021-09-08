@@ -16,7 +16,7 @@ $author=$_SESSION['username'];
 $pid= $_GET['pid'];
 
 if($usertype=="admin"){
-$p->getPostById($pid);
+$que=$p->getPostById($pid);
 $p->db->execute();
 }
 if($usertype=="user"){
@@ -24,9 +24,10 @@ if($usertype=="user"){
    $p->db->execute();
 }
 $stmt= $p->rowCount();
+
 if ($stmt > 0){
 
-    while($res=$p->fetch()){
+    while($res=$que){
        
       
            
@@ -114,14 +115,14 @@ if ($stmt > 0){
         <i class="fas fa-bars"></i>
       
       </div>
-      <div>
+     <!-- <div>
         <input type="checkbox" class="checkbox" id="chk" />
         <label class="label" for="chk">
             <i class="fas fa-moon"></i>
             <i class="fas fa-sun"></i>
             <div class="ball"></div>
         </label>
-    </div>
+    </div>-->
     </div>
 </div>
 </div>

@@ -15,8 +15,7 @@ else{
     header("Location: login.php");
 }
 $id=$_GET['id'];
-$author=$_SESSION['username'];
- $obj->select('users','*',null,'id="'.$id.'"');
+
 if ($obj->num_rows > 0){
 
     while($res=mysqli_fetch_array($query)){

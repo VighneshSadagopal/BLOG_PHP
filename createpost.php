@@ -30,6 +30,7 @@ if (isset($_POST['submit'])) {
 
     $data=['author'=>$author,'title'=>$title,'description'=>$description,'short'=>$short,'category'=>$category,'id'=>$id,'images'=>$imgname];
     $p->addPost($data);
+    $p->db->execute();
     if($p){
 			echo "<small1>Wow Registration successful</small1> ";
     }else{

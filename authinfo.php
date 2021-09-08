@@ -13,6 +13,11 @@ else{
 
 
 
+if (isset($_REQUEST['info'])) {
+    if ($_REQUEST['info'] == "deleted") {
+        echo "<div id='alert'><small1>Successfully Deleted&nbsp;&nbsp;&nbsp;</small1></div>";
+    }
+}
 
 
 ?>
@@ -26,6 +31,8 @@ else{
     <link rel="stylesheet" href="css/author.css">  
     <link rel="stylesheet" href="scss/nav.css">  
     <link rel="stylesheet" href="css/footer.css"> 
+    <link rel="stylesheet" href="scss/notify.css"> 
+
     <script src="https://kit.fontawesome.com/ec41712638.js" crossorigin="anonymous"></script>
  
 </head>
@@ -40,7 +47,7 @@ else{
         <li><a href="#" id="name" ><?php echo $_SESSION['username']?>&nbsp;<i class="tiny material-icons" >arrow_drop_down_circle</i></a>
             <ul>
                <li><a href="admin.php">Dashboard</a></li>
-            <li><a href="createauth.php"> Create New Author</a></li>
+           
                 <li><a href="logout.php"><i class="tiny material-icons" >power_settings_new</i>&nbsp;LOGOUT</a></li>
             </ul>
         </li>

@@ -1,4 +1,5 @@
 <?php
+
 require_once("config.php");
 
 class Database
@@ -11,7 +12,7 @@ class Database
     private $connection;
 
     private $stmt;
- 
+
 
     public function __construct()
     {
@@ -36,7 +37,8 @@ class Database
 
     public function execute()
     {
-        return $this->stmt->execute();
+       $execute= $this->stmt->execute();
+       return $this->stmt;
     }
 
     public function resultset()
@@ -56,18 +58,24 @@ class Database
     }
     public function bind($param, $value, $type = null)
     {
+       
         if (is_null($type)) {
+           
             switch (true) {
-                case is_int($value);
+                case is_int($value):
+                   
                     $type = PDO::PARAM_INT;
                     break;
-                case is_bool($value);
+                case is_bool($value):
+                  
                     $type = PDO::PARAM_BOOL;
                     break;
-                case is_null($value);
+                case is_null($value):
+        
                     $type = PDO::PARAM_NULL;
                     break;
-                default;
+                default:
+         
                     $type = PDO::PARAM_STR;
             }
             $this->stmt->bindValue($param, $value, $type);

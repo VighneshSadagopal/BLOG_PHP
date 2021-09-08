@@ -20,50 +20,45 @@
   }
   if (!$category == "") {
 
-
-    $query1 = "SELECT * FROM post WHERE category='$category' ORDER BY pid DESC";
-    $query_run = mysqli_query($conn, $query1);
-    $check_post = mysqli_num_rows($query_run) > 0;
-
-    if ($check_post) {
-      while ($res = mysqli_fetch_array($query_run)) {
-        $image = $res['images'];
-
-  ?>
-
-
-        <div class="container">
-        <img src="images/1630508748052.png" id="tag" disabled>
-        <p id="category"><?php echo $res['category'] ?> </p>
-          <img src="images/<?php echo $image ?>">
-          <h1><?php echo $res['title'] ?></h1><br><br>
-          <p><?php echo $res['short'] ?> </p>
-          <p id="read"><?php echo "<a href=\"seperate1.php?pid=$res[pid]\">" ?>Read more...</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>~<?php echo $res['author'] ?></span></p>
-        </div>
-
-      <?php
-
+    $p = new Post;
+    $sql= $p->getAllPostByCategory($category);
+    
+  foreach ($sql as $row) 
+  {
+         $image = $row['images'];
+ 
+       ?>
+ 
+         <div class="container">
+         <img src="images/1630508748052.png" id="tag" disabled>
+         <p id="category"><?php echo $row['category'] ?> </p>
+           <img src="images/<?php echo $image ?>">
+           <h1><?php echo $row['title'] ?></h1><br><br>
+           <p><?php echo $row['short'] ?> </p>
+           <p id="read"><?php echo "<a href=\"seperate1.php?pid=$row[pid]\">" ?>Read more</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>~<?php echo $row['author'] ?></span></p>
+          
+         </div>
+ 
+   <?php
       }
-    }
+    
   } else {
-    $query1 = "SELECT * FROM post ORDER BY pid DESC";
-    $query_run = mysqli_query($conn, $query1);
-    $check_post = mysqli_num_rows($query_run) > 0;
-
-    if ($check_post) {
-      while ($res = mysqli_fetch_array($query_run)) {
-        $image = $res['images'];
+   $p = new Post;
+   $sql= $p->getAllPost();
+   
+ foreach ($sql as $row) 
+ {
+        $image = $row['images'];
 
       ?>
 
-
         <div class="container">
         <img src="images/1630508748052.png" id="tag" disabled>
-        <p id="category"><?php echo $res['category'] ?> </p>
+        <p id="category"><?php echo $row['category'] ?> </p>
           <img src="images/<?php echo $image ?>">
-          <h1><?php echo $res['title'] ?></h1><br><br>
-          <p><?php echo $res['short'] ?> </p>
-          <p id="read"><?php echo "<a href=\"seperate1.php?pid=$res[pid]\">" ?>Read more...</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>~<?php echo $res['author'] ?></span></p>
+          <h1><?php echo $row['title'] ?></h1><br><br>
+          <p><?php echo $row['short'] ?> </p>
+          <p id="read"><?php echo "<a href=\"seperate1.php?pid=$row[pid]\">" ?>Read more</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>~<?php echo $row['author'] ?></span></p>
          
         </div>
 
@@ -71,7 +66,7 @@
 
       }
     }
-  }
+  
 
 
   ?>

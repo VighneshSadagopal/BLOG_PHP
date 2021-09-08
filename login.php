@@ -1,6 +1,8 @@
 <?php 
 
-include 'config.php';
+include 'autoload.php';
+
+$u= new Users;
 
 session_start();
 
@@ -23,26 +25,22 @@ if (isset($_POST['submit'])) {
        
     $email = $_POST['email'];
     $password = md5($_POST['password']);
-   
-   
-    
+   $sql=$u->login($email,$password);
+   foreach ($sql as $data) {
+        $_SESSION['email'] = $data['email'];
+        $_SESSION['username'] = $data['username'];
+        $_SESSION['id'] = $data['id'];
+        $_SESSION['usertype']=$data['usertype'];
+        
 
-    $sql = "SELECT * FROM users WHERE email='$email' AND password='$password'";
-    $result = mysqli_query($conn, $sql); 
-    $res=mysqli_num_rows($result) >0;
-    $row = mysqli_fetch_assoc($result);
-    
-       
-        $_SESSION['email'] = $row['email'];
-        $_SESSION['username'] = $row['username'];
-        $_SESSION['id'] = $row['id'];
-        $_SESSION['usertype']=$row['usertype'];
-       
+   
+   $res= $u->rowCount() > 0;
+   echo $res;
         if($res){
 
        
     
-        if($row['usertype']=='admin'){ 
+        if($data['usertype']=='admin'){ 
             if(isset($_POST['check'])){
                 setcookie('emailcookie',$email,time()+60*60);
                 setcookie('passwordcookie',base64_encode($password),time()+60*60);
@@ -52,7 +50,7 @@ if (isset($_POST['submit'])) {
                 header("location:admin.php?info=login");
             }
       
-        elseif($row['usertype']=='user'){
+        elseif($data['usertype']=='user'){
             if(isset($_POST['check'])){
                 setcookie('emailcookie',$email,time()+60*60);
                 setcookie('passwordcookie',base64_encode($password),time()+60*60);
@@ -61,25 +59,26 @@ if (isset($_POST['submit'])) {
            
                 header("location:welcome.php?info=login");
             }
-            elseif($row['usertype']==''){
+            elseif($data['usertype']==''){
                 if(isset($_POST['check'])){
                     setcookie('emailcookie',$email,time()+60*60);
                     setcookie('passwordcookie',base64_encode($password),time()+60*60);
             
-                }
-                else{
+                }else{
                     echo "error occured";
                 }
                     header("location:anonmoyous.php?info=login");
-                    
-                
-            }
-        }else{
+               
+        }
+        
+            
+        
+    }else{
                 echo "<small>Email or Password is Incorrect</small>";
             }
-                
-}
+        }         
 
+    }
 
 
 ?>

@@ -15,7 +15,7 @@
           justify-content: center;
 }
 
-@media screen and (max-width: 425px) {
+@media screen and (max-width: 426px) {
   .post {
     top: 59%;
   }
@@ -24,16 +24,18 @@
 .post .container {
   background: #fff;
   margin-bottom: 20px;
-  padding: 20px 30px;
+  padding: 15px 20px;
   border-bottom: 2px solid var(--primary);
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
-  width: 32%;
+  width: 31%;
   margin-right: 10px;
   margin-left: 10px;
   -webkit-transition: 0.3s;
   transition: 0.3s;
   border-radius: 15px;
+  text-transform: capitalize;
+  min-height: 75%;
 }
 
 .post .container:hover {
@@ -41,7 +43,7 @@
           transform: translateY(-8px);
 }
 
-@media screen and (max-width: 425px) {
+@media screen and (max-width: 426px) {
   .post .container {
     width: 95%;
     margin-right: unset;
@@ -61,14 +63,15 @@
 
 .post .container p a {
   color: blue;
+  margin-top: 10px;
 }
 
 .post h1 {
   color: #000;
   position: unset;
-  font-size: 30px;
+  font-size: 20px;
   text-transform: unset;
-  margin-bottom: -30px;
+  margin-bottom: -23px;
 }
 
 .post a {
@@ -81,7 +84,7 @@
 }
 
 .post p {
-  font-size: 15px;
+  font-size: 13px;
   font-family: Arial, Helvetica, sans-serif;
   bottom: 1px;
   margin-left: 2px;
@@ -92,16 +95,32 @@
 }
 
 .post img {
-  height: 50vh;
+  height: 40vh;
   width: 100%;
   opacity: 70%;
   cursor: pointer;
   -webkit-transition: 0.8s;
   transition: 0.8s;
+  margin-bottom: 10px;
 }
 
 .post img:hover {
   opacity: 100%;
+}
+
+.post span {
+  position: relative;
+  font-size: 16px;
+  font-style: italic;
+  font-family: Arial, Helvetica, sans-serif;
+  left: 50%;
+  top: 30px;
+}
+
+@media screen and (max-width: 426px) {
+  .post span {
+    top: 18px;
+  }
 }
 
 img#tag {
@@ -109,10 +128,10 @@ img#tag {
   width: 26%;
   opacity: 100%;
   z-index: 2;
-  margin-left: -35px;
+  margin-left: -23px;
 }
 
-@media screen and (max-width: 425px) {
+@media screen and (max-width: 426px) {
   img#tag {
     width: 37%;
   }
@@ -121,9 +140,9 @@ img#tag {
 p#category {
   z-index: 2;
   position: relative;
-  right: 5%;
+  right: 2.5%;
   color: #fff;
-  bottom: 4.5%;
+  bottom: 7%;
   text-transform: capitalize;
 }
 /*# sourceMappingURL=container.css.map */

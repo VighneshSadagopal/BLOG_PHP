@@ -1,8 +1,8 @@
 <?php 
 
-include 'database.php';
+require_once 'autoload.php';
 
-$obj = new Database();
+$u = new Users();
 
 session_start();
 
@@ -16,24 +16,27 @@ if (isset($_POST['submit']))
 	$email = $_POST['email'];
 	$password = md5($_POST['password']);
 	$cpassword = md5($_POST['cpassword']);
+	$dob = $_POST['dob'];
 
 	if ($password == $cpassword) {
-		$sql = "SELECT * FROM users WHERE email='$email'";
-		$result = mysqli_query($conn, $sql);
-		if (!$result->num_rows > 0) {
-			if ($result) {
+	$u->getUserByEmail($email);
+	
+	$result= $u->rowCount();
+	
+	
+		if ($result == 0) {
 			
 			
-			
-			//	echo "<small1>Wow Registration successful</small1>";
+			print "hello";
+				$data=['username'=>$username,'email'=>$email,'password'=>$password,'your'=>'','usertype'=>'','dob'=>$dob];
+				$u->addUser($data);
+				echo "<small1>Wow Registration successful</small1>";
 			//	$username = "";
 			//	$email = "";
 			//	$_POST['password'] = "";
 			//	$_POST['cpassword'] = "";
 				
-			} else {
-				echo "<small2>Woops! Something Wrong Went.</small2>";
-			}
+			
 		} else {
 			echo "<small>Woops! Email Already Exists.</small>";
 		}
