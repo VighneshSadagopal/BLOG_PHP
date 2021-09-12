@@ -1,13 +1,13 @@
 <?php
 
-include 'config.php';
+include '../classes/config.php';
 
 session_start();
 
 if (isset($_SESSION['username'])) {
     $id = $_SESSION['id'];
 } else {
-    header("Location: login.php");
+    header("Location: ../login/login.php");
 }
 
 
@@ -37,11 +37,11 @@ if ($query->num_rows > 0) {
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <title>Welcome</title>
-            <link rel="stylesheet" href="scss/style.css">
-            <link rel="stylesheet" href="scss/nav.css">
-            <link rel="stylesheet" href="scss/container.css">
-            <link rel="stylesheet" href="css/footer.css">
-            <link rel="stylesheet" href="scss/notify.css">
+            <link rel="stylesheet" href="../../scss/style.css">
+            <link rel="stylesheet" href="../../scss/nav.css">
+            <link rel="stylesheet" href="../../scss/container.css">
+            <link rel="stylesheet" href="../../css/footer.css">
+            <link rel="stylesheet" href="../../scss/notify.css">
 
             <script src="https://kit.fontawesome.com/ec41712638.js" crossorigin="anonymous"></script>
             <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
@@ -61,7 +61,7 @@ if ($query->num_rows > 0) {
             <div class="image">
                 <h1>WELCOME &nbsp;<?php echo $author ?></h1>
                 <a href="#create" id="bb">Check Out</a>
-                <?php include('nav.php'); ?>
+                <?php include('../headers/nav.php'); ?>
 
 
 
@@ -71,7 +71,7 @@ if ($query->num_rows > 0) {
 
                             <li><?php echo "<a href=\"account.php?id=$row[id]\">" ?>My Details</a></li>
 
-                            <li><a href="logout.php"><i class="tiny material-icons">power_settings_new</i>&nbsp;Logout</a></li>
+                            <li><a href="../login/logout.php"><i class="tiny material-icons">power_settings_new</i>&nbsp;Logout</a></li>
                         </ul>
                     </li>
                 </div>
@@ -98,9 +98,9 @@ if ($query->num_rows > 0) {
 
     <?php }
 }
-include('container.php'); ?>
+include('../Post/container.php'); ?>
     </div>
-    <script src="css/js/index.js"></script>
+    <script src="../../css/js/index.js"></script>
 
         </body>
 

@@ -39,7 +39,7 @@
   font-weight: 600;
   text-decoration: none;
   position: absolute;
-  left: 1%;
+  left: 1.5%;
   top: 7%;
   bottom: 32px;
   text-align: left;
@@ -244,7 +244,7 @@
   padding: 7px 13px;
   color: #000;
   position: absolute;
-  right: 0%;
+  right: 1%;
   top: 15px;
   border-radius: 10px;
   font-size: 18px;

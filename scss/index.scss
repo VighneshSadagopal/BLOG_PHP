@@ -184,6 +184,9 @@
             border-radius: 8px;
             outline: none;
             margin-left: 5px;
+            @include mobile {
+                width: 85%;
+            }
         }
         select {
             margin-top: 10px;
@@ -198,6 +201,9 @@
             border-radius: 8px;
             outline: none;
             margin-left: 5px;
+            @include mobile {
+                width: 85%;
+            }
         }
         input[type="checkbox"] {
             width: 100%;
@@ -220,6 +226,9 @@
             outline: none;
             margin-left: 5px;
             width: 60%;
+            @include mobile {
+                width: 85%;
+            }
         }
         textarea#txt1 {
             outline: none;
@@ -231,6 +240,9 @@
             outline: none;
             margin-left: 5px;
             width: 60%;
+            @include mobile {
+                width: 85%;
+            }
         }
         input#file {
             height: 40px;

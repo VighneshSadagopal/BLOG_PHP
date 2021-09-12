@@ -1,7 +1,7 @@
 
     <?php 
 
-include 'config.php';
+include '../classes/autoload.php';
 
 session_start();
 
@@ -10,7 +10,7 @@ if (isset($_SESSION['username'])){
    $username=$_SESSION['username'];
 }
 else{
-    header("Location: login1.php");
+    header("Location: ../login/login.php");
 }
 
 
@@ -25,21 +25,20 @@ else{
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome</title>
-    <link rel="stylesheet" href="css/author.css">  
-    <link rel="stylesheet" href="css/nav.css">  
-    <link rel="stylesheet" href="css/footer.css"> 
+    <link rel="stylesheet" href="../../css/author.css">  
+    <link rel="stylesheet" href="../../scss/nav.css">  
+    <link rel="stylesheet" href="../../css/footer.css"> 
     <script src="https://kit.fontawesome.com/ec41712638.js" crossorigin="anonymous"></script>
  
 </head>
 <body vlink =" black">
-<?php include('nav.php');?>
+<?php include('../headers/nav.php');?>
      
         <div class="right">
         <li><a href="#" id="name" ><?php echo $_SESSION['username']?>&nbsp;<i class="tiny material-icons" >arrow_drop_down_circle</i></a>
             <ul>
-               <li><a href="admin.php">Dashboard</a></li>
-            <li><a href="createauth.php"> Create New Author</a></li>
-                <li><a href="logout.php"><i class="tiny material-icons" >power_settings_new</i>&nbsp;LOGOUT</a></li>
+               <li><a href="../login/login.php">Dashboard</a></li>
+                <li><a href="../login/logout.php"><i class="tiny material-icons" >power_settings_new</i>&nbsp;LOGOUT</a></li>
             </ul>
         </li>
 </div>
@@ -54,10 +53,11 @@ else{
 
 
 <?php
-$query=mysqli_query($conn,"SELECT * FROM policy where status='unchecked'");
-if($query->num_rows > 0){
+$policy = new Policy;
+$sql = $policy->getStatus();
 
-
+if($policy->rowCount() > 0)
+{
 ?>
     
 <div class="tab" id="tab">
@@ -73,7 +73,7 @@ if($query->num_rows > 0){
 </thead>
 
         <?php
-   while($res=mysqli_fetch_array($query)){
+foreach($sql as $res){
 
         echo'<tr>';
         echo '<td>'.$res['po_id'].'</td>' ;
@@ -97,5 +97,5 @@ if($query->num_rows > 0){
         
 
 </body>
-<?php include('footer.php');?>
+<?php include('../headers/footer.php');?>
 </html>

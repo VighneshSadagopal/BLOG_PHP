@@ -1,7 +1,7 @@
 <?php
-require_once('database.php');
 
-class Users
+
+class Users extends Database
 {
     private $db;
     public function __construct()
@@ -17,42 +17,43 @@ class Users
 
     public function getUserById($id)
     {
-        $stmt = $this->db->query("SELECT * FROM users WHERE id=:id");
+        $sql = $this->db->query("SELECT * FROM users WHERE id=:id");
         $this->db->bind(':id', $id);
+        $stmt = $this->db->execute($sql);
+        $row = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    
+        return $row;
 
-        return $stmt;
+        
+    }
+    public function getUserByName($author)
+    {
+        $sql = $this->db->query("SELECT * from users where  username=:author ");
+        $this->db->bind(':author', $author);
+        $stmt = $this->db->execute($sql);
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        $data[] = $row;
+        return $data;
+   
     }
     public function login($email, $password)
     {
         $sql = $this->db->query("SELECT * FROM users WHERE email=:email AND password=:password");
-
         $this->db->bind(':email', $email);
         $this->db->bind(':password', $password);
-
-
         $stmt = $this->db->execute($sql);
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
-        
         $data[] = $row;
-        
         return $data;
-
-        // while(){
-        //   
-        // }
-
-
-
     }
     public function getUserByEmail($email)
     {
         $sql = "SELECT * FROM users WHERE email=:email";
         $this->db->bind(':email', $email);
         $stmt = $this->db->execute($sql);
-       $row = $stmt->fetch();
-            $data[] = $row;
-            return $data;
-        
+        $row = $stmt->fetch();
+        $data[] = $row;
+        return $data;
     }
 
 
@@ -94,5 +95,15 @@ class Users
     public function rowCount()
     {
         return $this->db->rowCount();
+    }
+    public function updateUsertype($data)
+    {
+        $this->db->query("UPDATE `users` SET `usertype`=:usertype WHERE `id`=:id");
+       
+        $this->db->bind(':usertype', $data['usertype']);
+        $this->db->bind(':id', $data['id']);
+        
+
+        return $this->db->execute();
     }
 }

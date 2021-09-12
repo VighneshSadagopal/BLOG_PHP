@@ -1,6 +1,6 @@
 <?php
 
-include 'autoload.php';
+include 'templates/classes/autoload.php';
 session_start();
 
 
@@ -31,23 +31,36 @@ session_start();
 <body>
 
 
-  <?php include('nav.php'); ?>
-  <div class="right">
+  <div class="navbar" id="nav">
+    <div class="content1">
+      <div class="logo">
+        <img src="css/images/logo2.png">
+      </div>
+      <ul class="menu-list">
+        <div class="icon cancel-btn">
+          <i class="fas fa-times"></i>
+        </div>
+        <li><a href="index.php">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Services</a></li>
+        <li><a href="#">Carrer</a></li>
+        <li><a href="#">Contact Us</a></li>
+        <div class="right">
 
-    <?php
-    if (isset($_SESSION['username'])) {
-    ?> <li><a href="login.php">Dashboard</a></li>
-    <?php
-    } else { ?><li><a href="login.php" id="name">LOGIN</a></li><?php } ?>
+          <?php
+          if (isset($_SESSION['username'])) {
+          ?> <li><a href="templates/login/login.php">Dashboard</a></li>
+          <?php
+          } else { ?><li><a href="templates/login/login.php" id="name">LOGIN</a></li><?php } ?>
 
-  </div>
+        </div>
 
-  </ul>
-  <div class="icon menu-btn">
-    <i class="fas fa-bars"></i>
+      </ul>
+      <div class="icon menu-btn">
+        <i class="fas fa-bars"></i>
 
-  </div>
-  </div>
+      </div>
+    </div>
   </div>
   <div class="whole">
     <div class="carousel">
@@ -58,23 +71,21 @@ session_start();
       </div>
       <?php
 
-      $query = "SELECT * FROM post ORDER BY pid DESC";
-      $query_run = mysqli_query($conn, $query);
-      $check_post = mysqli_num_rows($query_run) > 0;
+      $p = new Post;
+      $sql = $p->getAllPost();
 
-      if ($check_post) {
-        while ($res = mysqli_fetch_array($query_run)) {
-          $image = $res['images'];
+      foreach ($sql as $row) {
+        $image = $row['images'];
 
       ?>
 
-          <div class="carousel__item ">
-            <img src="images/<?php echo $image ?>" />
-            <h1><?php echo $res['title'] ?></h1><br><br>
-          </div>
+        <div class="carousel__item ">
+          <img src="images/<?php echo $image ?>" />
+          <h1><?php echo $row['title'] ?></h1><br><br>
+        </div>
       <?php
-        }
       }
+
       ?>
 
 
@@ -85,8 +96,87 @@ session_start();
 
     </div>
 
-    <?php include('container.php'); ?>
-  </div>
+    <form method="post">
+      <select id="search" name="category">
+        <option value="">Search By Category</option>
+        <option value="social">Social</option>
+        <option value="anime">Anime</option>
+        <option value="food">Food</option>
+        <option value="gaming">Gaming</option>
+        <option value="travel">Travel</option>
+        <option value="sports">Sports</option>
+      </select>
+      <button type="submit" name="show" id="show"><i class="fas fa-search"></i></button>
+    </form>
+    <div class="post" id="post">
+
+
+      <?php
+      $category = "";
+      if (isset($_POST['show'])) {
+        $category = $_POST['category'];
+      }
+      if (!$category == "") {
+
+
+        $sql = $p->getAllPostByCategory($category);
+
+        foreach ($sql as $row) {
+          $image = $row['images'];
+
+      ?>
+
+          <div class="container">
+         
+              <img src="images/1630508748052.png" id="tag" disabled>
+              <p id="category"><?php echo $row['category'] ?> </p>
+              <div id="zoom">
+          <img src="images/<?php echo $image ?>">   </div>
+              <h1><?php echo $row['title'] ?></h1><br><br>
+              <p><?php echo $row['short'] ?> </p>
+              <p id="read"><?php echo "<a href=\"seperate1.php?pid=$row[pid]\">" ?>Read more</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>~<?php echo $row['author'] ?></span></p>
+            </div>
+
+
+          <?php
+        }
+      } else {
+
+        $sql = $p->getAllPost();
+
+        foreach ($sql as $row) {
+          $image = $row['images'];
+
+          ?>
+
+            <div class="container">
+
+              <img src="images/1630508748052.png" id="tag" disabled>
+              <p id="category"><?php echo $row['category'] ?> </p>
+              <div id="zoom">
+                <img src="images/<?php echo $image ?>">
+              </div>
+              <h1><?php echo $row['title'] ?></h1><br><br>
+              <p><?php echo $row['short'] ?> </p>
+              <p id="read"><?php echo "<a href=\"seperate1.php?pid=$row[pid]\">" ?>Read more</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>~<?php echo $row['author'] ?></span></p>
+
+            </div>
+
+        <?php
+
+        }
+      }
+
+
+
+        ?>
+
+
+
+
+        <?php include('templates/headers/footer.php'); ?>
+          </div>
+    </div>
 
 
 

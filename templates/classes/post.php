@@ -1,7 +1,7 @@
 <?php
-require_once('database.php');
 
-class Post
+
+class Post extends Database
 {
     public $db;
     public function __construct()
@@ -16,9 +16,6 @@ class Post
         $sql = $this->db->query("SELECT * FROM post ORDER BY pid DESC");
         $stmt = $this->db->execute($sql);
         $row = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-        $data[] = $row;
-        
         return $row;
         
     }
@@ -27,26 +24,31 @@ class Post
         $sql = $this->db->query("SELECT * FROM post WHERE category=:category ORDER BY pid DESC");
         $this->db->bind(':category', $category);
         $stmt = $this->db->execute($sql);
-        $row = $stmt->fetchALL(PDO::FETCH_ASSOC);
-
-        $data[] = $row;
-        
+        $row = $stmt->fetchALL(PDO::FETCH_ASSOC);        
         return $row;
         
     }
 
     public function getPostById($pid)
     {
-        $stmt = $this->db->query("SELECT * FROM post WHERE pid=:pid");
+        $sql = $this->db->query("SELECT * FROM post WHERE pid=:pid");
         $this->db->bind(':pid', $pid);
-        return $stmt;
+        $stmt = $this->db->execute($sql);
+        $row = $stmt->fetchALL(PDO::FETCH_ASSOC); 
+        
+        return $row;
     }
     public function getPostByJoin($pid, $id)
     {
-        $stmt = $this->db->query("SELECT * FROM `post`INNER JOIN users ON post.id = :id where pid=:pid ");
+        $sql = $this->db->query("SELECT * FROM `post`INNER JOIN users ON post.id = :id where pid=:pid ");
+       
         $this->db->bind(':pid', $pid);
         $this->db->bind(':id', $id);
-        return $stmt;
+       
+        $stmt = $this->db->execute($sql);
+        $row = $stmt->fetchALL(PDO::FETCH_ASSOC);   
+           
+        return $row;
     }
     public function getPostByUsername($pid)
     {
