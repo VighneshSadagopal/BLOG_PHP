@@ -206,11 +206,11 @@
             }
         }
         input[type="checkbox"] {
-            width: 100%;
+            width: auto;
             height: auto;
             position: absolute;
-            left: -33%;
-            bottom: 34%;
+            left: 19%;
+            bottom: 46%;
             @include mobile {
                 left: 14%;
                 bottom: 39.5%;
@@ -247,6 +247,9 @@
         input#file {
             height: 40px;
             padding: 0.75rem 1.375rem;
+        }
+        #image {
+            height: auto;
         }
         .btn {
             padding: 12px 18px;
@@ -295,8 +298,8 @@
         }
         p {
             position: absolute;
-            top: 64%;
-            left: 22%;
+            top: 52%;
+            left: 23%;
             font-size: 0.75rem;
             @include mobile {
                 top: 58%;

@@ -37,7 +37,7 @@ class Database
 
     public function execute()
     {
-       $execute= $this->stmt->execute();
+        $this->stmt->execute();
        return $this->stmt;
     }
 

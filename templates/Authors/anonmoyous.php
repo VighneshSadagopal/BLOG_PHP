@@ -37,11 +37,11 @@ if ($query->num_rows > 0) {
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <title>Welcome</title>
-            <link rel="stylesheet" href="../../scss/style.css">
-            <link rel="stylesheet" href="../../scss/nav.css">
-            <link rel="stylesheet" href="../../scss/container.css">
+            <link rel="stylesheet" href="../../css/style.css">
+            <link rel="stylesheet" href="../../css/nav.css">
+            <link rel="stylesheet" href="../../css/container.css">
             <link rel="stylesheet" href="../../css/footer.css">
-            <link rel="stylesheet" href="../../scss/notify.css">
+            <link rel="stylesheet" href="../../css/notify.css">
 
             <script src="https://kit.fontawesome.com/ec41712638.js" crossorigin="anonymous"></script>
             <script src="https://code.jquery.com/jquery-3.4.1.js"></script>

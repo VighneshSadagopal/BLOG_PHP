@@ -1,162 +1,63 @@
-<?php
 
-include 'config.php';
-include 'post.php';
+            <div class="create">
+                <div class="name">
+            <img src="../../images/<?php echo $image ?>" id =" clipped" >
+                <button id="createbtn" onclick="loadcreate();">What's on Your Mind,<?php echo $_SESSION['username'] ?></button>
+                </div>
+                <hr>
+                <div class="tabs">
+                    <div class="element" id="images">
+                        <i class="far fa-images"></i>
+                        <p>Image/Video</p>
+                    </div>
+                    <div class="element" id="files">
+                        <i class="far fa-folder"></i>
+                        <p>Files</p>
+                    </div>
+                    <div class="element" id="addphoto">
+                        <i class="fas fa-camera"></i>
+                        <p>Capture</p>
+                    </div>
+                </div>
 
-$p = new Post();
-session_start();
+            </div>
+<div class="createpost" id="createpost">
+                <button id="close">
+                    <i class="fas fa-times"></i>
+                </button>
+                <div class="row">
+                    <h2>Create Post</h2>
 
-if (!isset($_SESSION['username'])) {
-  header("Location: login.php");
-}
-$id = $_SESSION['id'];
+                    <hr>
+                    <form class="form" method="POST" action="../function/formfunction.php" enctype="multipart/form-data">
+                    <div class="name">
+                    <img src="../../images/<?php echo $image ?>" id =" clipped" >
+                   
+                        <p><?php echo $_SESSION['username']; ?></p>
+                        </div>
+                        <input type="text" name="title" placeholder="Title">
+                        <input type="text" name="category" placeholder="Category">
+                        <input type="file" id="filebtn" name="imgfile"  hidden> 
+                        <textarea name="description" name="description" rows="9" placeholder="Write About Your thoughts"></textarea>
+                        <div class="video-wrap" id="videowrap">
+                            <video id="video" playsinline autoplay></video>
+                      
+                        <canvas id="canvas" width="640" height="480" ></canvas>
+                        
+                       
+                        <input type="button" id="upload" value="Upload" name="upload">
+                        </div>
+                        <span>
 
-if (isset($_POST['submit'])) {
+                            <p>Add to your post</p>
+                            <div class="attach">
+                                <p onclick="filebtn()"> <i class="far fa-images" id = "imvi"></i></p>
+                                <p onclick="filebtn()"> <i class="far fa-folder" id = "file"></i></p>
+                                <p> <i class="fas fa-camera" id="snap"></i></p>
+                            </div>
+                        </span>
 
-
-
-  if (!empty($_POST['author']) && !empty($_POST['title']) && !empty($_POST['description']) && !empty($_POST['short'])) {
-    $imgname = $_FILES['image']['name'];
-
-    $tempname = $_FILES['image']['tmp_name'];
-    move_uploaded_file($tempname, "images/$imgname");
-
-    $author = $_POST['author'];
-    $title = $_POST['title'];
-    $description = $_POST['description'];
-    $short = $_POST['short'];
-    $category = $_POST['category'];
-
-
-    $data=['author'=>$author,'title'=>$title,'description'=>$description,'short'=>$short,'category'=>$category,'id'=>$id,'images'=>$imgname];
-    $p->addPost($data);
-    $p->db->execute();
-    if($p){
-			echo "<small1>Wow Registration successful</small1> ";
-    }else{
-      echo "error";
-    }
-  } else {
-    echo "<small> ALL Fields Are Required</small>";
-  }
-}
-
-
-
-$sql = mysqli_query($conn, "SELECT * from users where id='$id' ");
-
-if ($sql->num_rows > 0) {
-
-  while ($row = mysqli_fetch_array($sql)) {
-
-
-?>
-
-
-
-    <!DOCTYPE html>
-    <html lang="en">
-
-    <head>
-      <link rel="stylesheet" href="scss/index.css">
-      <link rel="stylesheet" href="scss/nav.css">
-      <link rel="stylesheet" href="css/footer.css">
-      <link rel="stylesheet" href="scss/notify.css">
-
-
-      <meta charset="UTF-8">
-      <script src="https://kit.fontawesome.com/ec41712638.js" crossorigin="anonymous"></script>
-     
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>Create Post</title>
-      <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
-      <script>
-        setTimeout(fade_out, 5000);
-
-        function fade_out() {
-          $("#alert").fadeOut().empty();
-        }
-      </script>
-    </head>
-
-    <body>
-      <?php include('nav.php'); ?>
-
-      <div class="right">
-        <li><a href="#" id="name"><?php echo $_SESSION['username'] ?>&nbsp;<i class="fas fa-caret-down"></i></a>
-          <ul>
-
-            <li><?php echo "<a href=\"account.php?id=$row[id]\">" ?>My Details</a></li>
-            <li><a href="login.php">Dashboard</a></li>
-            <li><?php echo "<a href=\"mypost.php?id=$row[id]\">" ?>My Post</a></li>
-            <li><a href="logout.php"><i class="fas fa-sign-out-alt"></i>&nbsp;Logout</a></li>
-          </ul>
-        </li>
-      </div>
-
-      </ul>
-      <div class="icon menu-btn">
-        <i class="fas fa-bars"></i>
-
-      </div>
-      <div>
-        <!-- <input type="checkbox" class="checkbox" id="chk" />
-        <label class="label" for="chk">
-            <i class="fas fa-moon"></i>
-            <i class="fas fa-sun"></i>
-            <div class="ball"></div>
-        </label>
-    </div>-->
-      </div>
-      </div>
-      </div>
-
-
-      <div class="image">
-
-
-
-
-      </div>
-      <div class="contain2">
-        <div class="whole">
-
-          <div class="logo">
-            <img src="css/images/logo3.png">
-            <h2>Visual Select</h2>
-          </div>
-          <form action="" method="POST" class="form" enctype="multipart/form-data" onsubmit="return validated()">
-            <h2>Create Post</h2>
-            <input type="text" value=<?php echo $_SESSION['username'] ?> name="author" id="input-field">
-            <input type="text" placeholder="Title Name" name="title" id="input-field">
-            <input type="file" name="image" value="choose image" id="file"><br>
-            <select id="category" name="category">
-              <option disabled selected>Select Type for your blog</option>
-              <option value="social">Social</option>
-              <option value="anime">Anime</option>
-              <option value="food">Food</option>
-              <option value="gaming">Gaming</option>
-              <option value="travel">Travel</option>
-              <option value="sports">Sports</option>
-
-            </select>
-            <textarea id="txt" cols="30" rows="4" name="description" id="input-field" maxlength="800"></textarea>
-            <textarea id="txt" cols="30" rows="3" name="short" id="input-field" maxlength="255"></textarea>
-
-            <button type="submit" name="submit" class="btn">SUBMIT</button>
-
-
-
-
-
-          </form>
-
-        </div>
-      </div>
-  <?php }
-}
-include('footer.php'); ?>
-  <script src="javascript" href="css/js/login.js"></script>
-    </body>
-
-    </html>
+                        <button type="submit" name="submit">Post</button>
+                    </form>
+                </div>
+            </div>

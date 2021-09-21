@@ -1,7 +1,11 @@
 <?php
 
 include '../classes/autoload.php';
-
+if (isset($_GET['page'])) {
+    $page = $_GET['page'];
+} else {
+    $page = 1;
+}
 session_start();
 
 
@@ -54,11 +58,11 @@ foreach ($sql as $row) {
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Welcome</title>
-        <link rel="stylesheet" href="../../scss/style.css">
-        <link rel="stylesheet" href="../../scss/container.css">
-        <link rel="stylesheet" href="../../scss/nav.css">
-        <link rel="stylesheet" href="../../css/footer.css">
-        <link rel="stylesheet" href="../../scss/notify.css">
+        <link rel="stylesheet" href="../../css/style.css">
+        <link rel="stylesheet" href="../../css/container.css">
+        <link rel="stylesheet" href="../../css/nav.css">
+        <link rel="stylesheet" href="../../css/old/footer.css">
+        <link rel="stylesheet" href="../../css/notify.css">
         <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
         <script>
             setTimeout(fade_out, 5000);
@@ -84,10 +88,10 @@ foreach ($sql as $row) {
                     <li><a href="../Authors/authinfo.php"> Author</a></li>
 
                     <input type="text" id="notify" value="<?php echo $count ?>">
-                    <li><a href="../Admin/authreq.php">Request</a></li>
-                    <li><?php echo "<a href=\"../Authors/account.php?id=$row[id]\">" ?>Details</a></li>
-                    <li><a href="../Post/scategory.php">Category</a></li>
-                    <li><a href="../login/logout.php"><i class="fas fa-sign-out-alt"></i>&nbsp;Logout</a></li>
+                    <li><a href="../Admin/authreq">Request</a></li>
+                    <li><?php echo "<a href=\"../Authors/account?id=$row[id]\">" ?>Details</a></li>
+                    <li><a href="../Post/scategory">Category</a></li>
+                    <li><a href="../login/logout"><i class="fas fa-sign-out-alt"></i>&nbsp;Logout</a></li>
                 </ul>
             </li>
 
@@ -121,7 +125,7 @@ foreach ($sql as $row) {
     include('../Post/container.php');
 }
     ?>
-    <script src="../../css/js/index.js"></script>
+    <script src="../css/js/index.js"></script>
     </body>
 
     </html>

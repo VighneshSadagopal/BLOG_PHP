@@ -1,6 +1,6 @@
 <?php 
 
-include 'config.php';
+include '../classes/autoload.php';
 
 session_start();
 
@@ -8,7 +8,7 @@ if (isset($_SESSION['username'])){
    $id=$_SESSION['id'];
 }
 else{
-    header("Location: login1.php");
+    header("Location: login");
 }
 
 
@@ -28,10 +28,10 @@ if (isset($_REQUEST['info'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome</title>
-    <link rel="stylesheet" href="css/author.css">  
-    <link rel="stylesheet" href="scss/nav.css">  
-    <link rel="stylesheet" href="css/footer.css"> 
-    <link rel="stylesheet" href="scss/notify.css"> 
+    <link rel="stylesheet" href="../../css/old/author.css">  
+    <link rel="stylesheet" href="../../css/nav.css">  
+    <link rel="stylesheet" href="../../css/old/footer.css"> 
+    <link rel="stylesheet" href="../../css/notify.css"> 
 
     <script src="https://kit.fontawesome.com/ec41712638.js" crossorigin="anonymous"></script>
  
@@ -40,15 +40,15 @@ if (isset($_REQUEST['info'])) {
 <div class="image">
          <h1>View Our Contributers</h1>
          <a href="#tab" id="bb">Lets GO</a>
-<?php include('nav.php');?>
+<?php include('../headers/nav.php');?>
         
      
         <div class="right">
         <li><a href="#" id="name" ><?php echo $_SESSION['username']?>&nbsp;<i class="tiny material-icons" >arrow_drop_down_circle</i></a>
             <ul>
-               <li><a href="admin.php">Dashboard</a></li>
+               <li><a href="../Admin/admin">Dashboard</a></li>
            
-                <li><a href="logout.php"><i class="tiny material-icons" >power_settings_new</i>&nbsp;LOGOUT</a></li>
+                <li><a href="../login/logout"><i class="tiny material-icons" >power_settings_new</i>&nbsp;LOGOUT</a></li>
             </ul>
         </li>
 </div>
@@ -63,8 +63,10 @@ if (isset($_REQUEST['info'])) {
 
 
 <?php
-$query=mysqli_query($conn,"SELECT * FROM users where usertype='user'");
-if($query->num_rows > 0){
+$u = new users;
+$usertype = "user";
+$sql = $u->getUserByUsertype($usertype);
+if($u->rowCount() > 0){
 
 
 ?>
@@ -81,12 +83,12 @@ if($query->num_rows > 0){
 </thead>
   
             <?php
-       while($res=mysqli_fetch_array($query)){
+      foreach($sql as $res){
 
             echo'<tr>';
             echo '<td>'.$res['username'].'</td>' ;
-            echo "<td><a href=\"authoredit.php?id=$res[id]\"><input type='submit' value='Edit'</a>" ;
-            echo "<td><a href=\"deleteauth.php?id=$res[id]\"><input type='submit' value='Delete'</a>" ;
+            echo "<td><a href=\"../Admin/authoredit?id=$res[id]\"><input type='submit' value='Edit'</a>" ;
+            echo "<td><a href=\"../Admin/deleteauth?id=$res[id]\"><input type='submit' value='Delete'</a>" ;
             echo '</tr>';
         }
       }
@@ -96,9 +98,9 @@ if($query->num_rows > 0){
        
       
         </div>
-        <?php include('footer.php')?>
+        <?php include('../headers/footer.php')?>
 
-        <script src="css/js/index.js"></script>
+        <script src="../../css/js/index.js"></script>
         
 
 </body>

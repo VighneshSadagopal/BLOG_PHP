@@ -3,6 +3,12 @@
 include '../classes/autoload.php';
 include '../classes/config.php';
 
+if (isset($_GET['page'])) {
+    $page = $_GET['page'];
+} else {
+    $page = 1;
+}
+
 session_start();
 
 if (isset($_SESSION['username'])) {
@@ -16,14 +22,24 @@ if (isset($_REQUEST['info'])) {
         echo "<div id='alert'><small1> Login Successfull&nbsp;&nbsp;&nbsp;</small1></div>";
     }
 }
+if (isset($_REQUEST['info'])) {
+
+    if ($_REQUEST['info'] == "success") {
+        echo "<div id='alert'><small1>Wow Registration successful</small1></div>";
+    }
+}
+$u = new Users;
+
 
 $author = $_SESSION['username'];
 
-$query = mysqli_query($conn, "SELECT * from users where  username='$author' ");
 
-if ($query->num_rows > 0) {
+$query =  $u->getUserByName($author);
 
-    while ($row = mysqli_fetch_array($query)) {
+if ($u->rowcount() > 0) {
+
+    foreach ($query as $row) {
+        $image = $row['profilepic'];
 
 ?>
 
@@ -34,11 +50,11 @@ if ($query->num_rows > 0) {
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <title>Welcome</title>
-            <link rel="stylesheet" href="../../scss/style.css">
-            <link rel="stylesheet" href="../../scss/container.css">
-            <link rel="stylesheet" href="../../scss/nav.css">
+            <link rel="stylesheet" href="../../css/style.css">
+            <link rel="stylesheet" href="../../css/container.css">
+            <link rel="stylesheet" href="../../css/nav.css">
             <link rel="stylesheet" href="../../css/footer.css">
-            <link rel="stylesheet" href="../../scss/notify.css">
+            <link rel="stylesheet" href="../../css/notify.css">
             <script src="https://kit.fontawesome.com/ec41712638.js" crossorigin="anonymous"></script>
             <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
             <script>
@@ -48,6 +64,7 @@ if ($query->num_rows > 0) {
                     $("#alert").fadeOut().empty();
                 }
             </script>
+            <script src= "https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.0/FileSaver.min.js"></script>
 
         </head>
 
@@ -61,13 +78,14 @@ if ($query->num_rows > 0) {
 
 
                 <div class="right">
+                    <img src="../../images/<?php echo $image ?>" id =" clipped" class="extra">
                     <li><a href="#" id="name"><?php echo $_SESSION['username'] ?>&nbsp;<i class="fas fa-caret-down"></i></a>
                         <ul>
 
-                            <li><?php echo "<a href=\"account.php?id=$row[id]\">" ?>Details</a></li>
-                            <li><?php echo "<a href=\"mypost.php?id=$row[id]\">" ?>MyPost</a></li>
-                            <li><a href="../Post/category.php">Category</a></li>
-                            <li><a href="../login/logout.php"><i class="tiny material-icons">power_settings_new</i>&nbsp;Logout</a></li>
+                            <li><?php echo "<a href=\"account?id=$row[id]\">" ?>Details</a></li>
+                            <li><?php echo "<a href=\"mypost?id=$row[id]\">" ?>MyPost</a></li>
+                            <li><a href="../Post/category">Category</a></li>
+                            <li><a href="../login/logout"><i class="tiny material-icons">power_settings_new</i>&nbsp;Logout</a></li>
                         </ul>
                     </li>
                 </div>
@@ -77,34 +95,76 @@ if ($query->num_rows > 0) {
                     <i class="fas fa-bars"></i>
 
                 </div>
-                <!-- <div>
-        <input type="checkbox" class="checkbox" id="chk" />
-        <label class="label" for="chk">
-            <i class="fas fa-moon"></i>
-            <i class="fas fa-sun"></i>
-            <div class="ball"></div>
-        </label>
-    </div>-->
+             
             </div>
             </div>
             </div>
 
 
 
-            <button id="create"> <?php echo "<a href=\"createpost.php?id=$row[id]\">" ?><div class="tooltip"><i class="small material-icons">control_point</i></a>
-                    <span class="tooltext">Create</span>
-                </div>
-            </button><br><br>
 
+           
 
     <?php }
 }
-include('../Post/container.php'); ?>
+include('../Post/createpost.php'); 
+include('../Post/container.php'); 
+
+?>
+<div class="side view">
+     
+
+      <ul>
 
 
+        <li>
+          <h2>Recent Post <i class="fas fa-caret-down"></i></h2>
+          <?php
+          $sql = $p->getRecent();
+
+          foreach ($sql as $row) {
+            $image = $row['images'];
+          ?>
+            <ul>
+              <l1>
+                <div class="recent">
+                  <div class="container">
+
+                    <img src="../../images/<?php echo $image ?>">
+                    <h1><?php echo $row['title'] ?></h1>
+                  </div>
+                </div>
+              </l1>
+            </ul>
+
+          <?php } ?>
+        </li>
+        <li>
+          <h2>Trending Topics<i class="fas fa-caret-down"></i></h2>
+        </li>
+        <li>
+          <h2>Authors <i class="fas fa-caret-down"></i></h2>
+        </li>
+        <li>
+          <h2>Most Liked <i class="fas fa-caret-down"></i></h2>
+        </li>
+
+      </ul>
+
+    </div>
+
+  </div>
+
+    <div class="foot more">
+        <?php include('../headers/footer.php');
+        echo $p = '<p class="unauthenticate"><a href="authenticate.php">Want To Be An Author? </a></p>' ?>
+    </div>
     <script src="../../css/js/nav_responsive.js"></script>
 
-
+    <script src="../../css/js/loadcreate.js"></script>
+    <script>
+  
+  </script>
         </body>
 
         </html>

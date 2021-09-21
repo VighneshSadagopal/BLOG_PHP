@@ -54,7 +54,7 @@ if (isset($_POST['update'])) {
     $imgname = $_FILES['image']['name'];
 
     $tempname = $_FILES['image']['tmp_name'];
-    move_uploaded_file($tempname, "../../images/$imgname");
+    move_uploaded_file($tempname,"../../images/$imgname");
     $author = $_POST['author'];
     $title = $_POST['title'];
     $description = $_POST['description'];

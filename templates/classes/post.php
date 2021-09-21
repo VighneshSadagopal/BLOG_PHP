@@ -19,6 +19,14 @@ class Post extends Database
         return $row;
         
     }
+    public function getPerPost($start,$per)
+    {
+        $sql = $this->db->query("SELECT * FROM post ORDER BY pid  LIMIT $start,$per ");
+        $stmt = $this->db->execute($sql);
+        $row = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $row;
+        
+    }
     public function getAllPostByCategory($category)
     {
         $sql = $this->db->query("SELECT * FROM post WHERE category=:category ORDER BY pid DESC");
@@ -36,6 +44,13 @@ class Post extends Database
         $stmt = $this->db->execute($sql);
         $row = $stmt->fetchALL(PDO::FETCH_ASSOC); 
         
+        return $row;
+    }
+    public function getRecent()
+    {
+        $sql = $this->db->query("SELECT * FROM post ORDER BY pid DESC LIMIT 3");
+        $stmt = $this->db->execute($sql);
+        $row = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $row;
     }
     public function getPostByJoin($pid, $id)

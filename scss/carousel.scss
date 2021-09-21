@@ -16,6 +16,7 @@
     max-height: 100vh;
     position: relative;
     background-color: #000;
+    background-attachment: fixed;
     h1 {
         position: absolute;
         color: #fff;
@@ -23,6 +24,8 @@
         top: 45%;
         width: 100%;
         text-align: center;
+        text-transform: capitalize;
+        animation: text 1s 1;
         @include mobile {
             font-size: 22px;
         }
@@ -39,10 +42,12 @@
         left: 44%;
         transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
         color: #fff;
-        background-color: aqua;
+        background-color: rgba(0, 255, 255, 0.822);
         font-size: 20px;
-        font-weight: 700;
+        font-weight: 800;
         text-decoration: none;
+        text-align: center;
+        animation: text 1s 1;
         @include mobile {
             left: 35%;
             font-size: 12px;
@@ -60,7 +65,7 @@
         img {
             width: 100%;
             height: 100vh;
-            opacity: 60%;
+            opacity: 35%;
             @include mobile {
                 height: 59vh;
             }
@@ -126,5 +131,11 @@
             color: #fff;
             opacity: 70%;
         }
+    }
+}
+
+@keyframes text {
+    0% {
+        top: 60%;
     }
 }

@@ -3,7 +3,11 @@
 include 'templates/classes/autoload.php';
 session_start();
 
-
+if (isset($_GET['page'])) {
+  $page = $_GET['page'];
+} else {
+  $page = 1;
+}
 
 ?>
 
@@ -18,13 +22,16 @@ session_start();
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Homepage</title>
 
-  <link rel="stylesheet" href="scss/carousel.css">
-  <link rel="stylesheet" href="css/footer.css">
-  <link rel="stylesheet" href="scss/nav.css">
-  <link rel="stylesheet" href="scss/container.css">
-  <link rel="stylesheet" href="scss/style.css">
+  <link rel="stylesheet" href="css/carousel.css">
+  <link rel="stylesheet" href="css/old/footer.css">
+  <link rel="stylesheet" href="css/nav.css">
+  <link rel="stylesheet" href="css/container2.css">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
   <script src="https://kit.fontawesome.com/ec41712638.js" crossorigin="anonymous"></script>
+
 
 </head>
 
@@ -40,8 +47,8 @@ session_start();
         <div class="icon cancel-btn">
           <i class="fas fa-times"></i>
         </div>
-        <li><a href="index.php">Home</a></li>
-        <li><a href="#">About</a></li>
+        <li><a href="index">Home</a></li>
+        <li><a href="#about">About</a></li>
         <li><a href="#">Services</a></li>
         <li><a href="#">Carrer</a></li>
         <li><a href="#">Contact Us</a></li>
@@ -49,9 +56,12 @@ session_start();
 
           <?php
           if (isset($_SESSION['username'])) {
-          ?> <li><a href="templates/login/login.php">Dashboard</a></li>
+            $image = $_SESSION['profilepic'];
+          ?>
+            <img src="images/<?php echo $image ?>" id=" clipped" class="extra">
+            <li><a href="templates/login/login" id="name">Dashboard</a></li>
           <?php
-          } else { ?><li><a href="templates/login/login.php" id="name">LOGIN</a></li><?php } ?>
+          } else { ?><li><a href="templates/login/login" id="name">LOGIN</a></li><?php } ?>
 
         </div>
 
@@ -67,26 +77,20 @@ session_start();
       <div class="carousel__item carousel__item--visible">
         <img src="css/images/background.png" />
         <h1>WELCOME TO THE OCEAN</h1>
-        <a href="#post" id="bb">Lets Dive In</a>
+        <a href="#" id="bb">Lets Dive In</a>
       </div>
-      <?php
 
-      $p = new Post;
-      $sql = $p->getAllPost();
 
-      foreach ($sql as $row) {
-        $image = $row['images'];
-
-      ?>
-
-        <div class="carousel__item ">
-          <img src="images/<?php echo $image ?>" />
-          <h1><?php echo $row['title'] ?></h1><br><br>
-        </div>
-      <?php
-      }
-
-      ?>
+      <div class="carousel__item ">
+        <img src="css/images/constilation.gif">
+        <h1>Search for blogs of your Liking</h1>
+        <a href="#featured" id="bb">Check Out</a>
+      </div>
+      <div class="carousel__item ">
+        <img src="css/images/blog2.jpg">
+        <h1>Become an author and help in growing the knowledge</h1>
+        <a href="#" id="bb">Lets See</a>
+      </div>
 
 
       <div class="carousel__actions">
@@ -95,88 +99,172 @@ session_start();
       </div>
 
     </div>
+    <div class="tags">
+      <h1>Featured Post</h1>
+    </div>
+    <div class="featured" id="featured">
+      <div class="wrap">
+        <div class="wrap-1">
+          <div class="feature1">
+            <span><i class="fas fa-circle"></i>Anime</span>
+            <span2><i class="fas fa-star"></i></span2>
+            <div id="zoom">
+              <img src="images/Boruto-Anime-and-Manga-Featured.jpg">
 
-    <form method="post">
-      <select id="search" name="category">
-        <option value="">Search By Category</option>
-        <option value="social">Social</option>
-        <option value="anime">Anime</option>
-        <option value="food">Food</option>
-        <option value="gaming">Gaming</option>
-        <option value="travel">Travel</option>
-        <option value="sports">Sports</option>
-      </select>
-      <button type="submit" name="show" id="show"><i class="fas fa-search"></i></button>
-    </form>
-    <div class="post" id="post">
+            </div>
+            <h1>Can Boruto surpass naruto and saskue</h1>
+
+          </div>
+          <div class="feature2">
+            <span><i class="fas fa-circle"></i>Travel</span>
+            <span2><i class="fas fa-star"></i></span2>
+
+            <div id="zoom">
+              <img src="images/Lonavalamh.jpg">
+            </div>
+            <h1>Lonavala Best Trip Now</h1>
+          </div>
+          <div class="feature3">
+            <span><i class="fas fa-circle"></i>Social</span>
+            <span2><i class="fas fa-star"></i></span2>
+            <div id="zoom">
+              <img src="images/earth.jpg">
+            </div>
+            <h1>Planet Earth</h1>
+          </div>
+          <div class="feature4">
+            <span><i class="fas fa-circle"></i>Sports</span>
+            <span2><i class="fas fa-star"></i></span2>
+            <div id="zoom">
+              <img src="images/transfers-messi.jpg">
+            </div>
+            <h1>Messi Transfer excites</h1>
+          </div>
+        </div>
+        <div class="feature5">
+          <span><i class="fas fa-circle"></i>Food</span>
+          <span2><i class="fas fa-star"></i></span2>
+          <div id="zoom">
+            <img src="images/food.jpg">
+          </div>
+          <h1>10 Protien foods good for health</h1>
+        </div>
+      </div>
+    </div>
+    <div class="aboutus" id="about">
+      <h1>About Us</h1>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur reiciendis quam architecto animi cum perspiciatis porro, necessitatibus, laboriosam vitae provident earum modi molestias magnam, ullam doloribus ad quidem iusto. Harum nihil vel hic soluta laudantium consequatur vitae culpa, aut porro sint impedit? Modi quaerat voluptatum eum explicabo voluptas officia minima. Minima ducimus, necessitatibus ea perferendis adipisci, sint eaque voluptatem minus quod neque deserunt accusantium maiores. Quasi ipsam possimus magni. Aperiam amet culpa facilis beatae aliquam inventore animi nesciunt assumenda. Natus, placeat blanditiis repellat beatae ducimus esse officiis? Nihil alias blanditiis labore cumque consequatur tempore beatae, impedit, dignissimos natus illum repellat.</p>
+    </div>
+
+    <div class="tags1">
+      <h1>All Post</h1>
+    </div>
+    <div class="wrap-content">
+      <div class="post" id="post">
 
 
-      <?php
-      $category = "";
-      if (isset($_POST['show'])) {
-        $category = $_POST['category'];
-      }
-      if (!$category == "") {
+        <?php
+        $p = new Post;
+        $sql = $p->getAllPost();
+        $count = $p->rowCount();
+        $per_page = 4;
+        $nom_of_pages = ceil($count / $per_page);
+        $start = ($page - 1) * $per_page;
 
+        $sql1 = $p->getPerPost($start, $per_page);
 
-        $sql = $p->getAllPostByCategory($category);
-
-        foreach ($sql as $row) {
+        foreach ($sql1 as $row) {
           $image = $row['images'];
+          $short = substr($row['description'], 0, 255);
+          $desc = trim($short, ("/\r|\n/"));
 
-      ?>
+        ?>
+
 
           <div class="container">
-         
-              <img src="images/1630508748052.png" id="tag" disabled>
-              <p id="category"><?php echo $row['category'] ?> </p>
-              <div id="zoom">
-          <img src="images/<?php echo $image ?>">   </div>
-              <h1><?php echo $row['title'] ?></h1><br><br>
-              <p><?php echo $row['short'] ?> </p>
-              <p id="read"><?php echo "<a href=\"seperate1.php?pid=$row[pid]\">" ?>Read more</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>~<?php echo $row['author'] ?></span></p>
-            </div>
+            <div id="zoom">
+              <span1><i class="fas fa-circle"></i><?php echo $row['category'] ?> </span1>
 
+              <img src="images/<?php echo $image ?>">
 
-          <?php
-        }
-      } else {
-
-        $sql = $p->getAllPost();
-
-        foreach ($sql as $row) {
-          $image = $row['images'];
-
-          ?>
-
-            <div class="container">
-
-              <img src="images/1630508748052.png" id="tag" disabled>
-              <p id="category"><?php echo $row['category'] ?> </p>
-              <div id="zoom">
-                <img src="images/<?php echo $image ?>">
+              <div class="content">
+                <h1><?php echo $row['title'] ?></h1><br><br>
+                <p><?php echo $desc ?> </p>
+                <p id="read"><?php echo "<a href=\"templates/Post/seperate1.php?pid=$row[pid]\">" ?>Read more</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>~<?php echo $row['author'] ?></span></p>
               </div>
-              <h1><?php echo $row['title'] ?></h1><br><br>
-              <p><?php echo $row['short'] ?> </p>
-              <p id="read"><?php echo "<a href=\"seperate1.php?pid=$row[pid]\">" ?>Read more</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>~<?php echo $row['author'] ?></span></p>
-
             </div>
+          </div>
 
         <?php
 
         }
-      }
-
-
-
         ?>
 
 
 
 
-        <?php include('templates/headers/footer.php'); ?>
-          </div>
+
+
+      </div>
+      <div class="side">
+
+        <ul>
+
+
+          <li>
+            <h2>Recent Post <i class="fas fa-caret-down"></i></h2>
+            <?php
+            $sql = $p->getRecent();
+
+            foreach ($sql as $row) {
+              $image = $row['images'];
+            ?>
+              <ul>
+                <l1>
+                  <div class="recent">
+                    <div class="container">
+
+                      <img src="images/<?php echo $image ?>">
+                      <h1><?php echo $row['title'] ?></h1>
+                    </div>
+                  </div>
+                </l1>
+              </ul>
+
+            <?php } ?>
+          </li>
+          <li>
+            <h2>Trending Topics<i class="fas fa-caret-down"></i></h2>
+          </li>
+          <li>
+            <h2>Authors <i class="fas fa-caret-down"></i></h2>
+          </li>
+          <li>
+            <h2>Most Liked <i class="fas fa-caret-down"></i></h2>
+          </li>
+
+        </ul>
+
+      </div>
+    
+
     </div>
+    <ul class="pagination">
+
+<?php
+for ($i = 1; $i <= $nom_of_pages; $i++) {
+?>
+  <li <?php
+      if ($page == $i) {
+        echo "class='active'";
+      }
+      ?>><a href="<?php echo $i; ?>"><?php echo $i; ?></a></li>
+<?php
+}
+?>
+
+</ul>
+  </div>
 
 
 
@@ -184,6 +272,10 @@ session_start();
 
 
 
+  <div class="foot">
+    <?php include('templates/headers/footer.php');
+    echo $p = '<p class="unauthenticate"><a href="templates/login/register">Want To Be An Author? </a></p>' ?>
+  </div>
 </body>
 <script src="css/js/carousel.js"></script>
 <script src="css/js/nav_responsive.js"></script>

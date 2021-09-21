@@ -1,20 +1,22 @@
 <?php
 
-include 'config.php';
+include '../classes/autoload.php';
 
 session_start();
 
 if (isset($_SESSION['username'])) {
 } else {
-    header("Location: login.php");
+    header("Location: login");
 }
-
+$u = new Users;
 $id = $_GET['id'];
 $author = $_SESSION['username'];
-$query = mysqli_query($conn, "SELECT * from users where id=$id ");
-if ($query->num_rows > 0) {
+$query =  $u->getUserByName($author);
 
-    while ($row = mysqli_fetch_array($query)) {
+if ($u->rowcount() > 0) {
+
+    foreach ($query as $row) {
+
 
 ?>
 
@@ -25,10 +27,10 @@ if ($query->num_rows > 0) {
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <title>Welcome</title>
-            <link rel="stylesheet" href="scss/style.css">
-            <link rel="stylesheet" href="css/footer.css">
-            <link rel="stylesheet" href="scss/nav.css">
-            <link rel="stylesheet" href="scss/container.css">
+            <link rel="stylesheet" href="../../css/style.css">
+            <link rel="stylesheet" href="../../css/old/footer.css">
+            <link rel="stylesheet" href="../../css/nav.css">
+            <link rel="stylesheet" href="../../css/container.css">
             <script src="https://kit.fontawesome.com/ec41712638.js" crossorigin="anonymous"></script>
         </head>
 
@@ -36,14 +38,14 @@ if ($query->num_rows > 0) {
             <div class="image" id="img">
                 <h1>WELCOME &nbsp;&nbsp;<?php echo $author ?></h1>
                 <a href="#create" id="bb">Check Out</a>
-                <?php include('nav.php'); ?>
+                <?php include('../headers/nav.php'); ?>
 
 
                 <div class="right">
                     <li><a href="#" id="name"><?php echo $_SESSION['username'] ?>&nbsp;<i class="fas fa-caret-down"></i></a>
                         <ul>
-                            <li><?php echo "<a href=\"account.php?id=$row[id]\">" ?>Details</a></li>
-                            <li><a href="login.php">Dashboard</a></li>
+                            <li><?php echo "<a href=\"account?id=$row[id]\">" ?>Details</a></li>
+                            <li><a href="../login/login">Dashboard</a></li>
                             <li><a href=""><i class="tiny material-icons">power_settings_new</i>&nbsp;LOGOUT</a></li>
                         </ul>
                     </li>
@@ -62,12 +64,15 @@ if ($query->num_rows > 0) {
             <?php
         }
     }
+    $p = new Post;
     $id = $_GET['id'];
     $author = $_SESSION['username'];
-    $query = mysqli_query($conn, "SELECT * from post where id=$id ");
-    if ($query->num_rows > 0) {
+    $query =  $p->getPostById($id);
 
-        while ($res = mysqli_fetch_array($query)) {
+    if ($p->rowcount() > 0) {
+    
+        foreach ($query as $res) {
+    
             $image = $res['images'];
             ?>
                
@@ -94,7 +99,7 @@ if ($query->num_rows > 0) {
 
         ?>
 
-        <?php include('footer.php'); ?>
+        <?php include('../headers/footer.php'); ?>
             </div>
             <script src="css/js/nav_responsive.js"></script>
 

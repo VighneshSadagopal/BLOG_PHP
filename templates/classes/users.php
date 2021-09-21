@@ -48,24 +48,24 @@ class Users extends Database
     }
     public function getUserByEmail($email)
     {
-        $sql = "SELECT * FROM users WHERE email=:email";
+        $sql = $this->db->query("SELECT * FROM users WHERE email=:email");
         $this->db->bind(':email', $email);
         $stmt = $this->db->execute($sql);
-        $row = $stmt->fetch();
-        $data[] = $row;
-        return $data;
+        $result=$stmt-> rowCount();
+        return $result;
     }
 
 
     public function addUser($data)
     {
-        $this->db->query("INSERT INTO `users`(`username`, `email`, `password`, `your`, `usertype`, `dob`) VALUES (:username,:email,:password,:your,:usertype,:dob)");
+        $this->db->query("INSERT INTO `users`(`username`, `email`, `password`, `your`, `usertype`, `dob`,`profilepic`) VALUES (:username,:email,:password,:your,:usertype,:dob,:profilepic)");
         $this->db->bind(':username', $data['username']);
         $this->db->bind(':email', $data['email']);
         $this->db->bind(':password', $data['password']);
         $this->db->bind(':your', $data['your']);
         $this->db->bind(':usertype', $data['usertype']);
         $this->db->bind(':dob', $data['dob']);
+        $this->db->bind(':profilepic', $data['profilepic']);
 
         return $this->db->execute();
     }
@@ -105,5 +105,16 @@ class Users extends Database
         
 
         return $this->db->execute();
+    }
+    public function getUserByUsertype($usertype)
+    {
+        $sql = $this->db->query("SELECT * FROM users WHERE usertype=:usertype");
+        $this->db->bind(':usertype', $usertype);
+        $stmt = $this->db->execute($sql);
+        $row = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    
+        return $row;
+
+        
     }
 }

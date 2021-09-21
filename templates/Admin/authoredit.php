@@ -1,6 +1,6 @@
 <?php
 
-include ('config.php');
+include ('../classes/autoload.php');
 session_start();
 
 if (!isset($_SESSION['username'])) {
@@ -9,12 +9,13 @@ if (!isset($_SESSION['username'])) {
 
 $id= $_REQUEST['id'];
 $author=$_SESSION['username'];
+$u = new users;
 
-$query=mysqli_query($conn,"SELECT * from users where id=$id  ");
-if ($query->num_rows > 0){
+$query =  $u->getUserById($id);
 
-    while($res=mysqli_fetch_array($query)){
-       
+if ($u->rowcount() > 0) {
+
+    foreach ($query as $res) {
       
            
         $id=$res['id'];
@@ -36,7 +37,8 @@ if ($query->num_rows > 0){
         $dob=$_POST['dob'];
         $your=$_POST['your'];
 
-        $result=mysqli_query($conn,"UPDATE users SET username='$author',email='$email',dob='$dob',your='$your'where id='$id'");
+        $data=['username'=>$username,'email'=>$email,'password'=>$password,'your'=>'','usertype'=>'','dob'=>$dob];
+        $result = $u->updateUser($data);
         if($result){
             echo "<script>alert('Successfully Updated.')</script>";
         }
@@ -49,13 +51,15 @@ if ($query->num_rows > 0){
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="css/index.css">
-    <link rel="stylesheet" href="css/footer.css">  
+    <link rel="stylesheet" href="../../css/index.css">
+    <link rel="stylesheet" href="../../css/nav.css">
+    <link rel="stylesheet" href="../../css/old/footer.css">  
     <meta charset="UTF-8">
     <script src="https://kit.fontawesome.com/ec41712638.js" crossorigin="anonymous"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Author Edit</title>
 </head>
+
 <body>
     
 <?php
@@ -69,18 +73,19 @@ if ($query->num_rows > 0){
                 $your="";
 
             }
+         
 ?>
    
         <div class="image">
   
  
-        <a href="authinfo.php"><i class="fas fa-arrow-circle-left" id="back"></i></a>
+        <a href="../Authors/authinfo"><i class="fas fa-arrow-circle-left" id="back"></i></a>
         </div>
         <div class ="contain2">
            
 
             <div class="logo">
-                <img src="css/images/logo3.png"><h2>Visual Select</h2>
+                <img src="../../css/images/logo3.png"><h2>Visual Select</h2>
             </div>
 			<form action="" method="POST" class="form" onsubmit="return validated()">
                 <h3>Author Details</h3>
@@ -98,7 +103,7 @@ if ($query->num_rows > 0){
                 <button name="update" class="btn">Update</button>
 </form>
             
-<?php include('footer.php');?>
+
         </div>
 		<script src="javascript" href="css/js/login.js"></script>
 </body>

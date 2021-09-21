@@ -8,13 +8,13 @@ session_start();
 
 if(isset($_SESSION['username'])){
     if($_SESSION['usertype'] =="admin"){
-        header("location:../Admin/admin.php");
+        header("location:../Admin/admin");
     }
     elseif($_SESSION['usertype'] =="user"){
-        header("location:../Author/welcome.php");
+        header("location:../Authors/welcome");
     }
     elseif($_SESSION['usertype'] ==""){
-        header("location:../Author/anonmoyous.php");
+        header("location:../Authors/anonmoyous");
     }
 
 }
@@ -26,16 +26,18 @@ if (isset($_POST['submit'])) {
     $email = $_POST['email'];
     $password = md5($_POST['password']);
    $sql=$u->login($email,$password);
+   $res= $u->rowCount() > 0;
+ 
    foreach ($sql as $data) {
         $_SESSION['email'] = $data['email'];
         $_SESSION['username'] = $data['username'];
         $_SESSION['id'] = $data['id'];
         $_SESSION['usertype']=$data['usertype'];
+        $_SESSION['profilepic']=$data['profilepic'];
         
 
    
-   $res= $u->rowCount() > 0;
-   echo $res;
+
         if($res){
 
        
@@ -47,7 +49,7 @@ if (isset($_POST['submit'])) {
         
             }
            
-                header("location:../Admin/admin.php?info=login");
+                header("location:../Admin/admin?info=login");
             }
       
         elseif($data['usertype']=='user'){
@@ -57,7 +59,7 @@ if (isset($_POST['submit'])) {
         
             }
            
-                header("location:../Authors/welcome.php?info=login");
+                header("location:../Authors/welcome?info=login");
             }
             elseif($data['usertype']==''){
                 if(isset($_POST['check'])){
@@ -67,7 +69,7 @@ if (isset($_POST['submit'])) {
                 }else{
                     echo "error occured";
                 }
-                    header("location:../Authors/anonmoyous.php?info=login");
+                    header("location:../Authors/anonmoyous?info=login");
                
         }
         
@@ -87,9 +89,10 @@ if (isset($_POST['submit'])) {
 <!DOCTYPE html>
 <html lang="en">
     <head>  
-  <link rel="stylesheet" href="../../scss/index.css">
-  <link rel="stylesheet" href="../../scss/nav.css">
-  <link rel="stylesheet" href="../../css/footer.css">
+  <link rel="stylesheet" href="../../css/index.css">
+  <link rel="stylesheet" href="../../css/nav.css">
+  <link rel="stylesheet" href="../../css/old/footer.css">
+  <link rel="stylesheet" href="../../css/notify.css">
         <meta charset="UTF-8">
         <script src="https://kit.fontawesome.com/ec41712638.js" crossorigin="anonymous"></script>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">

@@ -1,9 +1,9 @@
 <?php
 
 
-include 'database.php';
+include '../classes/autoload.php';
 
-$obj = new Database();
+$obj = new Policy;
 session_start();
 
 if (!isset($_SESSION['username'])) {
@@ -16,7 +16,7 @@ if (isset($_POST['submit'])) {
 
     $message = $_POST['message'];
 
-    $obj->insert('policy', ['name'=>$username,'message' => $message,'status'=>'unchecked']);
+    $obj->getStatus();
     
         echo "Successfully Updated";
         header("location:anonmoyous.php?info=sent");
