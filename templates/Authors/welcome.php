@@ -157,7 +157,7 @@ include('../Post/container.php');
 
     <div class="foot more">
         <?php include('../headers/footer.php');
-        echo $p = '<p class="unauthenticate"><a href="authenticate.php">Want To Be An Author? </a></p>' ?>
+        ?>
     </div>
     <script src="../../css/js/nav_responsive.js"></script>
 

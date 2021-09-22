@@ -274,7 +274,7 @@ for ($i = 1; $i <= $nom_of_pages; $i++) {
 
   <div class="foot">
     <?php include('templates/headers/footer.php');
-    echo $p = '<p class="unauthenticate"><a href="templates/login/register">Want To Be An Author? </a></p>' ?>
+     ?>
   </div>
 </body>
 <script src="css/js/carousel.js"></script>
