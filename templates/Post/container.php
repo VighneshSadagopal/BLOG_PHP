@@ -1,4 +1,4 @@
-<div class="dash_post" id="post">
+<div class="dash_post view" id="post">
 
 
   <?php

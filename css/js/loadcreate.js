@@ -35,6 +35,7 @@ const video = document.getElementById("video");
 const canvas = document.getElementById("canvas");
 const snap = document.getElementById("snap");
 const upload = document.getElementById("upload");
+const submit = document.getElementById("submit");
 const errorMsgelement = document.getElementById("snaperror");
 const file = document.querySelector("#filebtn");
 
@@ -64,12 +65,23 @@ snap.addEventListener("click", function() {
     context.drawImage(video, 0, 0, 640, 480);
 
 
+
 });
 upload.addEventListener("click", function() {
     canvas.toBlob(function(blob) {
 
+        var img = {};
 
-        saveAs(blob, "image.png");
+        img.name = canvas.toDataURL();
+        saveAs(blob, img.name);
+        $.ajax({
+            url: "formfunction.php",
+            method: "post",
+            data: img,
+            success: function(res) {
+                console.log(res);
+            }
+        });
     });
 });
 

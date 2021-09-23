@@ -56,7 +56,7 @@ if ($u->rowcount() > 0) {
             <link rel="stylesheet" href="../../css/footer.css">
             <link rel="stylesheet" href="../../css/notify.css">
             <script src="https://kit.fontawesome.com/ec41712638.js" crossorigin="anonymous"></script>
-            <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+            <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
             <script>
                 setTimeout(fade_out, 5000);
 
@@ -104,14 +104,16 @@ if ($u->rowcount() > 0) {
 
 
            
-
+<div class="wrap-content">
+  <div class="wrap-1">
     <?php }
 }
 include('../Post/createpost.php'); 
 include('../Post/container.php'); 
 
 ?>
-<div class="side view">
+</div>
+<div class="side">
      
 
       <ul>
@@ -154,14 +156,16 @@ include('../Post/container.php');
     </div>
 
   </div>
+  </div>
 
     <div class="foot more">
         <?php include('../headers/footer.php');
-        echo $p = '<p class="unauthenticate"><a href="authenticate.php">Want To Be An Author? </a></p>' ?>
+        ?>
     </div>
     <script src="../../css/js/nav_responsive.js"></script>
 
     <script src="../../css/js/loadcreate.js"></script>
+    <script src="../../css/js/camera.js"></script>
     <script>
   
   </script>

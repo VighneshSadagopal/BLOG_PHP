@@ -112,20 +112,71 @@ foreach ($sql as $row) {
         </div>
 
 
+        <div class="wrap-content">
+  <div class="wrap-1">
+    <?php }
 
-        <button id="create"> <?php echo "<a href=\"createpost.php?id=$row[id]\">" ?><div class="tooltip"><i class="small material-icons">control_point</i></a>
-                <span class="tooltext">Create</span>
-            </div>
-        </button><br><br>
-        <button id="ed1"> <a href="../post/editpost.php">
-                <div class="tooltip"><i class="tiny material-icons">edit</i><span class="tooltext">EDIT</span></div>
-            </a></button>
+include('../Post/createpost.php'); 
+include('../Post/container.php'); 
 
-    <?php
-    include('../Post/container.php');
-}
-    ?>
-    <script src="../css/js/index.js"></script>
-    </body>
+?>
+</div>
+<div class="side">
+     
 
-    </html>
+      <ul>
+
+
+        <li>
+          <h2>Recent Post <i class="fas fa-caret-down"></i></h2>
+          <?php
+          $sql = $p->getRecent();
+
+          foreach ($sql as $row) {
+            $image = $row['images'];
+          ?>
+            <ul>
+              <l1>
+                <div class="recent">
+                  <div class="container">
+
+                    <img src="../../images/<?php echo $image ?>">
+                    <h1><?php echo $row['title'] ?></h1>
+                  </div>
+                </div>
+              </l1>
+            </ul>
+
+          <?php } ?>
+        </li>
+        <li>
+          <h2>Trending Topics<i class="fas fa-caret-down"></i></h2>
+        </li>
+        <li>
+          <h2>Authors <i class="fas fa-caret-down"></i></h2>
+        </li>
+        <li>
+          <h2>Most Liked <i class="fas fa-caret-down"></i></h2>
+        </li>
+
+      </ul>
+
+    </div>
+
+  </div>
+  </div>
+
+    <div class="foot more">
+        <?php include('../headers/footer.php');
+        ?>
+    </div>
+    <script src="../../css/js/nav_responsive.js"></script>
+
+    <script src="../../css/js/loadcreate.js"></script>
+    <script src="../../css/js/camera.js"></script>
+    <script>
+  
+  </script>
+        </body>
+
+        </html>

@@ -25,7 +25,7 @@ if (isset($_GET['page'])) {
   <link rel="stylesheet" href="css/carousel.css">
   <link rel="stylesheet" href="css/old/footer.css">
   <link rel="stylesheet" href="css/nav.css">
-  <link rel="stylesheet" href="css/container2.css">
+  <link rel="stylesheet" href="css/container.css">
   <link rel="stylesheet" href="css/style.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
@@ -104,7 +104,7 @@ if (isset($_GET['page'])) {
     </div>
     <div class="featured" id="featured">
       <div class="wrap">
-        <div class="wrap-1">
+        <div class="wrap-1 extra">
           <div class="feature1">
             <span><i class="fas fa-circle"></i>Anime</span>
             <span2><i class="fas fa-star"></i></span2>
@@ -160,7 +160,8 @@ if (isset($_GET['page'])) {
       <h1>All Post</h1>
     </div>
     <div class="wrap-content">
-      <div class="post" id="post">
+      <div class="wrap-1">
+      <div class="dash_post" id="post">
 
 
         <?php
@@ -190,7 +191,10 @@ if (isset($_GET['page'])) {
               <div class="content">
                 <h1><?php echo $row['title'] ?></h1><br><br>
                 <p><?php echo $desc ?> </p>
-                <p id="read"><?php echo "<a href=\"templates/Post/seperate1.php?pid=$row[pid]\">" ?>Read more</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>~<?php echo $row['author'] ?></span></p>
+                <div class="authread">
+                <p id="read"><?php echo "<a href=\"templates/Post/seperate1.php?pid=$row[pid]\">" ?>Read more</a></p>
+                <span>~<?php echo $row['author'] ?></span>
+                </div>
               </div>
             </div>
           </div>
@@ -206,7 +210,8 @@ if (isset($_GET['page'])) {
 
 
       </div>
-      <div class="side">
+      </div>
+      <div class="side view">
 
         <ul>
 
@@ -274,7 +279,7 @@ for ($i = 1; $i <= $nom_of_pages; $i++) {
 
   <div class="foot">
     <?php include('templates/headers/footer.php');
-    echo $p = '<p class="unauthenticate"><a href="templates/login/register">Want To Be An Author? </a></p>' ?>
+     ?>
   </div>
 </body>
 <script src="css/js/carousel.js"></script>

@@ -1,7 +1,7 @@
 
             <div class="create">
                 <div class="name">
-            <img src="../../images/<?php echo $image ?>" id =" clipped" >
+            <img src="../../images/adminimg.jpg" id =" clipped" >
                 <button id="createbtn" onclick="loadcreate();">What's on Your Mind,<?php echo $_SESSION['username'] ?></button>
                 </div>
                 <hr>
@@ -21,6 +21,7 @@
                 </div>
 
             </div>
+    
 <div class="createpost" id="createpost">
                 <button id="close">
                     <i class="fas fa-times"></i>
@@ -29,21 +30,23 @@
                     <h2>Create Post</h2>
 
                     <hr>
-                    <form class="form" method="POST" action="../function/formfunction.php" enctype="multipart/form-data">
+                    <form class="form" method="POST" action="formfunction.php" enctype="multipart/form-data">
                     <div class="name">
-                    <img src="../../images/<?php echo $image ?>" id =" clipped" >
+                    <img src="../../images/adminimg.jpg" id =" clipped" >
                    
                         <p><?php echo $_SESSION['username']; ?></p>
                         </div>
                         <input type="text" name="title" placeholder="Title">
                         <input type="text" name="category" placeholder="Category">
                         <input type="file" id="filebtn" name="imgfile"  hidden> 
+                      
                         <textarea name="description" name="description" rows="9" placeholder="Write About Your thoughts"></textarea>
                         <div class="video-wrap" id="videowrap">
                             <video id="video" playsinline autoplay></video>
                       
                         <canvas id="canvas" width="640" height="480" ></canvas>
                         
+                     
                        
                         <input type="button" id="upload" value="Upload" name="upload">
                         </div>
@@ -57,7 +60,7 @@
                             </div>
                         </span>
 
-                        <button type="submit" name="submit">Post</button>
+                        <button type="submit" name="submit" id="submit">Post</button>
                     </form>
                 </div>
             </div>

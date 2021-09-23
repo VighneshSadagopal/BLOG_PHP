@@ -13,7 +13,7 @@ RewriteRule ^([^\.]+)$ $1.php [NC,L]
  #for Pagination
  RewriteRule ^([0-9]+)$ index?page=$1 [NC,L]
  RewriteRule ^([0-9a-zA-Z]+)/([0-9a-zA-Z]+)/([0-9]+)$ $1/$2/welcome?page=$3 [NC,L]
-
+ RewriteRule ^([0-9a-zA-Z]+)/([0-9a-zA-Z]+)/([0-9]+)$ $1/$2/admin?page=$3 [NC,L]
 #for login
  RewriteRule ^([0-9a-zA-Z]+)/([0-9a-zA-Z]+)$ templates/$1/$2 [NC,L]
 

@@ -413,6 +413,11 @@ html down .show {
   display: -ms-flexbox;
   display: flex;
   margin-bottom: 10px;
+  width: 64%;
+}
+
+.featured .wrap-1.extra {
+  width: unset;
 }
 
 .featured .feature1 {
@@ -613,7 +618,7 @@ html down .show {
 .featured .feature3 {
   position: absolute;
   left: 39.2%;
-  top: 129%;
+  top: 133%;
   width: 22.3%;
   overflow: hidden;
   background-color: #000;
@@ -902,19 +907,20 @@ html down .show {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  margin-left: 4.5%;
-  width: 95.5%;
+  margin-left: 3%;
+  width: 91.5%;
   padding: 10px 20px;
 }
 
 .side {
   background-color: #f0f2f5;
-  position: relative;
-  right: 7%;
-  top: 250%;
   width: 25%;
   min-height: 113%;
   border-radius: 10px;
+  margin: 30px 0px 0px 40px;
+  -webkit-box-shadow: 0 5px 20px 5px #0000001a;
+          box-shadow: 0 5px 20px 5px #0000001a;
+  z-index: -1;
 }
 
 @media screen and (max-width: 426px) {
@@ -924,7 +930,7 @@ html down .show {
 }
 
 .side.view {
-  top: 104%;
+  margin: unset;
 }
 
 .side #search {
@@ -951,6 +957,9 @@ html down .show {
 
 .side ul {
   display: block;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 100px;
 }
 
 .side ul li {
@@ -977,10 +986,11 @@ html down .show {
 
 .side .recent .container {
   min-height: 50%;
-  width: 101%;
+  width: 100%;
   position: relative;
   background-color: #000;
   margin-top: 10px;
+  overflow: hidden;
   right: 0%;
 }
 
@@ -1176,7 +1186,7 @@ html down .show {
 .create {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
-  width: 61%;
+  width: 95%;
   margin-bottom: 30px;
   margin-left: 6%;
   padding: 12px 16px;

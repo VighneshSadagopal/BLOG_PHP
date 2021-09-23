@@ -12,28 +12,31 @@
 
 .dash_post {
     height: 100%;
-    width: 65%;
+    width: 100%;
     animation: carousel1 7.2s infinite;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    left: 4%;
     position: relative;
+    align-content: flex-start;
     @include mobile {
         width: 100%;
         left: 0%;
     }
+    &.view {
+        left: 4%;
+    }
     .container {
         background-color: #000;
         margin: 0px 10px 20px 10px;
-        border-bottom: 3px solid black;
         flex-wrap: wrap;
         width: 46%;
         transition: 0.3s;
         border-radius: 15px;
         text-transform: capitalize;
-        height: 40%;
+        height: auto;
         overflow: hidden;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
         @include mobile {
             width: 100%;
         }
@@ -58,6 +61,7 @@
                 opacity: 70%;
                 cursor: pointer;
                 transition: 0.8s;
+                border-radius: 15px;
                 &:hover {
                     opacity: 100%;
                 }
