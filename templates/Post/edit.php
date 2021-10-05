@@ -4,6 +4,11 @@ include('../classes/autoload.php');
 
 session_start();
 
+
+
+
+
+
 $p = new Post();
 
 
@@ -37,11 +42,12 @@ if ($stmt > 0) {
         $category = $row['category'];
     }
 } else {
-    echo "<script>alert('LogIn To Your Account.')</script>";
-    $author = "";
-    $title = "";
-    $description = "";
-    $short = "";
+    if ($usertype == "admin") {
+        header("location:../Admin/admin.php?info=edit");
+    }
+    if ($usertype == "user") {
+        header("location:../Authors/welcome.php?info=edit");
+    }
 }
 
 
@@ -79,9 +85,9 @@ foreach ($sql as $row) {
     <html lang="en">
 
     <head>
-        <link rel="stylesheet" href="../../scss/index.css">
-        <link rel="stylesheet" href="../../scss/nav.css">
-        <link rel="stylesheet" href="../../scss/notify.css">
+        <link rel="stylesheet" href="../../css/index.css">
+        <link rel="stylesheet" href="../../css/nav.css">
+        <link rel="stylesheet" href="../../css/notify.css">
 
 
         <meta charset="UTF-8">

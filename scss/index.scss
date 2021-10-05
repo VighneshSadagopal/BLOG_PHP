@@ -68,7 +68,7 @@
     .contain2 {
         background-color: #FFF;
         min-height: 85%;
-        width: 35%;
+        width: 28%;
         flex-wrap: wrap;
         display: inline-flex;
         position: absolute;
@@ -165,12 +165,16 @@
         justify-content: space-around;
     }
     
+    .more {
+        margin-top: 50%!important;
+        @include mobile {
+            margin-top: -30%!important;
+        }
+    }
+    
     .form {
         display: block;
-        margin-top: 150px;
-        @include mobile {
-            margin-top: unset;
-        }
+        margin-top: 40%;
         input {
             margin-top: 10px;
             padding: 0.75rem 1.375rem;
@@ -210,10 +214,22 @@
             height: auto;
             position: absolute;
             left: 19%;
-            bottom: 46%;
+            bottom: 46.4%;
             @include mobile {
                 left: 14%;
                 bottom: 39.5%;
+                width: unset;
+            }
+        }
+        #policy {
+            width: auto;
+            height: auto;
+            position: absolute;
+            left: 18%;
+            bottom: 38.5%;
+            @include mobile {
+                left: 9%;
+                bottom: 27.5%;
                 width: unset;
             }
         }

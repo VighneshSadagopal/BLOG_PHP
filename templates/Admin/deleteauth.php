@@ -1,17 +1,17 @@
 <?php
 
-require_once ('autoload.php');
-$delete=new users;
+require_once ('../classes/autoload.php');
+$delete=new Users;
 
 session_start();
 
 if (!isset($_SESSION['username'])) {
-    header("Location: login.php");
+    header("Location: ../login/login.php");
 }
 $id= $_GET['id'];
 $delete->deleteUser($id);
 if($delete){
-   header("location:authinfo.php?info==deleted");
+   header("location:../Authors/authinfo.php?info==deleted");
    
 }
 else{

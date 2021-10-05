@@ -5,8 +5,8 @@ require_once("config.php");
 class Database
 {
     private $host = "localhost";
-    private $user = "root";
-    private $pass = "";
+    private $user = "vighnesh";
+    private $pass = "Vighnesh.123";
     private $database = "blog";
 
     private $connection;

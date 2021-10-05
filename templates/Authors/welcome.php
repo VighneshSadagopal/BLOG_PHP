@@ -8,7 +8,7 @@ if (isset($_GET['page'])) {
 } else {
     $page = 1;
 }
-
+$category="";
 session_start();
 
 if (isset($_SESSION['username'])) {
@@ -28,6 +28,12 @@ if (isset($_REQUEST['info'])) {
         echo "<div id='alert'><small1>Wow Registration successful</small1></div>";
     }
 }
+if (isset($_REQUEST['info'])) {
+
+  if ($_REQUEST['info'] == "edit") {
+      echo "<div id='alert'><small3>Login To Your Account</small3></div>";
+  }
+}
 $u = new Users;
 
 
@@ -39,9 +45,7 @@ $query =  $u->getUserByName($author);
 if ($u->rowcount() > 0) {
 
     foreach ($query as $row) {
-        $image = $row['profilepic'];
-
-?>
+        $image = $row['profilepic']; ?>
 
         <!DOCTYPE html>
         <html lang="en">
@@ -82,10 +86,10 @@ if ($u->rowcount() > 0) {
                     <li><a href="#" id="name"><?php echo $_SESSION['username'] ?>&nbsp;<i class="fas fa-caret-down"></i></a>
                         <ul>
 
-                            <li><?php echo "<a href=\"account?id=$row[id]\">" ?>Details</a></li>
-                            <li><?php echo "<a href=\"mypost?id=$row[id]\">" ?>MyPost</a></li>
-                            <li><a href="../Post/category">Category</a></li>
-                            <li><a href="../login/logout"><i class="tiny material-icons">power_settings_new</i>&nbsp;Logout</a></li>
+                            <li><?php echo "<a href=\"account.php?id=$row[id]\">" ?>Details</a></li>
+                            <li><?php echo "<a href=\"mypost.php?id=$row[id]\">" ?>MyPost</a></li>
+                            <li><a href="../Post/category.php">Category</a></li>
+                            <li><a href="../login/logout.php"><i class="tiny material-icons">power_settings_new</i>&nbsp;Logout</a></li>
                         </ul>
                     </li>
                 </div>
@@ -106,8 +110,10 @@ if ($u->rowcount() > 0) {
            
 <div class="wrap-content">
   <div class="wrap-1">
-    <?php }
+    <?php
+    }
 }
+$dash = 'welcome.php';
 include('../Post/createpost.php'); 
 include('../Post/container.php'); 
 
@@ -165,7 +171,7 @@ include('../Post/container.php');
     <script src="../../css/js/nav_responsive.js"></script>
 
     <script src="../../css/js/loadcreate.js"></script>
-    <script src="../../css/js/camera.js"></script>
+   
     <script>
   
   </script>

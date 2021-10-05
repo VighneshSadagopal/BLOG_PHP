@@ -9,7 +9,7 @@ if (!isset($_SESSION['username'])) {
 
 $id= $_REQUEST['id'];
 $author=$_SESSION['username'];
-$u = new users;
+$u = new Users;
 
 $query =  $u->getUserById($id);
 
@@ -37,7 +37,7 @@ if ($u->rowcount() > 0) {
         $dob=$_POST['dob'];
         $your=$_POST['your'];
 
-        $data=['username'=>$username,'email'=>$email,'password'=>$password,'your'=>'','usertype'=>'','dob'=>$dob];
+        $data=['username'=>$username,'email'=>$email,'your'=>$your,'usertype'=>'','dob'=>$dob];
         $result = $u->updateUser($data);
         if($result){
             echo "<script>alert('Successfully Updated.')</script>";
@@ -53,7 +53,7 @@ if ($u->rowcount() > 0) {
 <head>
     <link rel="stylesheet" href="../../css/index.css">
     <link rel="stylesheet" href="../../css/nav.css">
-    <link rel="stylesheet" href="../../css/old/footer.css">  
+    <link rel="stylesheet" href="../../css/sfooter.css">  
     <meta charset="UTF-8">
     <script src="https://kit.fontawesome.com/ec41712638.js" crossorigin="anonymous"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -79,15 +79,17 @@ if ($u->rowcount() > 0) {
         <div class="image">
   
  
-        <a href="../Authors/authinfo"><i class="fas fa-arrow-circle-left" id="back"></i></a>
+       <?php include '../headers/nav.php'; ?>
         </div>
-        <div class ="contain2">
+        </div>
+        </div>
+        <div class ="contain2 ">
            
 
             <div class="logo">
                 <img src="../../css/images/logo3.png"><h2>Visual Select</h2>
             </div>
-			<form action="" method="POST" class="form" onsubmit="return validated()">
+			<form action="" method="POST" class="form more" onsubmit="return validated()">
                 <h3>Author Details</h3>
 				<input type="text" placeholder="Username" name="username" value="<?php echo $author; ?>" required>
 			

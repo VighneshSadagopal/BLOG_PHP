@@ -9,12 +9,13 @@
         <div class="icon cancel-btn">
           <i class="fas fa-times"></i>
         </div>
-        <li><a href="../../index">Home</a></li>
+        <div class="collapse">
+        <li><a href="../../index.php">Home</a></li>
         <li><a href="#">About</a></li>
-        <li><a href="#">Services</a></li>
+       <li><a href="#">Services</a></li>
         <li><a href="#">Career</a></li>
             <li><a href="#">Contact Us</a></li>
-           
+</div>
        
          
       

@@ -15,11 +15,12 @@ $username = $_SESSION['username'];
 if (isset($_POST['submit'])) {
 
     $message = $_POST['message'];
-
-    $obj->getStatus();
+    $status = 'unchecked';
+    $data = ['name' => $username , 'message' => $message ,'id' => $id , 'status' => $status];
+    $obj->authenticate($data);
     
         echo "Successfully Updated";
-        header("location:anonmoyous.php?info=sent");
+        header("location:../Authors/anonmoyous.php?info=sent");
     
 }
 
@@ -31,9 +32,9 @@ if (isset($_POST['submit'])) {
 <html lang="en">
 
 <head>
-    <link rel="stylesheet" href="css/index.css">
-    <link rel="stylesheet" href="scss/nav.css">
-    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="../../css/index.css">
+    <link rel="stylesheet" href="../../css/nav.css">
+    <link rel="stylesheet" href="../../css/footer.css">
 
 
     <meta charset="UTF-8">
@@ -56,12 +57,12 @@ if (isset($_POST['submit'])) {
 
 <body>
 
-    <?php include('nav.php'); ?>
+    <?php include('../headers/nav.php'); ?>
     <div class="right">
         <li><a href="#" id="name"><?php echo $_SESSION['username'] ?>&nbsp;<i class="fas fa-caret-down"></i></a>
             <ul>
 
-                <li><?php echo "<a href=\"account.php?id=$id\">" ?>DETAILS</a></li>
+                <li><?php echo "<a href=\"../Authors/account.php?id=$id\">" ?>DETAILS</a></li>
                 <li><a href="logout.php"><i class="tiny material-icons">power_settings_new</i>&nbsp;LOGOUT</a></li>
             </ul>
         </li>
@@ -82,11 +83,11 @@ if (isset($_POST['submit'])) {
 
 
     </div>
-    <div class="contain6">
+    <div class="contain2">
 
 
         <div class="logo">
-            <img src="css/images/logo3.png">
+            <img src="../../css/images/logo3.png">
             <h2>Visual Select</h2>
         </div>
         <form action="" method="POST" class="form">
@@ -223,13 +224,13 @@ With Your consent: We may disclose Your personal information for any other purpo
 
 
         </form>
-        <p><a href="policy.html" target="_blank">Read full Document</a></p>
+        <p><a href="../Policy/policy.html" target="_blank">Read full Document</a></p>
 
     </div>
 
-    <script src="javascript" href="css/js/login.js"></script>
+    <script src="javascript" href="../../css/js/nav_responsive.js"></script>
 
-    <?php include('footer.php'); ?>
+    <?php include('../headers/footer.php'); ?>
 </body>
 
 </html>

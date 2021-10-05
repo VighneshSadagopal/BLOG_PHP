@@ -28,7 +28,7 @@ foreach($sql as $res){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Homepage</title>
-    <link rel="stylesheet" href="../../css/old/seperate.css">
+    <link rel="stylesheet" href="../../css/seperate.css">
     <link rel="stylesheet" href="../../css/nav.css">
     <link rel="stylesheet" href="../../css/footer.css">
 </head>
@@ -39,13 +39,14 @@ foreach($sql as $res){
     session_start();
 
     if (isset($_SESSION['username'])) { ?>
+     <img src="../../images/<?php echo $_SESSION['profilepic'] ?>" id =" clipped" class="extra">
         <li><a href="#" id="name"><?php echo $_SESSION['username'] ?>&nbsp;<i class="tiny material-icons">arrow_drop_down_circle</i></a>
             <ul>
 
-                <li><a href="../login">Dashboard</a></li>
+                <li><a href="../login/login.php">Dashboard</a></li>
                 <li><?php echo "<a href=\"mypost.php?id=$res[id]\">" ?>My Post</a></li>
                 <li><?php echo "<a href=\"account.php?id=$res[id]\">" ?>DETAILS</a></li>
-                <li><a href="../login/logout"><i class="tiny material-icons">power_settings_new</i>&nbsp;LOGOUT</a></li>
+                <li><a href="../login/logout.php"><i class="tiny material-icons">power_settings_new</i>&nbsp;LOGOUT</a></li>
             </ul>
         </li>
     <?php

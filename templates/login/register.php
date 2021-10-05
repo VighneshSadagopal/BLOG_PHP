@@ -35,10 +35,7 @@ if (isset($_POST['submit'])) {
 			$data = ['username' => $username, 'email' => $email, 'password' => $password, 'your' => '', 'usertype' => '', 'dob' => $dob,'profilepic' => $imgname];
 			$u->addUser($data);
 			echo "<small1>Wow Registration successful</small1>";
-			//	$username = "";
-			//	$email = "";
-			//	$_POST['password'] = "";
-			//	$_POST['cpassword'] = "";
+			
 
 
 		} else {

@@ -41,7 +41,7 @@
           h1 {
               color: $secondary;
               font-size: 65px;
-              position: absolute;
+              position: relative;
               top: 40%;
               width: 100%;
               text-align: center;
@@ -51,7 +51,6 @@
                   transform: translateY(-8px);
               }
               @include mobile {
-                  top: 20%;
                   font-size: 19px;
               }
               @include tablet {
@@ -62,18 +61,13 @@
               border: 2px solid $secondary;
               padding: 10px 18px;
               border-radius: 15px;
-              position: absolute;
+              position: relative;
               top: 51%;
-              left: 45%;
               transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
               @include mobile {
-                  top: 25%;
                   font-size: 10px;
-                  left: 138.25px;
               }
-              @include tablet {
-                  left: 40%;
-              }
+              @include tablet {}
           }
           a {
               color: $secondary;
@@ -92,25 +86,6 @@
           #bb {
               color: $secondary;
               border: 2px solid $secondary;
-          }
-      }
-      .right {
-          padding: 7px 13px;
-          color: $primary;
-          position: absolute;
-          right: 10%;
-          top: 15px;
-          border-radius: 10px;
-          font-size: 18px;
-          transition: 0.4s;
-          display: flex;
-          #name {
-              color: $secondary;
-              border-radius: 10px;
-              padding: 7px 13px;
-              position: absolute;
-              right: 9%;
-              top: 4%;
           }
       }
       .checkbox {
@@ -276,12 +251,12 @@
           width: 24px;
           height: 20px;
           position: absolute;
-          left: 12%;
+          left: 7%;
           top: 25%;
           border-radius: 20px;
           text-align: center;
           @include mobile {
-              left: -21%;
+              left: -8%;
               top: 31%;
           }
       }
@@ -332,6 +307,7 @@
           margin: unset;
           width: 100%;
           padding: 10px;
+          display: none;
       }
       .wrap-1 {
           display: flex;
@@ -406,8 +382,8 @@
               position: absolute;
               background-color: blue;
               color: white;
-              right: -5%;
-              top: 0%;
+              right: -6%;
+              top: 3%;
               padding: 2px 28px;
               transform: rotate( 45deg);
               z-index: 1;
@@ -487,8 +463,8 @@
               position: absolute;
               background-color: blue;
               color: white;
-              right: -4%;
-              top: 0%;
+              right: -6%;
+              top: 3%;
               padding: 2px 15px;
               transform: rotate( 45deg);
               z-index: 1;
@@ -498,7 +474,7 @@
       .feature3 {
           position: absolute;
           left: 39.2%;
-          top: 133%;
+          top: 130.5%;
           width: 22.3%;
           overflow: hidden;
           background-color: #000;
@@ -566,8 +542,8 @@
               position: absolute;
               background-color: blue;
               color: white;
-              right: -4%;
-              top: -1%;
+              right: -5%;
+              top: 1%;
               padding: 4px 18px;
               transform: rotate( 45deg);
               z-index: 1;
@@ -636,8 +612,8 @@
               position: absolute;
               background-color: blue;
               color: white;
-              right: -5%;
-              top: 0%;
+              right: -8%;
+              top: 3%;
               padding: 2px 21px;
               transform: rotate( 45deg);
               z-index: 1;
@@ -710,7 +686,7 @@
               position: absolute;
               background-color: blue;
               color: white;
-              right: -2%;
+              right: -1.5%;
               top: 0%;
               padding: 3px 26px;
               transform: rotate( 45deg);
@@ -719,7 +695,7 @@
       }
       #zoom {
           transform: scale(1);
-          transition: 0.5s ease-in-out;
+          transition: 0.5s ease-in;
           &:hover {
               transform: scale(1.1);
           }
@@ -731,6 +707,11 @@
       margin-left: 3%;
       width: 91.5%;
       padding: 10px 20px;
+      @include mobile {
+          padding: unset;
+          margin: unset;
+          width: 100%;
+      }
   }
   
   .side {
@@ -742,6 +723,9 @@
       box-shadow: 0 5px 20px 5px #0000001a;
       @include mobile {
           display: none;
+      }
+      @include tablet {
+          width: 35%;
       }
       &.view {
           margin: unset;
@@ -790,7 +774,6 @@
           height: auto;
           display: block;
           .container {
-              min-height: 50%;
               width: 100%;
               position: relative;
               background-color: #000;
@@ -831,10 +814,49 @@
       }
   }
   
+  select#category {
+      padding: 0.75rem 1.375rem;
+      position: absolute;
+      top: 50%;
+      left: 30%;
+      height: 7%;
+      width: 40%;
+      border: 2px solid #9c8d8d;
+      border-radius: 10px;
+      outline: #9c8d8d;
+      transition: all 0.4s;
+      option {
+          transition: all 2s;
+      }
+      @include mobile {
+          top: 17%;
+          left: 12%;
+          height: 7%;
+          width: 62%;
+      }
+  }
+  
+  button#show {
+      position: absolute;
+      top: 50%;
+      left: 70%;
+      height: 7%;
+      width: 6%;
+      color: #fff;
+      background-color: #000;
+      transition: all 0.4s;
+      @include mobile {
+          top: 17%;
+          left: 76%;
+          height: 7%;
+          width: 14%;
+      }
+  }
+  
   .tags {
       margin: 20px 0px 20px 0px;
       h1 {
-          margin-left: 100px;
+          margin-left: 130px;
           animation: tags 1.4s ease-in-out;
           &:before {
               content: "";
@@ -847,6 +869,8 @@
           }
           @include mobile {
               margin-left: 27px;
+              display: none;
+              position: unset;
           }
       }
   }
@@ -854,7 +878,7 @@
   .tags1 {
       margin: 20px 0px 20px 0px;
       h1 {
-          margin-left: 100px;
+          margin-left: 130px;
           animation: tags 1.4s ease-in-out;
           &:before {
               content: "";
@@ -894,26 +918,26 @@
               top: 550%;
           }
       }
-      .unauthenticate {
+  }
+  
+  .unauthenticate {
+      color: #fff;
+      background-color: orange;
+      border: 2px solid orange;
+      position: fixed;
+      padding: 7px 10px;
+      top: 94%;
+      left: 2%;
+      font-size: 20px;
+      border-radius: 15px;
+      z-index: 4;
+      a {
+          text-decoration: none;
           color: #fff;
-          background-color: #000;
-          border: 2px solid #000;
-          position: absolute;
-          padding: 7px 10px;
-          top: 84%;
-          left: 7%;
-          font-size: 13px;
-          font-weight: 500;
-          z-index: 4;
-          border-radius: 10px;
-          a {
-              text-decoration: none;
-              color: #fff;
-          }
-          @include mobile {
-              top: 95%;
-              left: 15%;
-          }
+      }
+      @include mobile {
+          top: 95%;
+          left: 15%;
       }
   }
   
@@ -930,10 +954,10 @@
       background-attachment: fixed;
       margin-top: 15px;
       h1 {
-          width: 15%;
+          width: 49%;
           position: relative;
-          left: 39%;
-          top: 10%;
+          left: 25%;
+          top: 2%;
           color: white;
           font-family: sans-serif;
           padding: 7px 13px;
@@ -945,6 +969,14 @@
           color: white;
           width: 60%;
           left: 17.5%;
+          @include mobile {
+              position: relative;
+              top: 10%;
+              font-size: 15px;
+              color: white;
+              width: 86%;
+              left: 7.5%;
+          }
       }
   }
   
@@ -957,6 +989,10 @@
       border-radius: 10px;
       margin-top: 30px;
       background-color: #fff;
+      @include mobile {
+          margin: 18px 0px 18px 0px;
+          width: 100%;
+      }
       button {
           background-color: #f0f2f5;
           font-size: 16px;
@@ -973,6 +1009,10 @@
           margin-left: 19px;
           margin-top: 10px;
           margin-bottom: -5px;
+          @include mobile {
+              margin-bottom: 10px;
+              margin-left: unset;
+          }
       }
       .tabs {
           width: 90%;
@@ -986,6 +1026,9 @@
               font-size: large;
               font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
               cursor: pointer;
+              @include mobile {
+                  font-size: small;
+              }
           }
           #images {
               i {
@@ -1028,6 +1071,10 @@
           color: #000;
           background-color: #fff;
           font-family: sans-serif;
+          @include mobile {
+              width: 100%;
+              height: 100%;
+          }
           h2 {
               width: 100%;
               text-align: center;
@@ -1080,6 +1127,9 @@
                       position: relative;
                       left: 50%;
                       display: flex;
+                      @include mobile {
+                          left: 24%;
+                      }
                   }
               }
               button {
@@ -1110,6 +1160,11 @@
       outline: none;
       border: none;
       cursor: pointer;
+      @include mobile {
+          z-index: 1;
+          color: black;
+          font-size: small;
+      }
   }
   
   video#video {
@@ -1117,6 +1172,11 @@
       height: 26%;
       left: 2%;
       top: 19%;
+      border: 2px solid black;
+      @include mobile {
+          width: 96%;
+          top: 8%;
+      }
   }
   
   canvas#canvas {
@@ -1124,6 +1184,9 @@
       height: 26%;
       left: 2%;
       top: 19%;
+      &.show {
+          display: block;
+      }
   }
   
   #upload {
@@ -1134,14 +1197,12 @@
       border-radius: 0;
       background-color: orange;
       top: 42%;
+      color: whitess;
       cursor: pointer;
-  }
-  
-  img#\ clipped {
-      clip-path: circle(36.5% at 50% 50%);
-      width: 7%;
-      position: relative;
-      bottom: 19px;
+      @include mobile {
+          height: 4%;
+          top: 30%;
+      }
   }
   
   .video-wrap {
@@ -1155,7 +1216,11 @@
       display: flex;
   }
   
-  .extra {
-      left: 67% !important;
-      top: -15px;
+  i#edit {
+      height: 4%;
+      /* width: 20%; */
+      float: right;
+      margin-right: 20px;
+      font-size: xxx-large;
+      color: black;
   }

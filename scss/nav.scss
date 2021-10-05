@@ -1,232 +1,261 @@
-$primary:#000;
-$secondary:#f0f0f0;
-$ternary:#fff;
-@mixin mobile {
-    @media screen and(max-width: 426px) {
-        @content;
-    }
-}
-
-@mixin tablet {
-    @media screen and(min-width: 427px) and(max-width: 769px) {
-        @content;
-    }
-}
-
-.navbar {
-    position: fixed;
-    width: 100%;
-    padding: 25px 0;
-    transition: all 0.3s ease;
-    background-color: $primary;
-    z-index: 4;
-    text-align: center;
-    top: 0;
-    @include mobile {
-        padding-bottom: 50px;
-        width: 100%;
-    }
-    .sticky {
-        background: $primary;
-        padding: 10px 0;
-        box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.1);
-    }
-    .content {
-        display: flex;
-        justify-content: center;
-    }
-    .logo {
-        color: #fff;
-        font-size: 30px;
-        font-weight: 600;
-        text-decoration: none;
-        position: absolute;
-        left: 5.5%;
-        top: 7%;
-        bottom: 32px;
-        text-align: left;
-        display: block;
-        @include mobile {
-            position: absolute;
-            top: 10%;
+        $primary:#000;
+        $secondary:#f0f0f0;
+        $ternary:#fff;
+        @mixin mobile {
+            @media screen and(max-width: 426px) {
+                @content;
+            }
         }
-        @include tablet {
-            left: 3%;
+        
+        @mixin tablet {
+            @media screen and(min-width: 427px) and(max-width: 769px) {
+                @content;
+            }
         }
-    }
-    ul {
-        ul {
-            display: none;
-            align-items: center;
-            position: absolute;
-            top: 67%;
-            left: 69%;
+        
+        .navbar {
+            position: fixed;
+            width: 100%;
+            padding: 25px 0;
+            transition: all 0.3s ease;
+            background-color: $primary;
+            z-index: 4;
+            text-align: center;
+            top: 0;
             @include mobile {
-                top: 24%;
-                left: 71%;
-                z-index: -2;
-            }
-            li {
-                display: inline-flex;
-                background-color: #000;
-                padding: 7px 13px;
+                padding-bottom: 50px;
                 width: 100%;
-                @include mobile {
-                    padding: 0;
-                    margin-top: 25px;
-                }
-                a {
-                    font-size: 17px;
-                }
             }
-        }
-        li {
-            transition: 0.3s;
-            &:hover>ul {
+            .sticky {
+                background: $primary;
+                padding: 10px 0;
+                box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.1);
+            }
+            .content {
+                display: flex;
+                justify-content: center;
+            }
+            .logo {
+                color: #fff;
+                font-size: 30px;
+                font-weight: 600;
+                text-decoration: none;
+                position: absolute;
+                left: 5.5%;
+                top: 7%;
+                bottom: 32px;
+                text-align: left;
                 display: block;
-                transform: translateY(-5px);
-            }
-        }
-    }
-    &.show {
-        @include mobile {
-            .menu-list {
                 @include mobile {
-                    left: 0%;
+                    position: absolute;
+                    top: 10%;
                 }
-                li {
+                @include tablet {
+                    left: 3%;
+                }
+            }
+            .collapse {
+                display: flex;
+                @include mobile {
+                    display: block;
+                    margin-top: 40%;
+                }
+            }
+            ul {
+                ul {
+                    display: none;
+                    align-items: center;
+                    position: absolute;
+                    top: 57%;
+                    left: 69%;
                     @include mobile {
-                        margin-top: 37px;
-                        ul li {
-                            margin-top: 28px;
+                        top: 24%;
+                        left: unset;
+                        z-index: -2;
+                    }
+                    li {
+                        display: inline-flex;
+                        background-color: #000;
+                        padding: 7px 13px;
+                        width: 100%;
+                        @include mobile {
+                            padding: 0;
+                            margin-top: 25px;
+                        }
+                        a {
+                            font-size: 17px;
                         }
                     }
                 }
-                a {
+                li {
+                    transition: 0.3s;
+                    &:hover>ul {
+                        display: block;
+                        transform: translateY(-5px);
+                    }
+                }
+            }
+            &.show {
+                @include mobile {
+                    .menu-list {
+                        @include mobile {
+                            left: 0%;
+                        }
+                        li {
+                            @include mobile {
+                                margin-top: 21%;
+                                ul li {
+                                    margin-top: 28px;
+                                }
+                            }
+                        }
+                        a {
+                            @include mobile {
+                                margin-left: 0px;
+                            }
+                        }
+                    }
+                }
+            }
+            .menu-list {
+                display: inline-flex;
+                @include mobile {
+                    position: fixed;
+                    height: 100vh;
+                    width: 100%;
+                    max-width: 400px;
+                    left: -100%;
+                    top: 0px;
+                    display: block;
+                    margin-bottom: 15px;
+                    text-align: center;
+                    background: black;
+                    transition: all 0.3s ease;
+                }
+                li {
+                    list-style: none;
+                    a {
+                        color: #fff;
+                        padding: 7px 13px;
+                        font-size: 18px;
+                        font-weight: 500;
+                        margin-left: 25px;
+                        text-decoration: none;
+                        border-radius: 10px;
+                        transition: all 0.3s ease;
+                        @include mobile {
+                            font-size: 16px;
+                            transition: 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+                        }
+                        @include tablet {
+                            font-size: 12px;
+                        }
+                    }
+                }
+            }
+            .checkbox {
+                opacity: 0;
+                position: absolute;
+            }
+            .label {
+                background-color: var(--ternary);
+                border-radius: 50px;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 5px;
+                position: relative;
+                bottom: 20px;
+                height: 19px;
+                width: 49px;
+                transform: scale(1.5);
+                float: right;
+                margin-right: 27px;
+                .ball {
+                    background-color: $primary;
+                    border-radius: 50%;
+                    position: absolute;
+                    left: 2px;
+                    height: 19px;
+                    width: 20px;
+                    transform: translateX(0px);
+                    transition: transform 0.2s linear;
+                }
+            }
+            .checkbox:checked+.label .ball {
+                transform: translateX(33px);
+            }
+            .fa-moon {
+                color: #f1c40f;
+            }
+            .fa-sun {
+                color: #f39c12;
+            }
+            .right {
+                padding: 7px 13px;
+                color: $primary;
+                position: absolute;
+                right: 10%;
+                top: 15px;
+                border-radius: 10px;
+                font-size: 18px;
+                transition: 0.4s;
+                display: flex;
+                #name {
+                    color: $secondary;
+                    border-radius: 10px;
+                    padding: 7px 13px;
+                    position: absolute;
+                    right: 9%;
+                    top: 4%;
                     @include mobile {
-                        margin-left: 0px;
+                        right: unset;
+                    }
+                }
+            }
+            .extra {
+                left: 66% !important;
+                top: -15px;
+                @include mobile {
+                    left: 0% !important;
+                    top: -25px;
+                }
+            }
+            .icon.cancel-btn {
+                top: 3%;
+                right: 2%;
+                z-index: 5;
+            }
+            .icon {
+                color: #fff;
+                font-size: 20px;
+                cursor: pointer;
+                display: none;
+                float: right;
+                @include mobile {
+                    display: block;
+                    float: right;
+                    margin-right: 5px;
+                    position: absolute;
+                    left: 80%;
+                    z-index: -1;
+                }
+                .hide {
+                    @include mobile {
+                        display: none;
                     }
                 }
             }
         }
-    }
-    .menu-list {
-        display: inline-flex;
-        @include mobile {
-            position: fixed;
-            height: 100vh;
-            width: 100%;
-            max-width: 400px;
-            left: -100%;
-            top: 0px;
-            display: block;
-            margin-bottom: 15px;
-            text-align: center;
-            background: black;
-            transition: all 0.3s ease;
-            margin-left: -84px;
-        }
-        li {
-            list-style: none;
-            a {
-                color: #fff;
-                padding: 7px 13px;
-                font-size: 18px;
-                font-weight: 500;
-                margin-left: 25px;
-                text-decoration: none;
-                border-radius: 10px;
-                transition: all 0.3s ease;
-                @include mobile {
-                    font-size: 16px;
-                    transition: 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-                }
-                @include tablet {
-                    font-size: 12px;
-                }
+        
+        img#\ clipped {
+            clip-path: circle(36.5% at 50% 50%);
+            width: 7%;
+            position: relative;
+            bottom: 19px;
+            @include mobile {
+                width: 12%;
+                bottom: unset;
             }
         }
-    }
-    .checkbox {
-        opacity: 0;
-        position: absolute;
-    }
-    .label {
-        background-color: var(--ternary);
-        border-radius: 50px;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 5px;
-        position: relative;
-        bottom: 20px;
-        height: 19px;
-        width: 49px;
-        transform: scale(1.5);
-        float: right;
-        margin-right: 27px;
-        .ball {
-            background-color: $primary;
-            border-radius: 50%;
-            position: absolute;
-            left: 2px;
-            height: 19px;
-            width: 20px;
-            transform: translateX(0px);
-            transition: transform 0.2s linear;
-        }
-    }
-    .checkbox:checked+.label .ball {
-        transform: translateX(33px);
-    }
-    .fa-moon {
-        color: #f1c40f;
-    }
-    .fa-sun {
-        color: #f39c12;
-    }
-    .right {
-        padding: 7px 13px;
-        color: #000;
-        position: absolute;
-        right: 3%;
-        top: 15px;
-        border-radius: 10px;
-        font-size: 18px;
-        transition: 0.4s;
-        @include mobile {
-            top: 44%;
-            right: 36%;
-        }
-        @include tablet {
-            right: 7%;
-            top: 18px;
-        }
-        #name {
-            color: #fff;
-            border-radius: 10px;
-            padding: 7px 13px;
-        }
-    }
-}
-
-.icon {
-    color: #fff;
-    font-size: 20px;
-    cursor: pointer;
-    display: none;
-    float: right;
-    @include mobile {
-        display: block;
-        float: right;
-        margin-right: 5px;
-        position: absolute;
-        left: 80%;
-    }
-    .hide {
-        @include mobile {
-            display: none;
-        }
-    }
-}

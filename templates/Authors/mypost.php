@@ -1,15 +1,15 @@
 <?php
 
 include '../classes/autoload.php';
-
+$id = $_GET['id'];
 session_start();
 
-if (isset($_SESSION['username'])) {
-} else {
-    header("Location: login");
-}
+if ($_SESSION['id'] !==  $id){
+    header("Location: ../login/login.php");
+} 
+
 $u = new Users;
-$id = $_GET['id'];
+
 $author = $_SESSION['username'];
 $query =  $u->getUserByName($author);
 
@@ -17,7 +17,7 @@ if ($u->rowcount() > 0) {
 
     foreach ($query as $row) {
 
-
+        $image = $row['profilepic'];
 ?>
 
         <!DOCTYPE html>
@@ -28,7 +28,7 @@ if ($u->rowcount() > 0) {
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <title>Welcome</title>
             <link rel="stylesheet" href="../../css/style.css">
-            <link rel="stylesheet" href="../../css/old/footer.css">
+            <link rel="stylesheet" href="../../css/footer.css">
             <link rel="stylesheet" href="../../css/nav.css">
             <link rel="stylesheet" href="../../css/container.css">
             <script src="https://kit.fontawesome.com/ec41712638.js" crossorigin="anonymous"></script>
@@ -42,11 +42,12 @@ if ($u->rowcount() > 0) {
 
 
                 <div class="right">
+                <img src="../../images/<?php echo $image ?>" id =" clipped" class="extra">
                     <li><a href="#" id="name"><?php echo $_SESSION['username'] ?>&nbsp;<i class="fas fa-caret-down"></i></a>
                         <ul>
-                            <li><?php echo "<a href=\"account?id=$row[id]\">" ?>Details</a></li>
-                            <li><a href="../login/login">Dashboard</a></li>
-                            <li><a href=""><i class="tiny material-icons">power_settings_new</i>&nbsp;LOGOUT</a></li>
+                            <li><?php echo "<a href=\"account.php?id=$row[id]\">" ?>Details</a></li>
+                            <li><a href="../login/login.php">Dashboard</a></li>
+                            <li><a href="../login/logout.php"><i class="tiny material-icons">power_settings_new</i>&nbsp;LOGOUT</a></li>
                         </ul>
                     </li>
                 </div>
@@ -59,8 +60,8 @@ if ($u->rowcount() > 0) {
             </div>
 
             </div>
-
-            <div class="post">
+            <?php echo "<a href=\"../Post/editpost.php?id=$id\">" ?><i class="fas fa-pen-square" id="edit"></i></a>
+            <div class="dash_post">
             <?php
         }
     }
@@ -68,31 +69,43 @@ if ($u->rowcount() > 0) {
     $id = $_GET['id'];
     $author = $_SESSION['username'];
     $query =  $p->getPostById($id);
-
-    if ($p->rowcount() > 0) {
+    $count = $p->rowcount();
+    $per_page = 2;
+    $nom_of_pages = ceil($count / $per_page);
+    if ( $count > 0) {
     
-        foreach ($query as $res) {
+        foreach ($query as $row) {
     
-            $image = $res['images'];
+            $images = $row['images'];
+            $short = substr($row['description'], 0, 255);
+             $desc = trim($short, ("/\r|\n/"));
             ?>
                
 
-                <div class="container">
-                <button id="ed1"><?php echo "<a href=\"edit.php?pid=$res[pid]\">" ?>
-                        <div class="tooltip"><i class="tiny material-icons">edit</i><span class="tooltext">EDIT</span></div>
-                    </a></button>
-                    <img src="images/1630508748052.png" id="tag" disabled>
-                    <p id="category"><?php echo $res['category'] ?> </p>
-                    <img src="images/<?php echo $image ?>">
-                    <h1><?php echo $res['title'] ?></h1><br><br>
-                    <p><?php echo $res['short'] ?> </p>
-                    <p id="read"><?php echo "<a href=\"seperate.php?pid=$res[pid]\">" ?>Read more...</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>~<?php echo $res['author'] ?></span></p>
-                </div>
-        <?php
+               <div class="container">
+        <div id="zoom">
+          <span1><i class="fas fa-circle"></i><?php echo $row['category'] ?> </span1>
+
+          <img src="../../images/<?php echo $images ?>">
+
+          <div class="content">
+            <h1><?php echo $row['title'] ?></h1><br><br>
+            <p><?php echo $desc ?> </p>
+            <div class="authread">
+              <p id="read"><?php echo "<a href=\"../Post/seperate1.php?pid=$row[pid]\">" ?>Read more</a></p>
+                <span>~<?php echo $row['author'] ?></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    <?php
+
+    }
 
 
         }
-    } else {
+     else {
         echo " NO POST FOUND";
     }
 
@@ -101,7 +114,7 @@ if ($u->rowcount() > 0) {
 
         <?php include('../headers/footer.php'); ?>
             </div>
-            <script src="css/js/nav_responsive.js"></script>
+            <script src="../../css/js/nav_responsive.js"></script>
 
         </body>
 

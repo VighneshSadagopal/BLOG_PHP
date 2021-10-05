@@ -1,6 +1,6 @@
 <?php
 
-include ('config.php');
+include ('../classes/autoload.php');
 
 
 session_start();
@@ -9,7 +9,9 @@ if (!isset($_SESSION['username'])) {
     header("Location: login.php");
 }
 $id= $_GET['id'];
-$result=mysqli_query($conn,"DELETE from  policy where id='$id'");
+$po = new Policy;
+
+$result = $po->deleteStatus($id);
 if($result){
   
     

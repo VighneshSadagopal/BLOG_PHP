@@ -1,7 +1,7 @@
 
             <div class="create">
                 <div class="name">
-            <img src="../../images/adminimg.jpg" id =" clipped" >
+                <img src="../../images/<?php echo $image?>" id =" clipped" >
                 <button id="createbtn" onclick="loadcreate();">What's on Your Mind,<?php echo $_SESSION['username'] ?></button>
                 </div>
                 <hr>
@@ -30,9 +30,9 @@
                     <h2>Create Post</h2>
 
                     <hr>
-                    <form class="form" method="POST" action="formfunction.php" enctype="multipart/form-data">
+                    <form class="form" id="fupform " method="POST" action="../function/formfunction.php" enctype="multipart/form-data">
                     <div class="name">
-                    <img src="../../images/adminimg.jpg" id =" clipped" >
+                    <img src="../../images/<?php echo $image?>" id =" clipped" >
                    
                         <p><?php echo $_SESSION['username']; ?></p>
                         </div>
@@ -44,8 +44,10 @@
                         <div class="video-wrap" id="videowrap">
                             <video id="video" playsinline autoplay></video>
                       
-                        <canvas id="canvas" width="640" height="480" ></canvas>
+                        <canvas id="canvas"  width="640" height="480" ></canvas>
                         
+                      
+                         <img id="photo" name ="photo" hidden>
                      
                        
                         <input type="button" id="upload" value="Upload" name="upload">

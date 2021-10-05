@@ -26,7 +26,7 @@ else{
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome</title>
     <link rel="stylesheet" href="../../css/author.css">  
-    <link rel="stylesheet" href="../../scss/nav.css">  
+    <link rel="stylesheet" href="../../css/nav.css">  
     <link rel="stylesheet" href="../../css/footer.css"> 
     <script src="https://kit.fontawesome.com/ec41712638.js" crossorigin="anonymous"></script>
  
@@ -98,4 +98,5 @@ foreach($sql as $res){
 
 </body>
 <?php include('../headers/footer.php');?>
+<script src="../../css/js/nav_responsive.js"></script>
 </html>

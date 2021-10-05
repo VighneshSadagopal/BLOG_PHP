@@ -21,6 +21,7 @@ if (isset($_REQUEST['info'])) {
         echo "<div id='alert'><small1> Login Successfull&nbsp;&nbsp;&nbsp;</small1></div>";
     }
 }
+$category="";
 
 $policy = new Policy;
 $policy->getStatus();
@@ -48,6 +49,7 @@ $author = $_SESSION['username'];
 $user = new Users;
 $sql = $user->getUserByName($author);
 foreach ($sql as $row) {
+  $image = $row['profilepic'];
 
 ?>
 
@@ -61,9 +63,10 @@ foreach ($sql as $row) {
         <link rel="stylesheet" href="../../css/style.css">
         <link rel="stylesheet" href="../../css/container.css">
         <link rel="stylesheet" href="../../css/nav.css">
-        <link rel="stylesheet" href="../../css/old/footer.css">
+        <link rel="stylesheet" href="../../css/footer.css">
         <link rel="stylesheet" href="../../css/notify.css">
         <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+        
         <script>
             setTimeout(fade_out, 5000);
 
@@ -83,15 +86,16 @@ foreach ($sql as $row) {
 
 
         <div class="right">
+        <img src="../../images/<?php echo $image ?>" id =" clipped" class="extra">
             <li><a href="#" id="name"><?php echo $_SESSION['username'] ?>&nbsp;<i class="fas fa-caret-down"></i></a>
                 <ul>
                     <li><a href="../Authors/authinfo.php"> Author</a></li>
-
                     <input type="text" id="notify" value="<?php echo $count ?>">
-                    <li><a href="../Admin/authreq">Request</a></li>
-                    <li><?php echo "<a href=\"../Authors/account?id=$row[id]\">" ?>Details</a></li>
-                    <li><a href="../Post/scategory">Category</a></li>
-                    <li><a href="../login/logout"><i class="fas fa-sign-out-alt"></i>&nbsp;Logout</a></li>
+                    <li><a href="../Admin/authreq.php">Request</a></li>
+                    <li><?php echo "<a href=\"../Authors/account.php?id=$row[id]\">" ?>Details</a></li>
+                    <li><a href="../Post/editpost.php">Post</a></li>
+                    <li><a href="../Post/category.php">Category</a></li>
+                    <li><a href="../login/logout.php"><i class="fas fa-sign-out-alt"></i>&nbsp;Logout</a></li>
                 </ul>
             </li>
 
@@ -115,7 +119,7 @@ foreach ($sql as $row) {
         <div class="wrap-content">
   <div class="wrap-1">
     <?php }
-
+$dash = 'admin.php';
 include('../Post/createpost.php'); 
 include('../Post/container.php'); 
 
@@ -173,7 +177,7 @@ include('../Post/container.php');
     <script src="../../css/js/nav_responsive.js"></script>
 
     <script src="../../css/js/loadcreate.js"></script>
-    <script src="../../css/js/camera.js"></script>
+  
     <script>
   
   </script>

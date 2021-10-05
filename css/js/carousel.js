@@ -19,11 +19,11 @@ function updateSlidePosition() {
     for (let slide of slides) {
         slide.classList.remove('carousel__item--visible');
         slide.classList.add('carousel__item--hidden');
+        setTimeout(2000);
 
+
+        slides[slidePosition].classList.add('carousel__item--visible');
     }
-    setTimeout(moveToNextSlide, 2000);
-    slides[slidePosition].classList.add('carousel__item--visible');
-
 
 }
 

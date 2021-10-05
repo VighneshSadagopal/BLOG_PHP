@@ -9,6 +9,7 @@ close.addEventListener('click', () => {
     document.getElementById("createpost").classList.remove('show');
     document.getElementById("videowrap").classList.remove('show');
 
+
 });
 const addphoto = document.getElementById('addphoto');
 
@@ -16,6 +17,7 @@ addphoto.addEventListener('click', () => {
 
     document.getElementById("videowrap").classList.add('show');
     document.getElementById("createpost").classList.add('show');
+
 });
 const files = document.getElementById("files");
 
@@ -38,7 +40,7 @@ const upload = document.getElementById("upload");
 const submit = document.getElementById("submit");
 const errorMsgelement = document.getElementById("snaperror");
 const file = document.querySelector("#filebtn");
-
+const photo = document.getElementById("photo");
 
 const constraints = {
     video: {
@@ -61,29 +63,36 @@ function handleSuccess(stream) {
 }
 init();
 var context = canvas.getContext('2d');
-snap.addEventListener("click", function() {
+snap.addEventListener("click", function(e) {
+
+    e.preventDefault();
+
     context.drawImage(video, 0, 0, 640, 480);
-
-
+    var dataurl = canvas.toDataURL();
+    $("#photo").val(dataurl);
 
 });
-upload.addEventListener("click", function() {
-    canvas.toBlob(function(blob) {
+$(document).ready(function(e) {
 
-        var img = {};
-
-        img.name = canvas.toDataURL();
-        saveAs(blob, img.name);
+    upload.addEventListener("click", function() {
         $.ajax({
-            url: "formfunction.php",
-            method: "post",
-            data: img,
+            url: "../function/formfunction.php",
+            type: "post",
+            data: {
+                'photo': $("#photo").val()
+            },
             success: function(res) {
-                console.log(res);
+
+                alert('form was submitted');
+
             }
         });
+
     });
 });
+
+
+
 
 function filebtn() {
     file.click();

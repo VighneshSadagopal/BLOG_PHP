@@ -8,13 +8,13 @@ session_start();
 
 if(isset($_SESSION['username'])){
     if($_SESSION['usertype'] =="admin"){
-        header("location:../Admin/admin");
+        header("location:../Admin/admin.php");
     }
     elseif($_SESSION['usertype'] =="user"){
-        header("location:../Authors/welcome");
+        header("location:../Authors/welcome.php");
     }
     elseif($_SESSION['usertype'] ==""){
-        header("location:../Authors/anonmoyous");
+        header("location:../Authors/anonmoyous.php");
     }
 
 }
@@ -27,7 +27,7 @@ if (isset($_POST['submit'])) {
     $password = md5($_POST['password']);
    $sql=$u->login($email,$password);
    $res= $u->rowCount() > 0;
- 
+   if($res){
    foreach ($sql as $data) {
         $_SESSION['email'] = $data['email'];
         $_SESSION['username'] = $data['username'];
@@ -38,7 +38,7 @@ if (isset($_POST['submit'])) {
 
    
 
-        if($res){
+    
 
        
     
@@ -49,7 +49,7 @@ if (isset($_POST['submit'])) {
         
             }
            
-                header("location:../Admin/admin?info=login");
+                header("location:../Admin/admin.php?info=login");
             }
       
         elseif($data['usertype']=='user'){
@@ -59,7 +59,7 @@ if (isset($_POST['submit'])) {
         
             }
            
-                header("location:../Authors/welcome?info=login");
+                header("location:../Authors/welcome.php?info=login");
             }
             elseif($data['usertype']==''){
                 if(isset($_POST['check'])){
@@ -69,16 +69,16 @@ if (isset($_POST['submit'])) {
                 }else{
                     echo "error occured";
                 }
-                    header("location:../Authors/anonmoyous?info=login");
+                    header("location:../Authors/anonmoyous.php?info=login");
                
         }
         
             
         
-    }else{
-                echo "<small>Email or Password is Incorrect</small>";
-            }
-        }         
+    }
+        }   else{
+            echo "<small>Email or Password is Incorrect</small>";
+        }      
 
     }
 
@@ -91,7 +91,7 @@ if (isset($_POST['submit'])) {
     <head>  
   <link rel="stylesheet" href="../../css/index.css">
   <link rel="stylesheet" href="../../css/nav.css">
-  <link rel="stylesheet" href="../../css/old/footer.css">
+  <link rel="stylesheet" href="../../css/footer.css">
   <link rel="stylesheet" href="../../css/notify.css">
         <meta charset="UTF-8">
         <script src="https://kit.fontawesome.com/ec41712638.js" crossorigin="anonymous"></script>

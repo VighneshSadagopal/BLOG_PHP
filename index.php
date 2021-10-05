@@ -23,7 +23,7 @@ if (isset($_GET['page'])) {
   <title>Homepage</title>
 
   <link rel="stylesheet" href="css/carousel.css">
-  <link rel="stylesheet" href="css/old/footer.css">
+  <link rel="stylesheet" href="css/footer.css">
   <link rel="stylesheet" href="css/nav.css">
   <link rel="stylesheet" href="css/container.css">
   <link rel="stylesheet" href="css/style.css">
@@ -59,9 +59,9 @@ if (isset($_GET['page'])) {
             $image = $_SESSION['profilepic'];
           ?>
             <img src="images/<?php echo $image ?>" id=" clipped" class="extra">
-            <li><a href="templates/login/login" id="name">Dashboard</a></li>
+            <li><a href="templates/login/login.php" id="name">Dashboard</a></li>
           <?php
-          } else { ?><li><a href="templates/login/login" id="name">LOGIN</a></li><?php } ?>
+          } else { ?><li><a href="templates/login/login.php" id="name">LOGIN</a></li><?php } ?>
 
         </div>
 
@@ -263,7 +263,7 @@ for ($i = 1; $i <= $nom_of_pages; $i++) {
       if ($page == $i) {
         echo "class='active'";
       }
-      ?>><a href="<?php echo $i; ?>"><?php echo $i; ?></a></li>
+      ?>><a href="index.php?page=<?php echo $i; ?>"><?php echo $i; ?></a></li>
 <?php
 }
 ?>

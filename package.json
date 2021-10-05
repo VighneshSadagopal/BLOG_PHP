@@ -1,0 +1,23 @@
+{
+    "name": "blog",
+    "version": "1.0.0",
+    "description": "Sass and Gulp",
+    "main": "load.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/VighneshSadagopal/BLOG_PHP.git"
+    },
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/VighneshSadagopal/BLOG_PHP/issues"
+    },
+    "homepage": "https://github.com/VighneshSadagopal/BLOG_PHP#readme",
+    "dependencies": {
+        "gulp": "^4.0.2",
+        "gulp-sass": "^4.0.0"
+    }
+}

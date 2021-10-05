@@ -29,7 +29,7 @@ class Post extends Database
     }
     public function getAllPostByCategory($category)
     {
-        $sql = $this->db->query("SELECT * FROM post WHERE category=:category ORDER BY pid DESC");
+        $sql = $this->db->query("SELECT * FROM post WHERE category=:category ");
         $this->db->bind(':category', $category);
         $stmt = $this->db->execute($sql);
         $row = $stmt->fetchALL(PDO::FETCH_ASSOC);        
